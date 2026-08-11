@@ -1,0 +1,307 @@
+.section {
+    padding: 5rem 1.5rem;
+    background: #ffffff;
+}
+
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 3rem;
+}
+
+.heading h2 {
+    margin: 0;
+    color: #041632;
+    font-family: "Manrope", sans-serif;
+    font-size: 2rem;
+    line-height: 2.5rem;
+    font-weight: 600;
+}
+
+.heading a,
+.cardContent a,
+.mobileLink a {
+    color: #775a19;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.heading a:hover,
+.cardContent a:hover,
+.mobileLink a:hover {
+    text-decoration: underline;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: 300px;
+    gap: 1.5rem;
+}
+
+.card {
+    border: 1px solid #c5c6ce;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgb(0 0 0 / 8%);
+}
+
+/* Large 8-column card */
+
+.featuredCard {
+    grid-column: span 8;
+    position: relative;
+}
+
+.featuredCard img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: rgb(4 22 50 / 70%);
+}
+
+.featuredContent {
+    position: absolute;
+    inset: 0;
+    padding: 3rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    color: white;
+}
+
+.featuredContent h3 {
+    margin: 0 0 0.25rem;
+
+    font-family: "Manrope", sans-serif;
+    font-size: 2rem;
+    line-height: 2.5rem;
+}
+
+.featuredContent p {
+    max-width: 42rem;
+    margin: 0;
+
+    font-size: 1rem;
+    line-height: 1.5rem;
+    opacity: 0.9;
+}
+
+.badge,
+.outlineBadge {
+    width: fit-content;
+    margin-bottom: 0.75rem;
+    padding: 0.25rem 0.75rem;
+
+    border-radius: 0.25rem;
+
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.badge {
+    background: #775a19;
+    color: #041632;
+}
+
+/* Smaller cards */
+
+.smallCard {
+    grid-column: span 4;
+
+    display: flex;
+    flex-direction: column;
+
+    background: #ffffff;
+}
+
+.cardImage {
+    height: 50%;
+}
+
+.cardImage img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.cardContent {
+    flex: 1;
+    padding: 1.5rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.cardContent h3 {
+    margin: 0 0 0.25rem;
+
+    color: #041632;
+    font-family: "Manrope", sans-serif;
+    font-size: 1.5rem;
+    line-height: 2rem;
+}
+
+.cardContent p {
+    margin: 0;
+
+    color: #44474d;
+    font-size: 1rem;
+    line-height: 1.5rem;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.cardContent a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+
+    margin-top: 0.75rem;
+}
+
+.cardContent .material-symbols-outlined {
+    font-size: 1rem;
+}
+
+/* Wide card */
+
+.wideCard {
+    grid-column: span 8;
+
+    padding: 3rem;
+
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+
+    background: #ffffff;
+}
+
+.wideContent {
+    flex: 1;
+}
+
+.wideContent h3 {
+    margin: 0 0 0.75rem;
+
+    color: #041632;
+    font-family: "Manrope", sans-serif;
+    font-size: 1.5rem;
+    line-height: 2rem;
+}
+
+.wideContent p {
+    margin: 0 0 1.5rem;
+
+    color: #44474d;
+    line-height: 1.5rem;
+}
+
+.outlineBadge {
+    border: 1px solid #775a19;
+    color: #775a19;
+}
+
+.wideContent a {
+    display: inline-flex;
+
+    padding: 0.75rem 1.5rem;
+
+    border: 2px solid #041632;
+    border-radius: 0.25rem;
+
+    color: #041632;
+
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.wideContent a:hover {
+    background: #edeeef;
+}
+
+.wideImage {
+    width: 33.333%;
+    aspect-ratio: 1;
+    border-radius: 0.25rem;
+    overflow: hidden;
+}
+
+.wideImage img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.mobileLink {
+    display: none;
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+    .section {
+        padding: 4rem 1rem;
+    }
+
+    .heading a {
+        display: none;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+        grid-auto-rows: auto;
+    }
+
+    .featuredCard,
+    .smallCard,
+    .wideCard {
+        grid-column: span 1;
+    }
+
+    .featuredCard {
+        min-height: 350px;
+    }
+
+    .smallCard {
+        min-height: 400px;
+    }
+
+    .wideCard {
+        padding: 1.5rem;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .wideImage {
+        width: 100%;
+        order: -1;
+    }
+
+    .mobileLink {
+        display: block;
+        margin-top: 3rem;
+        text-align: center;
+    }
+}

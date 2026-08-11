@@ -1,8 +1,16 @@
+import AccreditationSection from "../../componets/home/Accreditation"
+import Benefits from "../../componets/home/Benefits"
+import FeaturedCourses from "../../componets/home/FeaturedCourses"
+import Hero from "../../componets/home/Hero"
+
 function Home() {
     return (
-        <div>
-            <h1>Homfdldje</h1>
-        </div>
+        <>
+            <Hero />
+            <Benefits />
+            <AccreditationSection />
+            <FeaturedCourses />
+        </>
     )
 }
 
