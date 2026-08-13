@@ -1,0 +1,92 @@
+.step {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.formGrid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.fullWidth {
+    grid-column: 1 / -1;
+}
+
+.formGrid label {
+    display: block;
+    margin-bottom: 6px;
+    color: #191c1d;
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+}
+
+.formGrid input,
+.formGrid select,
+.formGrid textarea {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #75777e;
+    border-radius: 4px;
+    background: #ffffff;
+    color: #191c1d;
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    padding: 12px;
+    outline: none;
+}
+
+.formGrid input,
+.formGrid select {
+    height: 48px;
+}
+
+.formGrid textarea {
+    resize: vertical;
+}
+
+.formGrid input:focus,
+.formGrid select:focus,
+.formGrid textarea:focus {
+    border: 2px solid #041632;
+}
+
+.actions {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 24px;
+    border-top: 1px solid #e1e3e4;
+}
+
+.nextButton {
+    border: 2px solid #041632;
+    border-radius: 4px;
+    padding: 12px 32px;
+    background: #041632;
+    color: #ffffff;
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.nextButton:hover {
+    opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+    .formGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .fullWidth {
+        grid-column: auto;
+    }
+
+    .nextButton {
+        width: 100%;
+    }
+}
