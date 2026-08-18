@@ -1,28 +1,29 @@
+import courses from "../../data/courses";
 import styles from "./AcademicStep.module.css";
 
-function AcademicStep({ onNext, onBack }) {
-
+function AcademicStep({ register, errors }) {
     return (
         <div className={styles.container}>
 
-            <form className={styles.form}>
+            <div className={styles.form}>
                 <div className={styles.grid}>
 
-                    {/* Highest Qualification */}
+                    {/* Highest Level of Education */}
                     <div className={`${styles.field} ${styles.fullWidth}`}>
                         <label htmlFor="highestQualification">
-                            Highest Academic Qualification
+                            Highest Level of Education
                             <span className={styles.required}>*</span>
                         </label>
 
                         <select
                             id="highestQualification"
-                            name="highestQualification"
-                        // onChange={handleChange}
+                            {...register("highestQualification", {
+                                required: "This field is required",
+                            })}
                         >
-                            <option value="">Select Qualification</option>
+                            <option value="">Select Education Level</option>
                             <option value="secondary">
-                                Secondary School Certificate
+                                Secondary School
                             </option>
                             <option value="certificate">
                                 Certificate
@@ -39,170 +40,133 @@ function AcademicStep({ onNext, onBack }) {
                             <option value="doctorate">
                                 Doctorate
                             </option>
-                            <option value="other">Other</option>
+                            <option value="other">
+                                Other
+                            </option>
                         </select>
+
+                        {errors.highestQualification && (
+                            <p className={styles.errors}>
+                                {errors.highestQualification.message}
+                            </p>
+                        )}
+                    </div>
+
+                    {/* Current Occupation */}
+                    <div className={styles.field}>
+                        <label htmlFor="currentOccupation">
+                            Current Occupation
+                            <span className={styles.required}>*</span>
+                        </label>
+
+                        <input
+                            id="currentOccupation"
+                            type="text"
+                            placeholder="e.g. Software Developer"
+                            {...register("currentOccupation", {
+                                required: "This field is required",
+                            })}
+                        />
+
+                        {errors.currentOccupation && (
+                            <p className={styles.errors}>
+                                {errors.currentOccupation.message}
+                            </p>
+                        )}
                     </div>
 
                     {/* Institution */}
                     <div className={styles.field}>
                         <label htmlFor="institution">
-                            Institution Attended
-                            <span className={styles.required}>*</span>
+                            Name of School/College/University
+                            <span>(if applicable)</span>
                         </label>
 
                         <input
                             id="institution"
-                            name="institution"
                             type="text"
                             placeholder="Name of institution"
-                        // onChange={handleChange}
+                            {...register("institution")}
                         />
                     </div>
 
-                    {/* Field of Study */}
-                    <div className={styles.field}>
-                        <label htmlFor="fieldOfStudy">
-                            Field of Study
-                            <span className={styles.required}>*</span>
-                        </label>
-
-                        <input
-                            id="fieldOfStudy"
-                            name="fieldOfStudy"
-                            type="text"
-                            placeholder="e.g. Business Administration"
-                        // onChange={handleChange}
-                        />
-                    </div>
-
-                    {/* Graduation Year */}
-                    <div className={styles.field}>
-                        <label htmlFor="graduationYear">
-                            Year Completed
+                    {/* Programme */}
+                    <div className={`${styles.field} ${styles.fullWidth}`}>
+                        <label htmlFor="programme">
+                            Choose a Programme
                             <span className={styles.required}>*</span>
                         </label>
 
                         <select
-                            id="graduationYear"
-                            name="graduationYear"
-                        // onChange={handleChange}
+                            id="programme"
+                            {...register("programme", {
+                                required: "This field is required",
+                            })}
                         >
-                            <option value="">Select Year</option>
-
-                            {Array.from(
-                                { length: 50 },
-                                (_, index) => {
-                                    const year =
-                                        new Date().getFullYear() - index;
-
-                                    return (
-                                        <option key={year} value={year}>
-                                            {year}
-                                        </option>
-                                    );
-                                }
-                            )}
+                            <option value="">Select Programme</option>
+                            {courses.map((course) => {
+                                return <option value={course.id}>{course.title}</option>
+                            })}
                         </select>
+
+                        {errors.programme && (
+                            <p className={styles.errors}>
+                                {errors.programme.message}
+                            </p>
+                        )}
                     </div>
 
-                    {/* Student / Professional Status */}
+                    {/* Preferred Study Mode */}
                     <div className={styles.field}>
-                        <label htmlFor="currentStatus">
-                            Current Status
+                        <label htmlFor="studyMode">
+                            Preferred Study Mode
                             <span className={styles.required}>*</span>
                         </label>
 
                         <select
-                            id="currentStatus"
-                            name="currentStatus"
-                        // onChange={handleChange}
+                            id="studyMode"
+                            {...register("studyMode", {
+                                required: "This field is required",
+                            })}
                         >
-                            <option value="">Select Status</option>
-                            <option value="student">Student</option>
-                            <option value="employed">Employed</option>
-                            <option value="self-employed">
-                                Self-employed
-                            </option>
-                            <option value="job-seeking">
-                                Currently seeking employment
-                            </option>
-                            <option value="other">Other</option>
+                            <option value="">Select Study Mode</option>
+                            <option value="online">Online</option>
+                            <option value="physical">Physical</option>
+                            <option value="hybrid">Hybrid</option>
                         </select>
+
+                        {errors.studyMode && (
+                            <p className={styles.errors}>
+                                {errors.studyMode.message}
+                            </p>
+                        )}
                     </div>
 
-                    {/* Employer */}
+                    {/* Preferred Intake */}
                     <div className={styles.field}>
-                        <label htmlFor="employer">
-                            Current Employer
+                        <label htmlFor="intake">
+                            Preferred Intake
+                            <span className={styles.required}>*</span>
                         </label>
 
                         <input
-                            id="employer"
-                            name="employer"
+                            id="intake"
                             type="text"
-                            placeholder="Company / Organisation"
-                        // onChange={handleChange}  
+                            placeholder="e.g. September 2026"
+                            {...register("intake", {
+                                required: "This field is required",
+                            })}
                         />
+
+                        {errors.intake && (
+                            <p className={styles.errors}>
+                                {errors.intake.message}
+                            </p>
+                        )}
                     </div>
 
-                    {/* Job Title */}
-                    <div className={styles.field}>
-                        <label htmlFor="jobTitle">
-                            Current Job Title
-                        </label>
-
-                        <input
-                            id="jobTitle"
-                            name="jobTitle"
-                            type="text"
-                            placeholder="Your current position"
-                        // onChange={handleChange}
-                        />
-                    </div>
-
-                    {/* Work Experience */}
-                    <div className={styles.field}>
-                        <label htmlFor="workExperience">
-                            Years of Work Experience
-                        </label>
-
-                        <select
-                            id="workExperience"
-                            name="workExperience"
-                        // onChange={handleChange}
-                        >
-                            <option value="">Select Experience</option>
-                            <option value="none">No experience</option>
-                            <option value="less-than-1">
-                                Less than 1 year
-                            </option>
-                            <option value="1-3">1–3 years</option>
-                            <option value="4-6">4–6 years</option>
-                            <option value="7-10">7–10 years</option>
-                            <option value="10-plus">
-                                More than 10 years
-                            </option>
-                        </select>
-                    </div>
-
-                    {/* Academic Background */}
-                    <div
-                        className={`${styles.field} ${styles.fullWidth}`}
-                    >
-                        <label htmlFor="academicBackground">
-                            Academic Background
-                        </label>
-
-                        <textarea
-                            id="academicBackground"
-                            name="academicBackground"
-                            rows="4"
-                            placeholder="Briefly describe your academic background, qualifications, or relevant training."
-                        // onChange={handleChange}
-                        />
-                    </div>
                 </div>
-            </form>
+            </div>
         </div>
     );
 }

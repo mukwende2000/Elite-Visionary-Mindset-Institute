@@ -5,6 +5,8 @@ import EmergencyStep from "../../componets/apply/EmergencyStep";
 import AdditionalStep from "../../componets/apply/AdditionalStep";
 import Declaration from "../../componets/apply/Declaration";
 import PersonalStep from "../../componets/apply/PersonalStep";
+import { useForm } from "react-hook-form";
+import { stepFields } from "../../data/stepFields";
 
 const steps = [
     "Personal",
@@ -16,8 +18,28 @@ const steps = [
 
 function Apply() {
     const [currentStep, setCurrentStep] = useState(1);
+    const {
+        register,
+        handleSubmit,
+        control,
+        formState: { errors },
+        trigger
+    } = useForm()
 
-    const nextStep = () => {
+    const onSubmit = (data) => {
+        console.log(data)
+    }
+
+    const nextStep = async () => {
+
+        const fields = stepFields[currentStep]
+        const isValid = await trigger(fields)
+
+        if (!isValid) {
+            return;
+        }
+
+
         if (currentStep < steps.length) {
             setCurrentStep(currentStep + 1);
 
@@ -71,41 +93,26 @@ function Apply() {
                     </div>
 
                     {/* Form */}
-                    <div className={styles.formCard}>
+                    <form className={styles.formCard} onSubmit={handleSubmit(onSubmit)}>
                         <h2>
-                            Step {currentStep}: {steps[currentStep - 1]} Information
+                            {steps[currentStep - 1]} {currentStep !== 5 ? "Information" : null}
                         </h2>
 
 
                         {currentStep === 1 && (
-                            <PersonalStep
-                                onNext={nextStep}
-                                onBack={previousStep}
-                            />
+                            <PersonalStep register={register} errors={errors} />
                         )}
                         {currentStep === 2 && (
-                            <AcademicStep
-                                onNext={nextStep}
-                                onBack={previousStep}
-                            />
+                            <AcademicStep register={register} errors={errors} />
                         )}
                         {currentStep === 3 && (
-                            <EmergencyStep
-                                onNext={nextStep}
-                                onBack={previousStep}
-                            />
+                            <EmergencyStep register={register} errors={errors} />
                         )}
                         {currentStep === 4 && (
-                            <AdditionalStep
-                                onNext={nextStep}
-                                onBack={previousStep}
-                            />
+                            <AdditionalStep register={register} errors={errors} />
                         )}
                         {currentStep === 5 && (
-                            <Declaration
-                                onBack={previousStep}
-                                onSubmit={() => console.log("Application submitted")}
-                            />
+                            <Declaration register={register} errors={errors} />
                         )}
 
                         {/* Actions */}
@@ -137,14 +144,14 @@ function Apply() {
                                 </button>
                             ) : (
                                 <button
-                                    type="button"
+                                    type="submit"
                                     className={styles.primaryButton}
                                 >
                                     Submit Application
                                 </button>
                             )}
                         </div>
-                    </div>
+                    </form>
 
                     {/* Security */}
                     <div className={styles.security}>

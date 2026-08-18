@@ -1,6 +1,6 @@
 import styles from "./Declaration.module.css";
 
-function Declaration({ onBack, onSubmit }) {
+function Declaration({ register, errors }) {
     return (
         <section className={styles.step}>
             <div className={styles.header}>
@@ -33,14 +33,20 @@ function Declaration({ onBack, onSubmit }) {
 
             <div className={styles.confirmation}>
                 <label className={styles.checkboxLabel}>
-                    <input type="checkbox" id="declaration" />
+                    <input type="checkbox" id="declaration" {...register("declaration", { required: "Please accept the terms above" })} />
 
                     <span>
                         I confirm that I have read, understood, and agree to the above
                         declaration.
                         <strong>*</strong>
                     </span>
+
                 </label>
+                {errors.declaration && (
+                    <p className={styles.errors}>
+                        {errors.declaration.message}
+                    </p>
+                )}
             </div>
         </section>
     );

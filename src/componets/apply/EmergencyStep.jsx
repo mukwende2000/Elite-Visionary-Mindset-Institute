@@ -1,6 +1,7 @@
+import { required } from "zod/v4-mini";
 import styles from "./EmergencyStep.module.css";
 
-function EmergencyStep({ onNext, onBack }) {
+function EmergencyStep({ register, errors }) {
     return (
         <div className={styles.container}>
             <p className={styles.intro}>
@@ -8,13 +9,13 @@ function EmergencyStep({ onNext, onBack }) {
                 of an emergency.
             </p>
 
-            <form className={styles.form}>
+            <div className={styles.form}>
                 <div className={styles.grid}>
 
-                    {/* Full Name */}
+                    {/* First Name */}
                     <div className={`${styles.field} ${styles.fullWidth}`}>
                         <label htmlFor="emergencyName">
-                            Full Name
+                            First Name
                             <span className={styles.required}>*</span>
                         </label>
 
@@ -22,8 +23,33 @@ function EmergencyStep({ onNext, onBack }) {
                             id="emergencyName"
                             name="emergencyName"
                             type="text"
-                            placeholder="Full legal name"
+                            placeholder="Full name"
+                            {...register("emergencyName", { required: "This field is required" })}
                         />
+                        {errors.emergencyName && (
+                            <p className={styles.error}>
+                                {errors.emergencyName.message}
+                            </p>
+                        )}
+                    </div>
+                    <div className={`${styles.field} ${styles.fullWidth}`}>
+                        <label htmlFor="emergencySurname">
+                            Last Name
+                            <span className={styles.required}>*</span>
+                        </label>
+
+                        <input
+                            id="emergencySurname"
+                            name="emergencySurname"
+                            type="text"
+                            placeholder="Full legal name"
+                            {...register("emergencySurname", { required: "This field is required" })}
+                        />
+                        {errors.emergencySurname && (
+                            <p className={styles.error}>
+                                {errors.emergencySurname.message}
+                            </p>
+                        )}
                     </div>
 
                     {/* Relationship */}
@@ -33,7 +59,11 @@ function EmergencyStep({ onNext, onBack }) {
                             <span className={styles.required}>*</span>
                         </label>
 
-                        <select id="relationship" name="relationship">
+                        <select
+                            id="relationship"
+                            name="relationship"
+                            {...register("relationship", { required: "This field is required" })}
+                        >
                             <option value="">
                                 Select Relationship
                             </option>
@@ -45,6 +75,11 @@ function EmergencyStep({ onNext, onBack }) {
                             <option value="friend">Friend</option>
                             <option value="other">Other</option>
                         </select>
+                        {errors.relationship && (
+                            <p className={styles.error}>
+                                {errors.relationship.message}
+                            </p>
+                        )}
                     </div>
 
                     {/* Phone */}
@@ -59,7 +94,13 @@ function EmergencyStep({ onNext, onBack }) {
                             name="emergencyPhone"
                             type="tel"
                             placeholder="+260 97 000 0000"
+                            {...register("emergencyPhone", { required: "This field is required" })}
                         />
+                        {errors.emergencyPhone && (
+                            <p className={styles.error}>
+                                {errors.emergencyPhone.message}
+                            </p>
+                        )}
                     </div>
 
                     {/* Email */}
@@ -119,7 +160,7 @@ function EmergencyStep({ onNext, onBack }) {
                         />
                     </div>
                 </div>
-            </form>
+            </div>
         </div>
     );
 }

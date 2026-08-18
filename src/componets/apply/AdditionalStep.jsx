@@ -1,6 +1,6 @@
 import styles from "./AdditionalStep.module.css";
 
-function AdditionalStep({ onNext, onBack }) {
+function AdditionalStep({ register, errors }) {
     return (
         <section className={styles.step}>
             <div className={styles.header}>
@@ -15,13 +15,21 @@ function AdditionalStep({ onNext, onBack }) {
                 <div className={styles.field}>
                     <label htmlFor="employmentStatus">Employment Status</label>
 
-                    <select id="employmentStatus">
+                    <select
+                        id="employmentStatus"
+                        {...register("employmentStatus", { required: "The field is required" })}
+                    >
                         <option value="">Select employment status</option>
                         <option value="employed">Employed</option>
                         <option value="self-employed">Self-employed</option>
                         <option value="student">Student</option>
                         <option value="unemployed">Not currently employed</option>
                     </select>
+                    {errors.employmentStatus && (
+                        <p className={styles.error}>
+                            {errors.employmentStatus.message}
+                        </p>
+                    )}
                 </div>
 
                 {/* Organisation */}
@@ -60,47 +68,6 @@ function AdditionalStep({ onNext, onBack }) {
                     </select>
                 </div>
 
-                {/* Programme Interest */}
-                <div className={`${styles.field} ${styles.fullWidth}`}>
-                    <label htmlFor="programme">
-                        Programme You Are Interested In
-                    </label>
-
-                    <select id="programme">
-                        <option value="">Select a programme</option>
-                        <option value="business-management">
-                            Certificate in Business Management (CBM)
-                        </option>
-                        <option value="tourism-hospitality">
-                            Certificate in Tourism & Hospitality Management
-                        </option>
-                        <option value="early-childhood">
-                            Certificate in Early Childhood Care & Education
-                        </option>
-                        <option value="ai-prompt-engineering">
-                            Certificate in Artificial Intelligence (AI) & Prompt Engineering
-                        </option>
-                        <option value="digital-marketing">
-                            Certificate in Digital Marketing & Social Media Management
-                        </option>
-                        <option value="leadership-management">
-                            Certificate in Leadership and Management
-                        </option>
-                        <option value="public-speaking">
-                            Certificate in Public Speaking and Communication
-                        </option>
-                        <option value="personal-branding">
-                            Certificate in Personal Branding and Image Management
-                        </option>
-                        <option value="sales-marketing">
-                            Certificate in Sales and Marketing
-                        </option>
-                        <option value="entrepreneurship">
-                            Certificate in Entrepreneurship and Business Development
-                        </option>
-                    </select>
-                </div>
-
                 {/* Motivation */}
                 <div className={`${styles.field} ${styles.fullWidth}`}>
                     <label htmlFor="motivation">
@@ -118,7 +85,7 @@ function AdditionalStep({ onNext, onBack }) {
                 <div className={styles.field}>
                     <label htmlFor="referral">How did you hear about EVMI?</label>
 
-                    <select id="referral">
+                    <select id="referral" {...register("referral", { required: "This field is required" })}>
                         <option value="">Select an option</option>
                         <option value="social-media">Social Media</option>
                         <option value="website">EVMI Website</option>
@@ -127,6 +94,11 @@ function AdditionalStep({ onNext, onBack }) {
                         <option value="search">Search Engine</option>
                         <option value="other">Other</option>
                     </select>
+                    {errors.referral && (
+                        <p className={styles.error}>
+                            {errors.referral.message}
+                        </p>
+                    )}
                 </div>
 
                 {/* Other */}
