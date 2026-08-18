@@ -1,3 +1,8 @@
+import cert_in_ai from '../assets/images/cert_in_ai.jpeg'
+import cert_in_business from '../assets/images/cert_in_business.jpeg'
+import cert_in_public_speaking from '../assets/images/cert_in_public_speaking.jpeg'
+import cert_in_tourism from '../assets/images/cert_in_tourism.jpeg'
+
 const courses = [
     {
         id: 1,
@@ -17,8 +22,7 @@ const courses = [
             "Minimum 1 year of professional work experience",
             "Proficiency in English (IELTS 6.0 or equivalent)",
         ],
-        image:
-            "https://lh3.googleusercontent.com/aida-public/AB6AXuBYorLf_6SfiK3x39QZEHWL38_PlBprdh6uzEqq_11NUOg7hwI91cAPdu5hs7dQc5QxIlj3dJwru5n8HTvrsqRf4nXhqNN9tIOzL6pAO13dfF4ihJZJ5IoTnaPBV2PzVppF1Br6G3-kQW8JGmBneqYCGXPnJ7XcTDHoXoh-mg_vvm2UI4iIZHzxPn5wT7BIaW80QaAT1WcEAUp9pTNulZ3GzS0V2rpdCL7qVuABjjmlWx9JFbQIc78",
+        image: cert_in_business
     },
 
     {
@@ -39,8 +43,7 @@ const courses = [
             "Minimum 1 year of professional work experience",
             "Proficiency in English",
         ],
-        image:
-            "https://lh3.googleusercontent.com/aida-public/AB6AXuDglTUIOvnJQFvBNeDL0nxO4uIFRJBn3w9r2ihdtNquiAOMYzMQIFti38HL3LRjak0et7AS--9EUts0BuXtKU7HG1UXBY6SGLMerHwKMkTgOvKn3fEyr_rMrzwXsCuIzhAJT4JUMf-80ZARdFbb-48UPaqGwC9rlVkKES8m5Vho5kD5iarL9GeYsr8mmml_IgiWoOkalgbhbcXCiKwDZaZ46z1gKkVxNO5lydev4_J0Q7Vb1w-EXdg",
+        image: cert_in_tourism
     },
 
     {
@@ -61,8 +64,7 @@ const courses = [
             "Minimum 1 year of relevant experience",
             "Proficiency in English",
         ],
-        image:
-            "https://lh3.googleusercontent.com/aida-public/AB6AXuABR_lfP4xZbTfQSiz1HEA_kXLZBaHgd4NWr_9K_aR7ZKTWnqkMbEaCqwX2r6XVL9yjwJkyoF464fFlTg22i_sj4i4xLCIb5GKvYCRfvp_mDy_x03gjArUyVhxBHm0GdzZSK7T--hwP-GBB2_yj5uE_eQVW92KSpvYb3C4lPPWBcf338HvGYlFmmwQLfm5YoPsOGSLo6i0lQIl0UPFF1hClF666QyOwfZIkcz9tx2Y0xUdEvSMaJAM",
+        image: cert_in_ai
     },
 
     {
@@ -83,8 +85,7 @@ const courses = [
             "Basic computer literacy",
             "Proficiency in English",
         ],
-        image:
-            "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1000&q=80",
+        image: cert_in_ai
     },
 
     {
@@ -105,8 +106,7 @@ const courses = [
             "Basic computer literacy",
             "Proficiency in English",
         ],
-        image:
-            "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1000&q=80",
+        image: cert_in_tourism
     },
 
     {
@@ -127,8 +127,7 @@ const courses = [
             "Minimum 1 year of professional experience",
             "Proficiency in English",
         ],
-        image:
-            "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1000&q=80",
+        image: cert_in_business
     },
 
     {
@@ -149,8 +148,7 @@ const courses = [
             "Basic communication skills",
             "Proficiency in English",
         ],
-        image:
-            "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=1000&q=80",
+        image: cert_in_public_speaking
     },
 
     {
@@ -171,8 +169,7 @@ const courses = [
             "Interest in professional development",
             "Proficiency in English",
         ],
-        image:
-            "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1000&q=80",
+        image: cert_in_ai
     },
 
     {
@@ -193,8 +190,7 @@ const courses = [
             "Basic business knowledge",
             "Proficiency in English",
         ],
-        image:
-            "https://images.unsplash.com/photo-1556740758-90de374c12ad?auto=format&fit=crop&w=1000&q=80",
+        image: cert_in_public_speaking
     },
 
     {
@@ -215,8 +211,7 @@ const courses = [
             "Interest in entrepreneurship or business",
             "Proficiency in English",
         ],
-        image:
-            "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1000&q=80",
+        image: cert_in_tourism
     },
 ];
 

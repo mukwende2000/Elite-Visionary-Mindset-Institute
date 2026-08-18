@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
 import styles from "./Hero.module.css"
+import heroImage from '../../assets/images/bg2.jpeg'
 
 function Hero() {
     return (
@@ -33,7 +34,8 @@ function Hero() {
 
                 <div className={styles.imageWrapper}>
                     <img
-                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4yh7SNsgdkCUbklqufnr20D2j82w9wkKP4axnIoOpTblNxWtv9UhzS7F80tILlNh5JyhcxNDe_-Xw7Gs4A2ndkme8PigNUcT2cFnlHVi_SenayjOVzXbheRb09aoPKDpCuWZ1RTaPyk2ORFzxrGl99aZu-V9PVzFe9TwHFVqeaVC0mtz6knVa3Zw7Prr88sZv09B2ai3pQZ8rWjX8oZDz9DJ2jQnl2ov-FDv0eIcvuxvENbtpIiI"
+                        src={heroImage}
+                        // src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4yh7SNsgdkCUbklqufnr20D2j82w9wkKP4axnIoOpTblNxWtv9UhzS7F80tILlNh5JyhcxNDe_-Xw7Gs4A2ndkme8PigNUcT2cFnlHVi_SenayjOVzXbheRb09aoPKDpCuWZ1RTaPyk2ORFzxrGl99aZu-V9PVzFe9TwHFVqeaVC0mtz6knVa3Zw7Prr88sZv09B2ai3pQZ8rWjX8oZDz9DJ2jQnl2ov-FDv0eIcvuxvENbtpIiI"
                         alt="Students participating in a professional learning session"
                     />
                 </div>

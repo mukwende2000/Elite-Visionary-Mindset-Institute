@@ -1,16 +1,21 @@
+import elias from '../assets/images/elias.jpeg'
+import bg from '../assets/images/bg.jpeg'
+
 const teamMembers = [
     {
         id: 1,
-        name: "Dr. Elizabeth Sterling",
-        role: "Dean of Academics",
-        image: "https://lh3.googleusercontent.com/aida-public/AB6AXuB_XYjaup_NUBb1ZNZfa6PYVJGefddIWh2CJbZkrAGNmtVgsSCkwDC7RanEgw2S_qALsL0e4yhTE4_FBa3fo4gOwYEmrsz_g2cl-6sNY1SQQgagRwglDfHX5g53l1qV2XnxgdMU6qfUN5UPmLIgivjQt_OyFBJ-0yVAs_GO3xh8ORzflPw-muZecx6B0mKQnYQIeeX9FxSA9eG04sd82HFbut352E8wohWoXW4V-NX2D_s-IeQP1cQ",
-        bio: "Dr. Elizabeth Sterling leads the Institute's academic vision and ensures that our programmes maintain the highest standards of academic excellence.",
+        name: "Elias Banda",
+        role: "Director and Founder",
+        image: elias,
+        bio: `Director and Founder of the Elite Visionary Mindset Institute, an educator, entrepreneur, author, and 
+        public speaker passionate about developing visionary leaders and equipping professionals with the mindset, knowledge, and practical 
+        skills required to create meaningful impact.`,
     },
     {
         id: 2,
         name: "Marcus Thorne",
         role: "Director of Innovation",
-        image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBI0fEmxqF90o0jW9LOUJCIYkiWmAJsa3EkwDM5bLyp6sp7BD6x2QVlf8QaGwHnX03Yr4IZkyHDe_JWO8WtwgsjFm5sf3Oog3pSHctiaPSR-hVOaK0eKpQyrHCtwtVRVJKVXFZdcxybfDuTl9Av9gKMPEB9ELR5qTUBUrq7HZPAgGL1kY3yc-rR0AOzZ1P1dOV-QjcOGIcb5I2Y-_pJrGUFfOigYKaLM1yHEkC5Oa7ehvqCqkUMRJE",
+        image: bg,
         bio: "Marcus Thorne drives innovation across the Institute, developing new approaches to learning, leadership, and professional development.",
     },
     {

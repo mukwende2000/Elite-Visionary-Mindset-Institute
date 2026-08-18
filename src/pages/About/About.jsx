@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import styles from "./About.module.css";
-
 import team from "../../data/teamMembers";
+import aboutImage from '../../assets/images/JAME4133.jpg'
 
 export default function About() {
     const [selectedMember, setSelectedMember] = useState(null);
@@ -38,7 +38,7 @@ export default function About() {
                     </div>
 
                     <img
-                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFyhTiE6Iycs99qoYEOMyRrxCPDUy9kBl61nalo2t4d7O_b14Lc7zS443Cm17AkZ9XNp1YsAwj3D8073x0XtYtXlPN-bxJmJkUkU2aqV9CegbzzMjOqMLTOhv8pPOExiHv_KvbXhRIKEcXIYfEx6yR7SVZp-9DU_-3T-77QXizHoVSL3yDTAT_QfSH1WhxFJvuvi9q5Jyx1efIr588UL9kH9a3G3YZwaIQjHCziku3B6zWnLXRwFA"
+                        src={aboutImage}
                         alt="EVMI learning environment"
                     />
                 </div>

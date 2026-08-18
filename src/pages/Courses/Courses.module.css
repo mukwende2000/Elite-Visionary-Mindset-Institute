@@ -15,15 +15,15 @@
 ========================= */
 
 .hero {
-    background: #041632;
-    color: #ffffff;
+    background: #f8f9fa;
     padding: 80px 24px;
+    border-bottom: 1px solid #e1e3e4;
 }
 
-.heroInner {
-    width: 100%;
+.heroContainer {
     max-width: 1280px;
     margin: 0 auto;
+
     display: flex;
     align-items: center;
     gap: 80px;
@@ -31,43 +31,208 @@
 
 .heroContent {
     flex: 1;
-    text-align: left;
+    max-width: 620px;
+}
+
+.heroEyebrow {
+    display: inline-block;
+    margin-bottom: 20px;
+
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: #775a19;
 }
 
 .heroContent h1 {
-    margin: 0 0 24px;
+    margin: 0;
+
     font-family: "Manrope", sans-serif;
-    font-size: 48px;
-    line-height: 56px;
+    font-size: clamp(42px, 5vw, 68px);
+    line-height: 1.05;
+    letter-spacing: -0.04em;
     font-weight: 700;
-    letter-spacing: -0.02em;
+    color: #041632;
+}
+
+.heroContent h1 span {
+    display: block;
+    color: #775a19;
 }
 
 .heroContent p {
-    max-width: 672px;
-    margin: 0;
+    max-width: 570px;
+    margin: 28px 0 0;
+
     font-family: "Inter", sans-serif;
     font-size: 18px;
-    line-height: 28px;
-    color: #b7c7eb;
+    line-height: 1.7;
+    color: #44474d;
 }
 
-.heroImageWrapper {
+.heroActions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 34px;
+}
+
+.heroPrimaryButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 14px 22px;
+
+    background: #041632;
+    color: #ffffff;
+
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+
+    border-radius: 6px;
+    transition: 0.2s ease;
+}
+
+.heroPrimaryButton:hover {
+    background: #1b2b48;
+    transform: translateY(-1px);
+}
+
+.heroPrimaryButton span {
+    font-size: 18px;
+}
+
+.heroSecondaryButton {
+    padding: 14px 22px;
+
+    color: #041632;
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    border: 1px solid #c5c6ce;
+    border-radius: 6px;
+
+    transition: 0.2s ease;
+}
+
+.heroSecondaryButton:hover {
+    border-color: #041632;
+    background: #ffffff;
+}
+
+.heroStats {
+    display: flex;
+    gap: 36px;
+
+    margin-top: 48px;
+    padding-top: 28px;
+
+    border-top: 1px solid #d9dadb;
+}
+
+.heroStats div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.heroStats strong {
+    font-family: "Manrope", sans-serif;
+    font-size: 14px;
+    color: #041632;
+}
+
+.heroStats span {
+    font-size: 12px;
+    color: #75777e;
+}
+
+.heroVisual {
     position: relative;
-    width: 100%;
-    height: 300px;
-    flex: 1;
+
+    flex: 0 0 500px;
+    height: 580px;
+
+    border-radius: 16px;
+    overflow: hidden;
+
+    background: #1b2b48;
 }
 
-.heroImageWrapper img {
-    position: absolute;
-    inset: 0;
+.heroVisual>img {
     width: 100%;
     height: 100%;
+
     object-fit: cover;
-    border: 2px solid #1b2b48;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(27, 43, 72, 0.08);
+    display: block;
+}
+
+.heroVisual::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background: linear-gradient(to top,
+            rgba(4, 22, 50, 0.65),
+            rgba(4, 22, 50, 0.05) 55%);
+}
+
+.heroImageCard {
+    position: absolute;
+    z-index: 2;
+
+    left: 24px;
+    right: 24px;
+    bottom: 24px;
+
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    padding: 18px;
+
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+
+    border-radius: 10px;
+}
+
+.heroImageCard>span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 46px;
+    height: 46px;
+
+    flex-shrink: 0;
+
+    background: #041632;
+    color: #ffdea5;
+
+    border-radius: 50%;
+}
+
+.heroImageCard div {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.heroImageCard strong {
+    font-family: "Manrope", sans-serif;
+    font-size: 14px;
+    color: #041632;
+}
+
+.heroImageCard span {
+    font-size: 12px;
+    color: #44474d;
 }
 
 /* =========================
@@ -271,14 +436,18 @@
 .modal {
     position: fixed;
     inset: 0;
-    z-index: 100;
+    z-index: 1000;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 24px;
+    background: rgba(184, 199, 224, 0.45);
+    backdrop-filter: blur(1px);
 }
 
-.modalOverlay {
+.modalBackdrop {
     position: absolute;
+    z-index: -10;
     inset: 0;
     width: 100%;
     height: 100%;
@@ -289,18 +458,14 @@
 }
 
 .modalContent {
-    position: relative;
-    z-index: 1;
-    width: calc(100% - 48px);
-    max-width: 768px;
+    width: min(1100px, 100%);
     max-height: 90vh;
+    background: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
-    margin: 24px;
-    border-radius: 12px;
-    background: #ffffff;
-    box-shadow: 0 12px 32px rgba(27, 43, 72, 0.12);
+    box-shadow: 0 24px 80px rgba(4, 22, 50, 0.25);
 }
 
 /* =========================
@@ -312,7 +477,8 @@
     align-items: center;
     justify-content: space-between;
     gap: 24px;
-    padding: 24px;
+    padding: 24px 36px;
+    flex-shrink: 0;
     border-bottom: 1px solid #c5c6ce;
     background: #f8f9fa;
 }
@@ -365,9 +531,31 @@
 ========================= */
 
 .modalBody {
-    flex: 1;
-    overflow-y: auto;
+    display: flex;
+    gap: 32px;
     padding: 32px;
+    overflow-y: auto;
+}
+
+.modalMain {
+    flex: 1;
+    min-width: 0;
+}
+
+/* Right side */
+.modalImage {
+    flex: 0 0 360px;
+    height: 420px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #f1f3f5;
+}
+
+.modalImage img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 .modalStats {
@@ -479,7 +667,8 @@
     display: flex;
     justify-content: flex-end;
     gap: 16px;
-    padding: 24px;
+    padding: 20px 36px;
+    flex-shrink: 0;
     border-top: 1px solid #c5c6ce;
     background: #f8f9fa;
 }
@@ -656,5 +845,94 @@
     .modalApplyButton {
         width: 100%;
         text-align: center;
+    }
+}
+
+@media (max-width: 900px) {
+    .modal {
+        padding: 16px;
+        align-items: center;
+    }
+
+    .modalContent {
+        max-height: 94vh;
+    }
+
+    .modalBody {
+        flex-direction: column;
+        padding: 24px;
+    }
+
+    .modalImage {
+        order: -1;
+        width: 100%;
+        height: 260px;
+        flex: none;
+    }
+}
+
+@media (max-width: 1000px) {
+    .heroContainer {
+        gap: 40px;
+    }
+
+    .heroVisual {
+        flex: 0 0 420px;
+        height: 520px;
+    }
+}
+
+@media (max-width: 800px) {
+    .hero {
+        padding: 56px 20px;
+    }
+
+    .heroContainer {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .heroContent {
+        max-width: none;
+    }
+
+    .heroContent h1 {
+        font-size: 44px;
+    }
+
+    .heroVisual {
+        width: 100%;
+        height: 420px;
+        flex: none;
+    }
+}
+
+@media (max-width: 520px) {
+    .heroContent h1 {
+        font-size: 38px;
+    }
+
+    .heroContent p {
+        font-size: 16px;
+    }
+
+    .heroActions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .heroPrimaryButton,
+    .heroSecondaryButton {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .heroStats {
+        gap: 18px;
+        flex-wrap: wrap;
+    }
+
+    .heroVisual {
+        height: 360px;
     }
 }
