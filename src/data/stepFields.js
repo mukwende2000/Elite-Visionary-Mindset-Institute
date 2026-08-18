@@ -24,6 +24,7 @@ export const stepFields = {
     ],
     3: [
         "emergencyName",
+        "emergencySurname",
         "relationship",
         "emergencyPhone",
         "emergencyAddress"

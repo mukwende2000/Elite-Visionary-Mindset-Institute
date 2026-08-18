@@ -1,9 +1,16 @@
+"use client";
+
+import { useState } from "react";
 import styles from "./About.module.css";
 
-function About() {
+import team from "../../data/teamMembers";
+
+export default function About() {
+    const [selectedMember, setSelectedMember] = useState(null);
+
     return (
-        <main className={styles.page}>
-            {/* Hero Section */}
+        <main className={styles.aboutPage}>
+            {/* Hero */}
             <section className={styles.hero}>
                 <h1>About Elite Visionary Mindset Institute</h1>
 
@@ -16,154 +23,190 @@ function About() {
 
             {/* Who We Are / Mission / Vision */}
             <section className={styles.bentoGrid}>
-                {/* Who We Are */}
                 <div className={`${styles.glassPanel} ${styles.whoWeAre}`}>
-                    <h2>Who We Are</h2>
+                    <div>
+                        <h2>Who We Are</h2>
 
-                    <p>
-                        The Elite Visionary Mindset Institute (EVMI) is a premier
-                        educational institution dedicated to transforming
-                        high-potential individuals into industry leaders. We blend
-                        traditional academic rigor with modern, practical applications
-                        to deliver an educational experience that is both
-                        intellectually stimulating and immediately applicable in the
-                        professional world.
-                    </p>
-
-                    <div className={styles.whoWeAreImage}>
-                        <img
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFyhTiE6Iycs99qoYEOMyRrxCPDUy9kBl61nalo2t4d7O_b14Lc7zS443Cm17AkZ9XNp1YsAwj3D8073x0XtYtXlPN-bxJmJkUkU2aqV9CegbzzMjOqMLTOhv8pPOExiHv_KvbXhRIKEcXIYfEx6yR7SVZp-9DU_-3T-77QXizHoVSL3yDTAT_QfSH1WhxFJvuvi9q5Jyx1efIr588UL9kH9a3G3YZwaIQjHCziku3B6zWnLXRwFA"
-                            alt="Students engaging in a collaborative academic discussion"
-                        />
+                        <p>
+                            The Elite Visionary Mindset Institute (EVMI) is a premier
+                            educational institution dedicated to transforming high-potential
+                            individuals into industry leaders. We blend traditional academic
+                            rigor with modern, practical applications to deliver an
+                            educational experience that is both intellectually stimulating
+                            and immediately applicable in the professional world.
+                        </p>
                     </div>
+
+                    <img
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFyhTiE6Iycs99qoYEOMyRrxCPDUy9kBl61nalo2t4d7O_b14Lc7zS443Cm17AkZ9XNp1YsAwj3D8073x0XtYtXlPN-bxJmJkUkU2aqV9CegbzzMjOqMLTOhv8pPOExiHv_KvbXhRIKEcXIYfEx6yR7SVZp-9DU_-3T-77QXizHoVSL3yDTAT_QfSH1WhxFJvuvi9q5Jyx1efIr588UL9kH9a3G3YZwaIQjHCziku3B6zWnLXRwFA"
+                        alt="EVMI learning environment"
+                    />
                 </div>
 
-                {/* Mission & Vision */}
                 <div className={styles.missionVision}>
                     <div
-                        className={`${styles.glassPanel} ${styles.missionCard}`}
+                        className={`${styles.glassPanel} ${styles.infoCard} ${styles.mission}`}
                     >
-                        <div className={styles.iconHeading}>
-                            <span className="material-symbols-outlined">
-                                flag
-                            </span>
-
+                        <div className={styles.infoHeading}>
+                            <span className="material-symbols-outlined">flag</span>
                             <h3>Our Mission</h3>
                         </div>
 
                         <p>
-                            To equip professionals with practical, cutting-edge
-                            skills and actionable knowledge that drive immediate
-                            impact and sustainable career growth in rapidly evolving
-                            global markets.
+                            To equip professionals with practical, cutting-edge skills and
+                            actionable knowledge that drive immediate impact and sustainable
+                            career growth in rapidly evolving global markets.
                         </p>
                     </div>
 
                     <div
-                        className={`${styles.glassPanel} ${styles.visionCard}`}
+                        className={`${styles.glassPanel} ${styles.infoCard} ${styles.vision}`}
                     >
-                        <div className={styles.iconHeading}>
-                            <span className="material-symbols-outlined">
-                                visibility
-                            </span>
-
+                        <div className={styles.infoHeading}>
+                            <span className="material-symbols-outlined">visibility</span>
                             <h3>Our Vision</h3>
                         </div>
 
                         <p>
-                            To foster a global community of visionary leaders
-                            committed to lifelong learning, continuous innovation,
-                            and ethical professional practices that shape the future
-                            of business.
+                            To foster a global community of visionary leaders committed to
+                            lifelong learning, continuous innovation, and ethical professional
+                            practices that shape the future of business.
                         </p>
                     </div>
                 </div>
             </section>
 
             {/* What We Offer */}
-            <section className={styles.offerSection}>
-                <h2>What We Offer</h2>
+            <section className={styles.section}>
+                <h2 className={styles.sectionTitle}>What We Offer</h2>
 
                 <div className={styles.offerGrid}>
-                    {/* Offer Card 1 */}
-                    <div className={styles.offerCard}>
-                        <div className={styles.offerIcon}>
-                            <span className="material-symbols-outlined">
-                                laptop_mac
-                            </span>
+                    <div className={styles.glassPanel}>
+                        <div className={styles.iconBox}>
+                            <span className="material-symbols-outlined">laptop_mac</span>
                         </div>
 
                         <h3>Flexible Learning Modes</h3>
 
                         <p>
-                            Choose between fully online, hybrid, or intensive
-                            on-campus modules designed to fit the demanding schedules
-                            of working professionals.
+                            Choose between fully online, hybrid, or intensive on-campus
+                            modules designed to fit the demanding schedules of working
+                            professionals.
                         </p>
                     </div>
 
-                    {/* Offer Card 2 */}
-                    <div className={styles.offerCard}>
-                        <div className={styles.offerIcon}>
-                            <span className="material-symbols-outlined">
-                                work
-                            </span>
+                    <div className={styles.glassPanel}>
+                        <div className={styles.iconBox}>
+                            <span className="material-symbols-outlined">work</span>
                         </div>
 
                         <h3>Professional Development</h3>
 
                         <p>
                             Gain practical skills through case studies, industry-led
-                            workshops, and capstone projects that solve real-world
-                            business challenges.
+                            workshops, and capstone projects that solve real-world business
+                            challenges.
                         </p>
                     </div>
 
-                    {/* Offer Card 3 */}
-                    <div className={styles.offerCard}>
-                        <div className={styles.offerIcon}>
-                            <span className="material-symbols-outlined">
-                                group
-                            </span>
+                    <div className={styles.glassPanel}>
+                        <div className={styles.iconBox}>
+                            <span className="material-symbols-outlined">group</span>
                         </div>
 
                         <h3>Global Network</h3>
 
                         <p>
-                            Connect with a prestigious alumni network and industry
-                            experts through exclusive symposiums and continuous
-                            learning platforms.
+                            Connect with a prestigious alumni network and industry experts
+                            through exclusive symposiums and continuous learning platforms.
                         </p>
                     </div>
                 </div>
             </section>
 
+            {/* Team */}
+            <section className={styles.teamSection}>
+                <h2 className={styles.sectionTitle}>Meet Our Team</h2>
+
+                <div className={styles.teamGrid}>
+                    {team.map((member) => (
+                        <article className={styles.teamCard} key={member.id}>
+                            <img src={member.image} alt={member.name} />
+
+                            <div>
+                                <h3>{member.name}</h3>
+                                <p>{member.role}</p>
+                            </div>
+
+                            <button
+                                type="button"
+                                onClick={() => setSelectedMember(member)}
+                            >
+                                View Bio
+                            </button>
+                        </article>
+                    ))}
+                </div>
+            </section>
+
             {/* Accreditation */}
             <section className={styles.accreditation}>
-                <div className={styles.accreditationContent}>
-                    <h2>Academic Excellence &amp; Accreditation</h2>
+                <div>
+                    <h2>Academic Excellence & Accreditation</h2>
 
                     <p>
                         EVMI maintains rigorous academic standards and is proud to be
-                        accredited by the Certification Board for Executive
-                        Competencies (CBEC). This globally recognized accreditation
-                        ensures that our curriculum meets the highest benchmarks for
-                        professional education and leadership training.
+                        accredited by the Certification Board for Executive Competencies
+                        (CBEC). This globally recognized accreditation ensures that our
+                        curriculum meets the highest benchmarks for professional education
+                        and leadership training.
                     </p>
                 </div>
 
                 <div className={styles.accreditationBadge}>
-                    <div>
-                        <span className="material-symbols-outlined">
-                            verified
-                        </span>
+                    <span className="material-symbols-outlined">verified</span>
 
-                        <div>CBEC Accredited</div>
-                    </div>
+                    <strong>CBEC Accredited</strong>
                 </div>
             </section>
+
+            {/* Bio Modal */}
+            {selectedMember && (
+                <div
+                    className={styles.modalOverlay}
+                    onClick={() => setSelectedMember(null)}
+                >
+                    <div
+                        className={styles.modal}
+                        onClick={(event) => event.stopPropagation()}
+                    >
+                        <button
+                            type="button"
+                            className={styles.closeButton}
+                            onClick={() => setSelectedMember(null)}
+                            aria-label="Close biography"
+                        >
+                            <span className="material-symbols-outlined">close</span>
+                        </button>
+
+                        <div className={styles.modalContent}>
+                            <img
+                                src={selectedMember.image}
+                                alt={selectedMember.name}
+                            />
+
+                            <div className={styles.modalText}>
+                                <div>
+                                    <h2>{selectedMember.name}</h2>
+                                    <p>{selectedMember.role}</p>
+                                </div>
+
+                                <p>{selectedMember.bio}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
         </main>
     );
 }
-
-export default About;
