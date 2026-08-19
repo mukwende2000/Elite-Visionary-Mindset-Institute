@@ -28,12 +28,9 @@ export default function About() {
                         <h2>Who We Are</h2>
 
                         <p>
-                            The Elite Visionary Mindset Institute (EVMI) is a premier
-                            educational institution dedicated to transforming high-potential
-                            individuals into industry leaders. We blend traditional academic
-                            rigor with modern, practical applications to deliver an
-                            educational experience that is both intellectually stimulating
-                            and immediately applicable in the professional world.
+                            The Visionary Mindset is a Leadership and
+                            entreprenurial movement built for bold thinkers,
+                            disciplined builders, and futuer focused leaders.
                         </p>
                     </div>
 
@@ -53,9 +50,8 @@ export default function About() {
                         </div>
 
                         <p>
-                            To equip professionals with practical, cutting-edge skills and
-                            actionable knowledge that drive immediate impact and sustainable
-                            career growth in rapidly evolving global markets.
+                            To develop a generations of strategic, emotionally intelligent,
+                            and execution-driven leaders who turn ideas into measureable impact.
                         </p>
                     </div>
 

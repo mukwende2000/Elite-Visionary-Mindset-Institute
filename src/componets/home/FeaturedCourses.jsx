@@ -3,6 +3,7 @@ import cert_in_business from '../../assets/images/cert_in_business.jpeg'
 import cert_in_tourism from '../../assets/images/cert_in_tourism.jpeg'
 import cert_in_public_speaking from '../../assets/images/cert_in_public_speaking.jpeg'
 import cert_in_ai from '../../assets/images/cert_in_ai.jpeg'
+import { Link } from "react-router-dom";
 
 const courses = {
     business: {
@@ -45,7 +46,7 @@ function FeaturedCourses() {
                 <div className={styles.heading}>
                     <h2>Featured Certificate Programmes</h2>
 
-                    <a href="/courses">View All Courses →</a>
+                    <Link to="/courses">View All Courses →</Link>
                 </div>
 
                 <div className={styles.grid}>
@@ -76,12 +77,12 @@ function FeaturedCourses() {
                                 <p>{courses.ai.description}</p>
                             </div>
 
-                            <a href="/courses">
+                            <Link to="/courses">
                                 Learn More
                                 <span className="material-symbols-outlined">
                                     arrow_forward
                                 </span>
-                            </a>
+                            </Link>
                         </div>
                     </article>
 
@@ -97,12 +98,12 @@ function FeaturedCourses() {
                                 <p>{courses.marketing.description}</p>
                             </div>
 
-                            <a href="/courses">
+                            <Link to="/courses">
                                 Learn More
                                 <span className="material-symbols-outlined">
                                     arrow_forward
                                 </span>
-                            </a>
+                            </Link>
                         </div>
                     </article>
 
@@ -115,7 +116,7 @@ function FeaturedCourses() {
 
                             <p>{courses.leadership.description}</p>
 
-                            <a href="/courses">View Curriculum</a>
+                            <Link to="/courses">View Curriculum</Link>
                         </div>
 
                         <div className={styles.wideImage}>
@@ -125,7 +126,7 @@ function FeaturedCourses() {
                 </div>
 
                 <div className={styles.mobileLink}>
-                    <a href="/courses">View All Courses →</a>
+                    <Link to="/courses">View All Courses →</Link>
                 </div>
             </div>
         </section>

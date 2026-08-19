@@ -3,6 +3,7 @@ import courses from "../../data/courses";
 import CourseCard from "../../componets/courses/CourseCard";
 import styles from "./Courses.module.css";
 import enroll from '../../assets/images/enroll.jpeg'
+import { Link } from "react-router-dom";
 
 function Courses() {
     const [selectedCourse, setSelectedCourse] = useState(null);
@@ -50,16 +51,16 @@ function Courses() {
                         </p>
 
                         <div className={styles.heroActions}>
-                            <a href="/apply" className={styles.heroPrimaryButton}>
+                            <Link to="/apply" className={styles.heroPrimaryButton}>
                                 Apply Now
                                 <span className="material-symbols-outlined">
                                     arrow_forward
                                 </span>
-                            </a>
+                            </Link>
 
-                            <a href="#programmes" className={styles.heroSecondaryButton}>
+                            <Link to="#programmes" className={styles.heroSecondaryButton}>
                                 Explore Programmes
-                            </a>
+                            </Link>
                         </div>
 
                         <div className={styles.heroStats}>
