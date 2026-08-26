@@ -40,7 +40,13 @@ function AdditionalStep({ register, errors }) {
                         id="organisation"
                         type="text"
                         placeholder="Enter organisation name"
+                        {...register("organisation")}
                     />
+                    {errors.organisation && (
+                        <p className={styles.error}>
+                            {errors.organisation.message}
+                        </p>
+                    )}
                 </div>
 
                 {/* Job Title */}
@@ -51,14 +57,21 @@ function AdditionalStep({ register, errors }) {
                         id="jobTitle"
                         type="text"
                         placeholder="e.g. Marketing Manager"
+                        {...register("jobTitle")}
                     />
+                    {errors.jobTitle && (
+                        <p className={styles.error}>
+                            {errors.jobTitle.message}
+                        </p>
+                    )}
                 </div>
 
                 {/* Years of Experience */}
                 <div className={styles.field}>
                     <label htmlFor="experience">Years of Professional Experience</label>
 
-                    <select id="experience">
+                    <select id="experience"
+                        {...register("experience")}>
                         <option value="">Select experience</option>
                         <option value="none">No experience</option>
                         <option value="1-2">1–2 years</option>
@@ -66,6 +79,11 @@ function AdditionalStep({ register, errors }) {
                         <option value="6-10">6–10 years</option>
                         <option value="10+">More than 10 years</option>
                     </select>
+                    {errors.experience && (
+                        <p className={styles.error}>
+                            {errors.experience.message}
+                        </p>
+                    )}
                 </div>
 
                 {/* Motivation */}
@@ -78,7 +96,13 @@ function AdditionalStep({ register, errors }) {
                         id="motivation"
                         rows="5"
                         placeholder="Briefly describe your goals and what you hope to gain from the programme."
+                        {...register("motivation")}
                     />
+                    {errors.motivation && (
+                        <p className={styles.error}>
+                            {errors.motivation.message}
+                        </p>
+                    )}
                 </div>
 
                 {/* How did you hear about us */}
@@ -109,7 +133,13 @@ function AdditionalStep({ register, errors }) {
                         id="additionalInfo"
                         type="text"
                         placeholder="Anything else you would like us to know?"
+                        {...register("additionalInfo")}
                     />
+                    {errors.additionalInfo && (
+                        <p className={styles.error}>
+                            {errors.additionalInfo.message}
+                        </p>
+                    )}
                 </div>
             </div>
         </section>

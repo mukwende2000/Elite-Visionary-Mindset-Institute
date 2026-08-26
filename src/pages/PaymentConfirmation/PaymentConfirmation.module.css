@@ -1,0 +1,404 @@
+.page {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 80px 24px;
+    background: #f8f9fa;
+    color: #191c1d;
+}
+
+/* Stepper */
+
+.stepper {
+    width: 100%;
+    max-width: 850px;
+    margin: 0 auto 80px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    position: relative;
+}
+
+.stepLine {
+    position: absolute;
+    top: 16px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #c5c6ce;
+    z-index: 0;
+}
+
+.step {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    background: #f8f9fa;
+    padding: 0 8px;
+    color: #041632;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.stepCircle {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.completedStep .stepCircle {
+    background: #041632;
+    color: #ffffff;
+}
+
+.completedStep .stepCircle span {
+    font-size: 17px;
+}
+
+.activeStep .stepCircle {
+    background: #f8f9fa;
+    color: #041632;
+    border: 2px solid #775a19;
+}
+
+.activeStep>span {
+    border-bottom: 2px solid #775a19;
+    padding-bottom: 2px;
+}
+
+/* Success */
+
+.successSection {
+    max-width: 700px;
+    margin: 0 auto 64px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.successIcon {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    background: #d7e2ff;
+    color: #041632;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+}
+
+.successIcon span {
+    font-size: 56px;
+}
+
+.successSection h1 {
+    margin: 0 0 12px;
+    color: #041632;
+    font-family: Manrope, sans-serif;
+    font-size: 32px;
+    line-height: 40px;
+    font-weight: 600;
+}
+
+.successSection p {
+    margin: 0;
+    max-width: 620px;
+    color: #44474d;
+    font-size: 18px;
+    line-height: 28px;
+}
+
+/* Receipt */
+
+.receiptCard {
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto 32px;
+    padding: 48px;
+    position: relative;
+    overflow: hidden;
+    background: #ffffff;
+    border: 1px solid #c5c6ce;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(27, 43, 72, 0.08);
+}
+
+.receiptAccent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: #775a19;
+}
+
+.receiptHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 24px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #e1e3e4;
+}
+
+.receiptHeader h2 {
+    margin: 0;
+    color: #041632;
+    font-family: Manrope, sans-serif;
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 600;
+}
+
+.receiptHeader>span {
+    color: #775a19;
+    font-size: 28px;
+}
+
+.detailsGrid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px 40px;
+}
+
+.detail {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.detail>span:first-child {
+    color: #44474d;
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 600;
+}
+
+.detail strong {
+    color: #191c1d;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 600;
+    word-break: break-word;
+}
+
+.fullWidth {
+    grid-column: 1 / -1;
+}
+
+.status {
+    width: fit-content;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    border-radius: 4px;
+    background: #d7e2ff;
+    color: #041632 !important;
+    font-size: 14px !important;
+    line-height: 20px !important;
+}
+
+.status span {
+    font-size: 16px;
+}
+
+/* Actions */
+
+.actions {
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+}
+
+.downloadButton,
+.homeButton {
+    min-height: 48px;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: background 0.2s ease, opacity 0.2s ease;
+}
+
+.downloadButton {
+    background: transparent;
+    color: #041632;
+    border: 2px solid #041632;
+}
+
+.downloadButton:hover {
+    background: #edeeef;
+}
+
+.homeButton {
+    background: #041632;
+    color: #ffffff;
+    border: 2px solid #041632;
+}
+
+.homeButton:hover {
+    background: #1b2b48;
+}
+
+.actions span {
+    font-size: 20px;
+}
+
+/* Email */
+
+.emailNotice {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    color: #44474d;
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.emailNotice span {
+    font-size: 17px;
+}
+
+/* Empty state */
+
+.emptyState {
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.emptyState>span {
+    font-size: 56px;
+    color: #ba1a1a;
+    margin-bottom: 16px;
+}
+
+.emptyState h1 {
+    color: #041632;
+    margin: 0 0 8px;
+    font-family: Manrope, sans-serif;
+}
+
+.emptyState p {
+    color: #44474d;
+    margin: 0;
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+    .page {
+        padding: 48px 16px;
+    }
+
+    .stepper {
+        margin-bottom: 56px;
+        overflow-x: auto;
+        padding-bottom: 8px;
+    }
+
+    .step {
+        min-width: 70px;
+        white-space: nowrap;
+    }
+
+    .stepLine {
+        left: 35px;
+        right: 35px;
+    }
+
+    .successSection {
+        margin-bottom: 48px;
+    }
+
+    .successIcon {
+        width: 80px;
+        height: 80px;
+    }
+
+    .successIcon span {
+        font-size: 46px;
+    }
+
+    .successSection h1 {
+        font-size: 28px;
+        line-height: 36px;
+    }
+
+    .successSection p {
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    .receiptCard {
+        padding: 32px 24px;
+    }
+
+    .detailsGrid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .fullWidth {
+        grid-column: auto;
+    }
+
+    .actions {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .downloadButton,
+    .homeButton {
+        width: 100%;
+    }
+}
+
+@media print {
+    .page {
+        padding: 20px;
+        background: #ffffff;
+    }
+
+    .stepper,
+    .actions,
+    .emailNotice {
+        display: none;
+    }
+
+    .receiptCard {
+        box-shadow: none;
+        border: 1px solid #999;
+    }
+
+    .successSection {
+        margin-bottom: 30px;
+    }
+}

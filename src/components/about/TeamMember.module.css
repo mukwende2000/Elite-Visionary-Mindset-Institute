@@ -1,0 +1,60 @@
+.teamCard {
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    box-shadow: 0 4px 12px rgba(27, 43, 72, 0.08);
+    border-radius: 8px;
+    padding: 24px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 16px;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.teamCard:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(27, 43, 72, 0.12);
+}
+
+.teamCard img {
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--border);
+}
+
+.teamCard h3 {
+    font-size: 20px;
+    line-height: 28px;
+    margin: 0 0 4px;
+}
+
+.teamCard p {
+    color: var(--secondary);
+    font-size: 14px;
+    margin: 0;
+}
+
+.teamCard button {
+    margin-top: auto;
+    padding: 0;
+    border: 0;
+    border-bottom: 1px solid var(--primary);
+    background: transparent;
+    color: var(--primary);
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: Inter, sans-serif;
+}
+
+.teamCard button:hover {
+    color: var(--secondary);
+    border-color: var(--secondary);
+}

@@ -1,9 +1,9 @@
-"use client";
-
 import { useState } from "react";
 import styles from "./About.module.css";
 import team from "../../data/teamMembers";
 import aboutImage from '../../assets/images/JAME4133.jpg'
+import TeamMember from "../../components/about/TeamMember";
+import MemberModal from "../../components/about/MemberModal";
 
 export default function About() {
     const [selectedMember, setSelectedMember] = useState(null);
@@ -125,23 +125,9 @@ export default function About() {
                 <h2 className={styles.sectionTitle}>Meet Our Team</h2>
 
                 <div className={styles.teamGrid}>
-                    {team.map((member) => (
-                        <article className={styles.teamCard} key={member.id}>
-                            <img src={member.image} alt={member.name} />
-
-                            <div>
-                                <h3>{member.name}</h3>
-                                <p>{member.role}</p>
-                            </div>
-
-                            <button
-                                type="button"
-                                onClick={() => setSelectedMember(member)}
-                            >
-                                View Bio
-                            </button>
-                        </article>
-                    ))}
+                    {team.map((member) => {
+                        return <TeamMember setSelectedMember={setSelectedMember} member={member} />
+                    })}
                 </div>
             </section>
 
@@ -168,40 +154,7 @@ export default function About() {
 
             {/* Bio Modal */}
             {selectedMember && (
-                <div
-                    className={styles.modalOverlay}
-                    onClick={() => setSelectedMember(null)}
-                >
-                    <div
-                        className={styles.modal}
-                        onClick={(event) => event.stopPropagation()}
-                    >
-                        <button
-                            type="button"
-                            className={styles.closeButton}
-                            onClick={() => setSelectedMember(null)}
-                            aria-label="Close biography"
-                        >
-                            <span className="material-symbols-outlined">close</span>
-                        </button>
-
-                        <div className={styles.modalContent}>
-                            <img
-                                src={selectedMember.image}
-                                alt={selectedMember.name}
-                            />
-
-                            <div className={styles.modalText}>
-                                <div>
-                                    <h2>{selectedMember.name}</h2>
-                                    <p>{selectedMember.role}</p>
-                                </div>
-
-                                <p>{selectedMember.bio}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <MemberModal setSelectedMember={setSelectedMember} selectedMember={selectedMember} />
             )}
         </main>
     );

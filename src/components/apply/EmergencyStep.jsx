@@ -1,4 +1,3 @@
-import { required } from "zod/v4-mini";
 import styles from "./EmergencyStep.module.css";
 
 function EmergencyStep({ register, errors }) {
@@ -21,7 +20,6 @@ function EmergencyStep({ register, errors }) {
 
                         <input
                             id="emergencyName"
-                            name="emergencyName"
                             type="text"
                             placeholder="Full name"
                             {...register("emergencyName", { required: "This field is required" })}
@@ -40,7 +38,6 @@ function EmergencyStep({ register, errors }) {
 
                         <input
                             id="emergencySurname"
-                            name="emergencySurname"
                             type="text"
                             placeholder="Full legal name"
                             {...register("emergencySurname", { required: "This field is required" })}
@@ -61,7 +58,6 @@ function EmergencyStep({ register, errors }) {
 
                         <select
                             id="relationship"
-                            name="relationship"
                             {...register("relationship", { required: "This field is required" })}
                         >
                             <option value="">
@@ -91,7 +87,6 @@ function EmergencyStep({ register, errors }) {
 
                         <input
                             id="emergencyPhone"
-                            name="emergencyPhone"
                             type="tel"
                             placeholder="+260 97 000 0000"
                             {...register("emergencyPhone", { required: "This field is required" })}
@@ -111,10 +106,15 @@ function EmergencyStep({ register, errors }) {
 
                         <input
                             id="emergencyEmail"
-                            name="emergencyEmail"
                             type="email"
                             placeholder="contact@email.com"
+                            {...register("emergencyEmail")}
                         />
+                        {errors.emergencyEmail && (
+                            <p className={styles.error}>
+                                {errors.emergencyEmail.message}
+                            </p>
+                        )}
                     </div>
 
                     {/* Occupation */}
@@ -125,10 +125,15 @@ function EmergencyStep({ register, errors }) {
 
                         <input
                             id="emergencyOccupation"
-                            name="emergencyOccupation"
                             type="text"
                             placeholder="Occupation / Profession"
+                            {...register("emergencyOccupation")}
                         />
+                        {errors.emergencyOccupation && (
+                            <p className={styles.errors}>
+                                {errors.emergencyOccupation.message}
+                            </p>
+                        )}
                     </div>
 
                     {/* Address */}
@@ -140,10 +145,15 @@ function EmergencyStep({ register, errors }) {
 
                         <textarea
                             id="emergencyAddress"
-                            name="emergencyAddress"
                             rows="3"
                             placeholder="Street Address, City, Province, Country"
+                            {...register("emergencyAddress", { required: "This field is required" })}
                         />
+                        {errors.emergencyAddress && (
+                            <p className={styles.errors}>
+                                {errors.emergencyAddress.message}
+                            </p>
+                        )}
                     </div>
 
                     {/* Additional Contact */}
@@ -154,10 +164,15 @@ function EmergencyStep({ register, errors }) {
 
                         <textarea
                             id="additionalContact"
-                            name="additionalContact"
                             rows="3"
                             placeholder="Any additional information we should know..."
+                            {...register("additionalContact")}
                         />
+                        {errors.additionalContact && (
+                            <p className={styles.errors}>
+                                {errors.additionalContact.message}
+                            </p>
+                        )}
                     </div>
                 </div>
             </div>

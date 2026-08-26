@@ -1,7 +1,7 @@
-import AccreditationSection from "../../componets/home/Accreditation"
-import Benefits from "../../componets/home/Benefits"
-import FeaturedCourses from "../../componets/home/FeaturedCourses"
-import Hero from "../../componets/home/Hero"
+import AccreditationSection from "../../components/home/Accreditation"
+import Benefits from "../../components/home/Benefits"
+import FeaturedCourses from "../../components/home/FeaturedCourses"
+import Hero from "../../components/home/Hero"
 
 function Home() {
     return (

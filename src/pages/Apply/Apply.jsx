@@ -1,12 +1,14 @@
 import { useState } from "react";
 import styles from "./Apply.module.css";
-import AcademicStep from "../../componets/apply/AcademicStep";
-import EmergencyStep from "../../componets/apply/EmergencyStep";
-import AdditionalStep from "../../componets/apply/AdditionalStep";
-import Declaration from "../../componets/apply/Declaration";
-import PersonalStep from "../../componets/apply/PersonalStep";
+import AcademicStep from "../../components/apply/AcademicStep";
+import EmergencyStep from "../../components/apply/EmergencyStep";
+import AdditionalStep from "../../components/apply/AdditionalStep";
+import Declaration from "../../components/apply/Declaration";
+import PersonalStep from "../../components/apply/PersonalStep";
 import { useForm } from "react-hook-form";
 import { stepFields } from "../../data/stepFields";
+import { supabase } from "../../lib/supabase";
+import { useNavigate } from "react-router-dom";
 
 const steps = [
     "Personal",
@@ -18,6 +20,7 @@ const steps = [
 
 function Apply() {
     const [currentStep, setCurrentStep] = useState(1);
+    const navigate = useNavigate()
     const {
         register,
         handleSubmit,
@@ -26,9 +29,62 @@ function Apply() {
         trigger
     } = useForm()
 
-    const onSubmit = (data) => {
-        console.log(data)
-    }
+    const onSubmit = async (data) => {
+        console.log("Submitting:", data);
+
+        const { data: application, error } = await supabase
+            .from("applications")
+            .insert([
+                {
+                    first_name: data.firstName,
+                    surname: data.surname,
+                    other_names: data.otherNames,
+                    date_of_birth: data.dateOfBirth,
+                    gender: data.gender,
+                    nationality: data.nationality,
+                    id_number: data.idNumber,
+                    address: data.address,
+                    town_city: data.townCity,
+                    province: data.province,
+                    email: data.email,
+                    phone: data.phone,
+                    alternative_phone: data.alternativePhone,
+
+                    highest_qualification: data.highestQualification,
+                    current_occupation: data.currentOccupation,
+                    institution: data.institution,
+                    programme: data.programme,
+                    study_mode: data.studyMode,
+                    intake: data.intake,
+
+                    emergency_name: data.emergencyName,
+                    emergency_surname: data.emergencySurname,
+                    relationship: data.relationship,
+                    emergency_phone: data.emergencyPhone,
+                    emergency_email: data.emergencyEmail,
+                    emergency_occupation: data.emergencyOccupation,
+                    emergency_address: data.emergencyAddress,
+                    additional_contact: data.additionalContact,
+
+                    employment_status: data.employmentStatus,
+                    organisation: data.organisation,
+                    job_title: data.jobTitle,
+                    experience: data.experience,
+                    motivation: data.motivation,
+                    referral: data.referral,
+                    additional_info: data.additionalInfo,
+
+                    declaration: data.declaration,
+                },
+            ])
+
+        if (error) {
+            console.error("Application submission failed:", error);
+            return;
+        }
+
+        navigate('/payments')
+    };
 
     const nextStep = async () => {
 
