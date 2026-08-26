@@ -1,0 +1,45 @@
+const testApplication = {
+    id: "ed85ae0c-a722-45e9-87a0-2e4c425061d2",
+    first_name: "Mukwende",
+    surname: "Lib",
+    other_names: "",
+    date_of_birth: "2000-08-25",
+    gender: "male",
+    nationality: "zambia",
+    id_number: "",
+    address: "Makeni Villa",
+    town_city: "Lusaka, Zambia",
+    province: "Lusaka",
+    email: "mukwende2000@gmail.com",
+    phone: "0774305544",
+    alternative_phone: "0961862999",
+
+    highest_qualification: "secondary",
+    current_occupation: "Nurse",
+    institution: "",
+    programme: "1",
+    study_mode: "online",
+    intake: "September 2026",
+
+    emergency_name: "Charles",
+    emergency_surname: "Lib",
+    relationship: "sibling",
+    emergency_phone: "0973423276",
+    emergency_email: "mukwende2000@gmail.com",
+    emergency_occupation: "Lawyer",
+    emergency_address: "Makeni Villa",
+    additional_contact: "",
+
+    employment_status: "employed",
+    organisation: "Google",
+    job_title: "Designer",
+    experience: "1-2",
+    motivation: "",
+    referral: "website",
+    additional_info: "",
+
+    declaration: true,
+    status: "pending",
+};
+
+export default testApplication

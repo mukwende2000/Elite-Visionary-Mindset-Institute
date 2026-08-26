@@ -1,6 +1,17 @@
+import { useLocation } from "react-router-dom";
 import styles from "./PaymentConfirmation.module.css";
 
-function ApplicationConfirmation({ application, onReturnHome }) {
+function PaymentConfirmation({ onReturnHome }) {
+    const location = useLocation()
+    console.log("CONFIRMATION LOCATION:", location);
+    console.log("CONFIRMATION STATE:", location.state);
+    console.log("CONFIRMATION APPLICATION:", location.state?.application);
+    const {
+        application,
+        paymentStatus,
+        paymentReference
+    } = location.state || {}
+
     if (!application) {
         return (
             <main className={styles.page}>
@@ -22,42 +33,6 @@ function ApplicationConfirmation({ application, onReturnHome }) {
 
     return (
         <main className={styles.page}>
-            {/* Application Stepper */}
-            <div className={styles.stepper}>
-                <div className={styles.stepLine}></div>
-
-                {[
-                    "Info",
-                    "Academic",
-                    "Docs",
-                    "Review",
-                    "Payment",
-                    "Confirmation",
-                ].map((step, index) => {
-                    const isConfirmation = index === 5;
-
-                    return (
-                        <div
-                            key={step}
-                            className={`${styles.step} ${isConfirmation ? styles.activeStep : styles.completedStep
-                                }`}
-                        >
-                            <div className={styles.stepCircle}>
-                                {isConfirmation ? (
-                                    "6"
-                                ) : (
-                                    <span className="material-symbols-outlined">
-                                        check
-                                    </span>
-                                )}
-                            </div>
-
-                            <span>{step}</span>
-                        </div>
-                    );
-                })}
-            </div>
-
             {/* Success Message */}
             <section className={styles.successSection}>
                 <div className={styles.successIcon}>
@@ -115,14 +90,24 @@ function ApplicationConfirmation({ application, onReturnHome }) {
                         <strong>{application.intake}</strong>
                     </div>
 
+                    {paymentReference && (
+                        <div className={styles.detail}>
+                            <span>Payment Reference</span>
+                            <strong>{paymentReference}</strong>
+                        </div>
+                    )}
+
                     <div className={styles.detail}>
                         <span>Payment Status</span>
 
                         <span className={styles.status}>
                             <span className="material-symbols-outlined">
-                                paid
+                                {paymentStatus === "paid" ? "paid" : "schedule"}
                             </span>
-                            Paid
+
+                            {paymentStatus === "paid"
+                                ? "Paid"
+                                : "Pending Verification"}
                         </span>
                     </div>
 
@@ -167,4 +152,4 @@ function ApplicationConfirmation({ application, onReturnHome }) {
     );
 }
 
-export default ApplicationConfirmation;
+export default PaymentConfirmation;

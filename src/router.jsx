@@ -5,7 +5,7 @@ import Courses from "./pages/Courses/Courses"
 import Apply from "./pages/Apply/Apply"
 import About from "./pages/About/About"
 import RootLayout from "./layouts/RootLayouts"
-import Payment from "./pages/Payments/Payments"
+import Payment from "./pages/Payment/Payment"
 import PaymentConfirmation from './pages/PaymentConfirmation/PaymentConfirmation'
 
 const router = createBrowserRouter([
@@ -29,7 +29,7 @@ const router = createBrowserRouter([
                 element: <About />,
             },
             {
-                path: "payments",
+                path: "payment",
                 element: <Payment />
             },
             {

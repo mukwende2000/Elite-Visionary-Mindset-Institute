@@ -1,0 +1,70 @@
+.paymentMethods {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 32px;
+}
+
+.method {
+    cursor: pointer;
+}
+
+.method input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.methodContent {
+    min-height: 90px;
+    border: 1px solid #c5c6ce;
+    border-radius: 8px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    color: #44474d;
+    background: #ffffff;
+    transition: 0.2s ease;
+}
+
+.method:hover .methodContent {
+    border-color: #041632;
+}
+
+.method.selected .methodContent {
+    border: 2px solid #041632;
+    background: #f8f9fa;
+    color: #041632;
+}
+
+.methodIcon {
+    font-family: "Material Symbols Outlined";
+    font-size: 32px;
+    line-height: 1;
+}
+
+.methodContent>span:last-child {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+}
+
+@media (max-width: 768px) {
+    .paymentMethods {
+        grid-template-columns: 1fr;
+    }
+
+    .methodContent {
+        min-height: 70px;
+        flex-direction: row;
+        justify-content: flex-start;
+        padding: 16px;
+    }
+
+    .methodIcon {
+        font-size: 28px;
+    }
+}
