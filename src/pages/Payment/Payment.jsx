@@ -15,6 +15,10 @@ function PaymentStep({ applicationFee = 150, tuitionDeposit = 4850, }) {
     const location = useLocation()
     const navigate = useNavigate()
 
+    console.log("PAYMENT LOCATION:", location);
+    console.log("PAYMENT LOCATION STATE:", location.state);
+    console.log("PAYMENT APPLICATION:", location.state?.application);
+
     const [paymentReference, setPaymentReference] = useState("");
     const [submitting, setSubmitting] = useState(false);
 
@@ -65,7 +69,7 @@ function PaymentStep({ applicationFee = 150, tuitionDeposit = 4850, }) {
             // 1. upload proof of payment to Storage
             const { error: uploadError } = await supabase.storage
                 .from("payment-proofs")
-                .upload(filePath, paymentMethod)
+                .upload(filePath, paymentProof)
 
             if (uploadError) {
                 throw uploadError

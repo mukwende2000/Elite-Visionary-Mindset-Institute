@@ -12,6 +12,7 @@ function PersonalStep({ register, errors }) {
                     <input
                         id="firstName"
                         type="text"
+                        defaultValue={"John"}
                         placeholder="First name"
                         {...register("firstName", {
                             required: "First name is required",
@@ -32,6 +33,7 @@ function PersonalStep({ register, errors }) {
                 <div>
                     <label htmlFor="surname">Surname *</label>
                     <input
+                        defaultValue={"Lufeya"}
                         id="surname"
                         type="text"
                         placeholder="Surname"
@@ -119,13 +121,12 @@ function PersonalStep({ register, errors }) {
                     </label>
                     <select
                         id="gender"
-                        defaultValue=""
                         {...register("gender")}
                     >
                         <option value="" disabled>
                             Select Gender
                         </option>
-                        <option value="male">Male</option>
+                        <option defaultValue value="male">Male</option>
                         <option value="female">Female</option>
                         <option value="non-binary">Non-binary</option>
                         <option value="prefer-not">
@@ -139,7 +140,7 @@ function PersonalStep({ register, errors }) {
                     <label htmlFor="nationality">Nationality *</label>
                     <select
                         id="nationality"
-                        defaultValue=""
+                        defaultValue="zambia"
                         {...register("nationality", {
                             required: "Nationality is required",
                         })}
@@ -219,6 +220,7 @@ function PersonalStep({ register, errors }) {
                 <div>
                     <label htmlFor="province">Province *</label>
                     <input
+                        defaultValue={"Lusaka"}
                         id="province"
                         type="text"
                         placeholder="Province"
@@ -280,6 +282,7 @@ function PersonalStep({ register, errors }) {
                         <span>(optional)</span>
                     </label>
                     <input
+                        defaultValue={"0987656543"}
                         id="alternativePhone"
                         type="tel"
                         placeholder="Alternative phone number"

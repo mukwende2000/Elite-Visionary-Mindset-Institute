@@ -19,6 +19,7 @@ function EmergencyStep({ register, errors }) {
                         </label>
 
                         <input
+                            defaultValue={"Charles"}
                             id="emergencyName"
                             type="text"
                             placeholder="Full name"
@@ -37,6 +38,7 @@ function EmergencyStep({ register, errors }) {
                         </label>
 
                         <input
+                            defaultValue={"Libimba"}
                             id="emergencySurname"
                             type="text"
                             placeholder="Full legal name"
@@ -57,6 +59,7 @@ function EmergencyStep({ register, errors }) {
                         </label>
 
                         <select
+                            defaultValue={"parent"}
                             id="relationship"
                             {...register("relationship", { required: "This field is required" })}
                         >
@@ -86,6 +89,7 @@ function EmergencyStep({ register, errors }) {
                         </label>
 
                         <input
+                            defaultValue={"0976123212"}
                             id="emergencyPhone"
                             type="tel"
                             placeholder="+260 97 000 0000"

@@ -16,6 +16,7 @@ function AdditionalStep({ register, errors }) {
                     <label htmlFor="employmentStatus">Employment Status</label>
 
                     <select
+                        defaultValue={"student"}
                         id="employmentStatus"
                         {...register("employmentStatus", { required: "The field is required" })}
                     >

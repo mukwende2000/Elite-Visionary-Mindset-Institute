@@ -16,6 +16,7 @@ function AcademicStep({ register, errors }) {
                         </label>
 
                         <select
+                            defaultValue={"degree"}
                             id="highestQualification"
                             {...register("highestQualification", {
                                 required: "This field is required",
@@ -60,6 +61,7 @@ function AcademicStep({ register, errors }) {
                         </label>
 
                         <input
+                            defaultValue={"Designer"}
                             id="currentOccupation"
                             type="text"
                             placeholder="e.g. Software Developer"
@@ -83,6 +85,7 @@ function AcademicStep({ register, errors }) {
                         </label>
 
                         <input
+                            defaultValue={"ZCAS"}
                             id="institution"
                             type="text"
                             placeholder="Name of institution"
@@ -105,7 +108,7 @@ function AcademicStep({ register, errors }) {
                         >
                             <option value="">Select Programme</option>
                             {courses.map((course) => {
-                                return <option key={course.id} value={course.id}>{course.title}</option>
+                                return <option key={course.id} defaultValue={course.id === 3} value={course.id}>{course.title}</option>
                             })}
                         </select>
 
@@ -130,7 +133,7 @@ function AcademicStep({ register, errors }) {
                             })}
                         >
                             <option value="">Select Study Mode</option>
-                            <option value="online">Online</option>
+                            <option value="online" defaultValue>Online</option>
                             <option value="physical">Physical</option>
                             <option value="hybrid">Hybrid</option>
                         </select>
@@ -150,6 +153,7 @@ function AcademicStep({ register, errors }) {
                         </label>
 
                         <input
+                            defaultValue={"September 2026"}
                             id="intake"
                             type="text"
                             placeholder="e.g. September 2026"

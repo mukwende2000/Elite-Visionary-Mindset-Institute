@@ -75,15 +75,19 @@ function Apply() {
                     additional_info: data.additionalInfo,
 
                     declaration: data.declaration,
+                    status: "submitted"
                 },
             ])
+            .select()
+            .single()
 
+        console.log("APPLICATION INSERT RESULT:", { application, error })
         if (error) {
             console.error("Application submission failed:", error);
             return;
         }
-
-        navigate('/payments')
+        console.log("APPLICATION CREATED:", application);
+        navigate('/payment', { state: { application } })
     };
 
     const nextStep = async () => {
