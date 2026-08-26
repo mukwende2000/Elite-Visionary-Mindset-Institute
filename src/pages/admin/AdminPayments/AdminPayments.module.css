@@ -1,0 +1,582 @@
+.payments {
+    width: 100%;
+    min-height: 100%;
+    padding: 48px;
+    background: #f8f9fa;
+    color: #191c1d;
+    font-family: "Inter", sans-serif;
+}
+
+/* =========================
+   Page Header
+========================= */
+
+.pageHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 24px;
+    margin-bottom: 48px;
+}
+
+.pageHeader h1 {
+    margin: 0 0 8px;
+    color: #041632;
+    font-family: "Manrope", sans-serif;
+    font-size: 32px;
+    line-height: 40px;
+    font-weight: 600;
+}
+
+.pageHeader p {
+    margin: 0;
+    color: #44474d;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.recordButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 48px;
+    padding: 12px 24px;
+    border: 0;
+    border-radius: 8px;
+    background: #775a19;
+    color: #ffffff;
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+    cursor: pointer;
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.recordButton:hover {
+    background: #5d4201;
+}
+
+.recordButton:active {
+    transform: translateY(1px);
+}
+
+/* =========================
+   Summary Cards
+========================= */
+
+.summaryGrid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 24px;
+    margin-bottom: 80px;
+}
+
+.summaryCard {
+    display: flex;
+    flex-direction: column;
+    min-height: 190px;
+    padding: 24px;
+    background: #ffffff;
+    border: 1px solid rgba(197, 198, 206, 0.3);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(27, 43, 72, 0.08);
+}
+
+.summaryIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    margin-bottom: 16px;
+    border-radius: 8px;
+}
+
+.summaryIcon span {
+    font-size: 24px;
+}
+
+.summaryValue {
+    margin-bottom: 4px;
+    color: #041632;
+    font-family: "Manrope", sans-serif;
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 600;
+}
+
+.summaryLabel {
+    color: #44474d;
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 600;
+}
+
+.summaryDescription {
+    margin-top: 8px;
+    color: #75777e;
+    font-size: 12px;
+    line-height: 16px;
+}
+
+/* Summary card variants */
+
+.total .summaryIcon {
+    background: rgba(27, 43, 72, 0.1);
+    color: #041632;
+}
+
+.pending .summaryIcon {
+    background: rgba(254, 212, 136, 0.3);
+    color: #775a19;
+}
+
+.pending .summaryLabel {
+    color: #775a19;
+}
+
+.verified .summaryIcon {
+    background: #e6f4ea;
+    color: #1e8e3e;
+}
+
+.verified .summaryLabel {
+    color: #1e8e3e;
+}
+
+.rejected .summaryIcon {
+    background: #ffdad6;
+    color: #ba1a1a;
+}
+
+.rejected .summaryLabel {
+    color: #ba1a1a;
+}
+
+/* =========================
+   Payments Table Card
+========================= */
+
+.tableCard {
+    width: 100%;
+    overflow: hidden;
+    background: #ffffff;
+    border: 1px solid rgba(197, 198, 206, 0.5);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(27, 43, 72, 0.08);
+}
+
+/* =========================
+   Toolbar
+========================= */
+
+.toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 24px;
+    background: #ffffff;
+    border-bottom: 1px solid rgba(197, 198, 206, 0.5);
+}
+
+.searchWrapper {
+    position: relative;
+    flex: 1;
+    min-width: 300px;
+}
+
+.searchWrapper>span {
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+    color: #75777e;
+    font-size: 20px;
+    pointer-events: none;
+}
+
+.searchWrapper input {
+    width: 100%;
+    height: 40px;
+    padding: 8px 16px 8px 40px;
+    border: 1px solid #c5c6ce;
+    border-radius: 8px;
+    outline: none;
+    background: #ffffff;
+    color: #191c1d;
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.searchWrapper input::placeholder {
+    color: #75777e;
+}
+
+.searchWrapper input:focus {
+    border-color: #041632;
+    box-shadow: 0 0 0 1px #041632;
+}
+
+.filters {
+    display: flex;
+    gap: 16px;
+}
+
+.filters select {
+    min-width: 180px;
+    height: 40px;
+    padding: 8px 40px 8px 16px;
+    border: 1px solid #c5c6ce;
+    border-radius: 8px;
+    outline: none;
+    background: #ffffff;
+    color: #191c1d;
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    cursor: pointer;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.filters select:focus {
+    border-color: #041632;
+    box-shadow: 0 0 0 1px #041632;
+}
+
+/* =========================
+   Table
+========================= */
+
+.tableWrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.tableWrapper table {
+    width: 100%;
+    min-width: 1100px;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.tableWrapper thead tr {
+    background: #f8f9fa;
+    border-bottom: 1px solid rgba(197, 198, 206, 0.5);
+}
+
+.tableWrapper th {
+    padding: 16px 24px;
+    color: #44474d;
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+}
+
+.tableWrapper td {
+    padding: 16px 24px;
+    color: #191c1d;
+    font-size: 14px;
+    line-height: 20px;
+    white-space: nowrap;
+}
+
+.tableWrapper tbody tr {
+    border-bottom: 1px solid rgba(197, 198, 206, 0.3);
+    transition: background 0.2s ease;
+}
+
+.tableWrapper tbody tr:last-child {
+    border-bottom: 0;
+}
+
+.tableWrapper tbody tr:hover {
+    background: #f3f4f5;
+}
+
+/* =========================
+   Table Cell Styling
+========================= */
+
+.applicant {
+    color: #191c1d;
+    font-weight: 500;
+}
+
+.muted {
+    color: #44474d !important;
+}
+
+.amount {
+    color: #191c1d;
+    font-weight: 500;
+}
+
+.paymentMethod {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.paymentMethod span {
+    color: #75777e;
+    font-size: 18px;
+}
+
+.reference {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #041632;
+    font-weight: 500;
+}
+
+.reference span {
+    color: #041632;
+    font-size: 16px;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.reference span:hover {
+    color: #775a19;
+}
+
+/* =========================
+   Status
+========================= */
+
+.status {
+    display: inline-flex;
+    align-items: center;
+    min-height: 24px;
+    padding: 2px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+/*
+   Matches:
+   styles[
+       payment.status
+           .toLowerCase()
+           .replaceAll(" ", "-")
+   ]
+*/
+
+.pending-verification {
+    background: rgba(254, 212, 136, 0.3);
+    color: #775a19;
+}
+
+.verified {
+    background: #e6f4ea;
+    color: #1e8e3e;
+}
+
+.rejected {
+    background: #ffdad6;
+    color: #ba1a1a;
+}
+
+/* =========================
+   Actions
+========================= */
+
+.action {
+    text-align: right;
+}
+
+.action button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 0;
+    border-radius: 6px;
+    background: transparent;
+    color: #041632;
+    cursor: pointer;
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+.action button:hover {
+    background: #f3f4f5;
+    color: #775a19;
+}
+
+.action button span {
+    font-size: 20px;
+}
+
+/* =========================
+   Pagination
+========================= */
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 16px 24px;
+    background: #ffffff;
+    border-top: 1px solid rgba(197, 198, 206, 0.5);
+}
+
+.pagination>span {
+    color: #44474d;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.paginationButtons {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.paginationButtons button {
+    min-width: 38px;
+    height: 32px;
+    padding: 4px 12px;
+    border: 1px solid #c5c6ce;
+    border-radius: 4px;
+    background: #ffffff;
+    color: #191c1d;
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    cursor: pointer;
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.paginationButtons button:hover:not(:disabled) {
+    background: #f3f4f5;
+}
+
+.paginationButtons button:disabled {
+    background: #edeeef;
+    color: #75777e;
+    cursor: not-allowed;
+}
+
+.paginationButtons .activePage {
+    border-color: #041632;
+    background: #041632;
+    color: #ffffff;
+    font-weight: 500;
+}
+
+.paginationButtons .activePage:hover {
+    background: #1b2b48;
+}
+
+/* =========================
+   Responsive
+========================= */
+
+@media (max-width: 1200px) {
+    .summaryGrid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 900px) {
+    .payments {
+        padding: 32px;
+    }
+
+    .pageHeader {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .toolbar {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .searchWrapper {
+        min-width: 0;
+        width: 100%;
+    }
+
+    .filters {
+        width: 100%;
+    }
+
+    .filters select {
+        flex: 1;
+        min-width: 0;
+    }
+}
+
+@media (max-width: 640px) {
+    .payments {
+        padding: 24px 16px;
+    }
+
+    .pageHeader h1 {
+        font-size: 28px;
+        line-height: 36px;
+    }
+
+    .recordButton {
+        width: 100%;
+    }
+
+    .summaryGrid {
+        grid-template-columns: 1fr;
+        margin-bottom: 48px;
+    }
+
+    .summaryCard {
+        min-height: 170px;
+    }
+
+    .toolbar {
+        padding: 16px;
+    }
+
+    .filters {
+        flex-direction: column;
+    }
+
+    .filters select {
+        width: 100%;
+    }
+
+    .pagination {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .paginationButtons {
+        width: 100%;
+        overflow-x: auto;
+    }
+}

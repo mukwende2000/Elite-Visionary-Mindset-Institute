@@ -30,8 +30,6 @@ function Apply() {
     } = useForm()
 
     const onSubmit = async (data) => {
-        console.log("Submitting:", data);
-
         const { data: application, error } = await supabase
             .from("applications")
             .insert([
@@ -81,12 +79,10 @@ function Apply() {
             .select()
             .single()
 
-        console.log("APPLICATION INSERT RESULT:", { application, error })
         if (error) {
             console.error("Application submission failed:", error);
             return;
         }
-        console.log("APPLICATION CREATED:", application);
         navigate('/payment', { state: { application } })
     };
 
