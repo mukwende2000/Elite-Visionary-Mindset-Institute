@@ -1,0 +1,92 @@
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+
+    margin-bottom: 48px;
+}
+
+.card {
+    min-height: 170px;
+    padding: 24px;
+
+    background: #ffffff;
+    border: 1px solid #c5c6ce;
+    border-radius: 12px;
+
+    box-shadow: 0 4px 12px rgba(27, 43, 72, 0.08);
+}
+
+.iconWrapper {
+    width: 48px;
+    height: 48px;
+
+    margin-bottom: 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 8px;
+
+    background: #d7e2ff;
+    color: #041632;
+}
+
+.iconWrapper span {
+    font-size: 24px;
+}
+
+.value {
+    margin-bottom: 4px;
+
+    font-family: "Manrope", sans-serif;
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 600;
+
+    color: #041632;
+}
+
+.label {
+    margin-bottom: 4px;
+
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 600;
+}
+
+.description {
+    font-size: 12px;
+    line-height: 16px;
+
+    color: #75777e;
+}
+
+.total {
+    color: #041632;
+}
+
+.pending {
+    color: #775a19;
+}
+
+.verified {
+    color: #1e8e3e;
+}
+
+.rejected {
+    color: #ba1a1a;
+}
+
+@media (max-width: 1100px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,132 @@
+.tableCard {
+    background: #ffffff;
+    border: 1px solid rgba(197, 198, 206, 0.5);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(27, 43, 72, 0.08);
+}
+
+.tableHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px;
+    border-bottom: 1px solid rgba(197, 198, 206, 0.5);
+}
+
+.tableHeader h2 {
+    margin: 0;
+    color: #041632;
+    font-family: "Manrope", sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.tableHeader button {
+    border: none;
+    background: transparent;
+    color: #775a19;
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.tableHeader button:hover {
+    color: #5d4201;
+}
+
+.tableWrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.tableWrapper table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.tableWrapper th {
+    padding: 14px 24px;
+    background: #f8f9fa;
+    border-bottom: 1px solid rgba(197, 198, 206, 0.5);
+    color: #44474d;
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+}
+
+.tableWrapper td {
+    padding: 16px 24px;
+    border-bottom: 1px solid rgba(197, 198, 206, 0.3);
+    color: #44474d;
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.tableWrapper tbody tr:hover {
+    background: #f3f4f5;
+}
+
+.tableWrapper tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.primaryText {
+    color: #041632 !important;
+    font-weight: 600;
+}
+
+.status {
+    display: inline-flex;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.pending,
+.submitted {
+    background: #fff3d6;
+    color: #775a19;
+}
+
+.approved {
+    background: #e6f4ea;
+    color: #1e8e3e;
+}
+
+.rejected {
+    background: #ffdad6;
+    color: #ba1a1a;
+}
+
+.tablesGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+
+@media (max-width: 1000px) {
+    .tablesGrid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .tableHeader {
+        padding: 18px 20px;
+    }
+
+    .tableWrapper th,
+    .tableWrapper td {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}

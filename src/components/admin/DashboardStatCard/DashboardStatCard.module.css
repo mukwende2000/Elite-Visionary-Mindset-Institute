@@ -1,0 +1,124 @@
+.statsGrid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 24px;
+    margin-bottom: 48px;
+}
+
+.statCard {
+    background: #ffffff;
+    border: 1px solid rgba(197, 198, 206, 0.5);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(27, 43, 72, 0.08);
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.statCard:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(27, 43, 72, 0.12);
+}
+
+.statHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.statHeader p {
+    margin: 0;
+    color: #44474d;
+    font-family: "Inter", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.statHeader span {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    font-size: 21px;
+}
+
+/* Total */
+
+.total {
+    color: #041632;
+    background: rgba(4, 22, 50, 0.08);
+}
+
+/* Pending */
+
+.pending {
+    color: #775a19;
+    background: rgba(254, 212, 136, 0.3);
+}
+
+/* Approved */
+
+.approved {
+    color: #1e8e3e;
+    background: #e6f4ea;
+}
+
+/* Rejected */
+
+.rejected {
+    color: #ba1a1a;
+    background: #ffdad6;
+}
+
+/* Payments */
+
+.payments {
+    color: #775a19;
+    background: rgba(254, 212, 136, 0.3);
+}
+
+.statCard h2 {
+    margin: 0;
+    color: #041632;
+    font-family: "Manrope", sans-serif;
+    font-size: 32px;
+    line-height: 40px;
+    font-weight: 700;
+}
+
+/* Tablet */
+
+@media (max-width: 1200px) {
+    .statsGrid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+    .statsGrid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+        margin-bottom: 32px;
+    }
+
+    .statCard {
+        padding: 18px;
+    }
+
+    .statCard h2 {
+        font-size: 26px;
+        line-height: 34px;
+    }
+}
+
+@media (max-width: 480px) {
+    .statsGrid {
+        grid-template-columns: 1fr;
+    }
+}

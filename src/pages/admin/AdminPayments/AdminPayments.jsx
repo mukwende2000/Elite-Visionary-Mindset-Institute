@@ -1,6 +1,13 @@
+import { useState } from "react";
 import styles from "./AdminPayments.module.css";
+import PaymentStats from "../../../components/admin/PaymentStats/PaymentStats"
+import PaymentsTable from "../../../components/admin/PaymentsTable/PaymentsTable";
 
 function AdminPayments() {
+    const [search, setSearch] = useState("");
+    const [statusFilter, setStatusFilter] = useState("all");
+    const [methodFilter, setMethodFilter] = useState("all");
+
     const payments = [
         {
             applicant: "Alexander Hamilton",
@@ -56,7 +63,7 @@ function AdminPayments() {
 
     const summaryCards = [
         {
-            label: "Total AdminP",
+            label: "Total Payments",
             value: "$284,750.00",
             description: "All recorded payments",
             icon: "payments",
@@ -86,8 +93,7 @@ function AdminPayments() {
     ];
 
     return (
-        <main className={styles.payments}>
-            {/* Page Header */}
+        <main className={styles.page}>
             <div className={styles.pageHeader}>
                 <div>
                     <h1>Payments</h1>
@@ -96,7 +102,10 @@ function AdminPayments() {
                     </p>
                 </div>
 
-                <button className={styles.recordButton}>
+                <button
+                    type="button"
+                    className={styles.recordButton}
+                >
                     <span className="material-symbols-outlined">
                         payments
                     </span>
@@ -104,177 +113,17 @@ function AdminPayments() {
                 </button>
             </div>
 
-            {/* Summary Cards */}
-            <section className={styles.summaryGrid}>
-                {summaryCards.map((card) => (
-                    <div
-                        key={card.label}
-                        className={`${styles.summaryCard} ${styles[card.type]}`}
-                    >
-                        <div className={styles.summaryIcon}>
-                            <span className="material-symbols-outlined">
-                                {card.icon}
-                            </span>
-                        </div>
+            <PaymentStats cards={summaryCards} />
 
-                        <div className={styles.summaryValue}>
-                            {card.value}
-                        </div>
-
-                        <div className={styles.summaryLabel}>
-                            {card.label}
-                        </div>
-
-                        <div className={styles.summaryDescription}>
-                            {card.description}
-                        </div>
-                    </div>
-                ))}
-            </section>
-
-            {/* Payments Table */}
-            <section className={styles.tableCard}>
-                {/* Toolbar */}
-                <div className={styles.toolbar}>
-                    <div className={styles.searchWrapper}>
-                        <span className="material-symbols-outlined">
-                            search
-                        </span>
-
-                        <input
-                            type="text"
-                            placeholder="Search applicant or reference..."
-                        />
-                    </div>
-
-                    <div className={styles.filters}>
-                        <select defaultValue="all">
-                            <option value="all">All Statuses</option>
-                            <option value="verified">Verified</option>
-                            <option value="pending">Pending</option>
-                            <option value="rejected">Rejected</option>
-                        </select>
-
-                        <select defaultValue="all">
-                            <option value="all">
-                                All Payment Methods
-                            </option>
-                            <option value="bank">
-                                Bank Transfer
-                            </option>
-                            <option value="mobile">
-                                Mobile Money
-                            </option>
-                            <option value="card">Card</option>
-                        </select>
-                    </div>
-                </div>
-
-                {/* Table */}
-                <div className={styles.tableWrapper}>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Applicant</th>
-                                <th>Application ID</th>
-                                <th>Payment Method</th>
-                                <th>Amount</th>
-                                <th>Reference</th>
-                                <th>Submitted</th>
-                                <th>Status</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            {payments.map((payment) => (
-                                <tr key={payment.reference}>
-                                    <td className={styles.applicant}>
-                                        {payment.applicant}
-                                    </td>
-
-                                    <td className={styles.muted}>
-                                        {payment.applicationId}
-                                    </td>
-
-                                    <td>
-                                        <div className={styles.paymentMethod}>
-                                            <span className="material-symbols-outlined">
-                                                {payment.icon}
-                                            </span>
-
-                                            {payment.method}
-                                        </div>
-                                    </td>
-
-                                    <td className={styles.amount}>
-                                        {payment.amount}
-                                    </td>
-
-                                    <td>
-                                        <div className={styles.reference}>
-                                            {payment.reference}
-
-                                            {payment.method ===
-                                                "Bank Transfer" && (
-                                                    <span className="material-symbols-outlined">
-                                                        attachment
-                                                    </span>
-                                                )}
-                                        </div>
-                                    </td>
-
-                                    <td className={styles.muted}>
-                                        {payment.submitted}
-                                    </td>
-
-                                    <td>
-                                        <span
-                                            className={`${styles.status} ${styles[
-                                                payment.status
-                                                    .toLowerCase()
-                                                    .replaceAll(" ", "-")
-                                            ]
-                                                }`}
-                                        >
-                                            {payment.status}
-                                        </span>
-                                    </td>
-
-                                    <td className={styles.action}>
-                                        <button type="button">
-                                            <span className="material-symbols-outlined">
-                                                more_vert
-                                            </span>
-                                        </button>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
-
-                {/* Pagination */}
-                <div className={styles.pagination}>
-                    <span>
-                        Showing 1 to 5 of 42 payments
-                    </span>
-
-                    <div className={styles.paginationButtons}>
-                        <button disabled>
-                            Previous
-                        </button>
-
-                        <button className={styles.activePage}>
-                            1
-                        </button>
-
-                        <button>2</button>
-                        <button>3</button>
-                        <button>Next</button>
-                    </div>
-                </div>
-            </section>
+            <PaymentsTable
+                payments={payments}
+                search={search}
+                setSearch={setSearch}
+                statusFilter={statusFilter}
+                setStatusFilter={setStatusFilter}
+                methodFilter={methodFilter}
+                setMethodFilter={setMethodFilter}
+            />
         </main>
     );
 }

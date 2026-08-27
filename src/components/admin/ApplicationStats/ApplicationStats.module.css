@@ -1,0 +1,85 @@
+.statsGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-bottom: 32px;
+}
+
+.statCard {
+    min-height: 120px;
+    padding: 24px;
+
+    background: #ffffff;
+    border: 1px solid #c5c6ce;
+    border-radius: 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    box-shadow: 0 4px 12px rgba(27, 43, 72, 0.08);
+}
+
+.statCard p {
+    margin: 0 0 4px;
+
+    font-size: 14px;
+    line-height: 20px;
+    color: #44474d;
+}
+
+.statCard h2 {
+    margin: 0;
+
+    font-family: "Manrope", sans-serif;
+    font-size: 32px;
+    line-height: 40px;
+    font-weight: 600;
+    color: #041632;
+}
+
+.statIcon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.statIcon span {
+    font-size: 24px;
+}
+
+.total {
+    background: #d7e2ff;
+    color: #041632;
+}
+
+.pending {
+    background: #ffdea5;
+    color: #775a19;
+}
+
+.approved {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.rejected {
+    background: #ffdad6;
+    color: #ba1a1a;
+}
+
+@media (max-width: 1100px) {
+    .statsGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .statsGrid {
+        grid-template-columns: 1fr;
+    }
+}

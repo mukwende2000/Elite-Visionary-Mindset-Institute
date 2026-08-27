@@ -2,6 +2,10 @@ import { useEffect, useState } from "react";
 import styles from "./AdminDashboard.module.css";
 import { supabase } from "../../../lib/supabase";
 
+import DashboardStatCard from "../../../components/admin/DashboardStatCard/DashboardStatCard";
+import RecentApplications from "../../../components/admin/RecentApplications/RecentApplications";
+import RecentPayments from "../../../components/admin/RecentPayments/RecentPayments";
+
 function AdminDashboard() {
     const [applications, setApplications] = useState([]);
     const [payments, setPayments] = useState([]);
@@ -59,10 +63,9 @@ function AdminDashboard() {
     const totalApplications = applications.length;
 
     const pendingApplications = applications.filter(
-        (application) => {
+        (application) =>
             application.status === "pending" ||
-                application.status === "submitted"
-        }
+            application.status === "submitted"
     ).length;
 
     const approvedApplications = applications.filter(
@@ -82,7 +85,6 @@ function AdminDashboard() {
             label: "Total Apps",
             value: totalApplications,
             icon: "folder",
-            trend: null,
             type: "total",
         },
         {
@@ -112,7 +114,6 @@ function AdminDashboard() {
     ];
 
     const recentApplications = applications.slice(0, 4);
-
     const recentPayments = payments.slice(0, 4);
 
     if (loading) {
@@ -133,147 +134,20 @@ function AdminDashboard() {
 
     return (
         <div className={styles.dashboard}>
+            <DashboardStatCard stats={stats} />
 
-            {/* Statistics */}
-            <section className={styles.statsGrid}>
-                {stats.map((stat) => (
-                    <div
-                        key={stat.label}
-                        className={styles.statCard}
-                    >
-                        <div className={styles.statHeader}>
-                            <p>{stat.label}</p>
-
-                            <span
-                                className={`material-symbols-outlined ${styles[stat.type]}`}
-                            >
-                                {stat.icon}
-                            </span>
-                        </div>
-
-                        <h2>{stat.value}</h2>
-
-                        {stat.trend && (
-                            <div className={styles.trend}>
-                                <span className="material-symbols-outlined">
-                                    {stat.trendIcon}
-                                </span>
-
-                                <span>{stat.trend}</span>
-                            </div>
-                        )}
-                    </div>
-                ))}
-            </section>
-
-            {/* Tables */}
             <section className={styles.tablesGrid}>
+                <RecentApplications
+                    applications={recentApplications}
+                />
 
-                {/* Recent Applications */}
-                <div className={styles.tableCard}>
-                    <div className={styles.tableHeader}>
-                        <h2>Recent Applications</h2>
-
-                        <button type="button">
-                            View All
-                        </button>
-                    </div>
-
-                    <div className={styles.tableWrapper}>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Applicant Name</th>
-                                    <th>Programme</th>
-                                    <th>Intake</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                {recentApplications.map((application) => (
-                                    <tr key={application.id}>
-                                        <td className={styles.primaryText}>
-                                            {application.first_name}{" "}
-                                            {application.surname}
-                                        </td>
-
-                                        <td>
-                                            {application.programme}
-                                        </td>
-
-                                        <td>
-                                            {application.intake}
-                                        </td>
-
-                                        <td>
-                                            <span
-                                                className={`${styles.status} ${styles[application.status]}`}
-                                            >
-                                                {application.status}
-                                            </span>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                {/* Recent Payments */}
-                <div className={styles.tableCard}>
-                    <div className={styles.tableHeader}>
-                        <h2>Recent Payments</h2>
-
-                        <button type="button">
-                            View All
-                        </button>
-                    </div>
-
-                    <div className={styles.tableWrapper}>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Applicant</th>
-                                    <th>Amount</th>
-                                    <th>Reference</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                {recentPayments.map((payment) => (
-                                    <tr key={payment.id}>
-                                        <td className={styles.primaryText}>
-                                            {payment.applications?.first_name}{" "}
-                                            {payment.applications?.surname}
-                                        </td>
-
-                                        <td className={styles.amount}>
-                                            {payment.amount}
-                                        </td>
-
-                                        <td className={styles.reference}>
-                                            {payment.payment_reference}
-                                        </td>
-
-                                        <td>
-                                            <span
-                                                className={`${styles.status} ${styles[payment.status]}`}
-                                            >
-                                                {payment.status}
-                                            </span>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
+                <RecentPayments
+                    payments={recentPayments}
+                />
             </section>
         </div>
     );
 }
 
 export default AdminDashboard;
+
