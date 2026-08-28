@@ -23,14 +23,34 @@ function EmergencyStep({ register, errors }) {
                             id="emergencyName"
                             type="text"
                             placeholder="Full name"
-                            {...register("emergencyName", { required: "This field is required" })}
+                            {...register("emergencyName", {
+                                required: "First name is required",
+                                minLength: {
+                                    value: 2,
+                                    message:
+                                        "First name must be at least 2 characters",
+                                },
+                                maxLength: {
+                                    value: 50,
+                                    message:
+                                        "First name cannot exceed 50 characters",
+                                },
+                                pattern: {
+                                    value: /^[A-Za-z\s'-]+$/,
+                                    message:
+                                        "First name can only contain letters, spaces, hyphens or apostrophes",
+                                },
+                            })}
                         />
+
                         {errors.emergencyName && (
                             <p className={styles.error}>
                                 {errors.emergencyName.message}
                             </p>
                         )}
                     </div>
+
+                    {/* Last Name */}
                     <div className={`${styles.field} ${styles.fullWidth}`}>
                         <label htmlFor="emergencySurname">
                             Last Name
@@ -42,8 +62,26 @@ function EmergencyStep({ register, errors }) {
                             id="emergencySurname"
                             type="text"
                             placeholder="Full legal name"
-                            {...register("emergencySurname", { required: "This field is required" })}
+                            {...register("emergencySurname", {
+                                required: "Last name is required",
+                                minLength: {
+                                    value: 2,
+                                    message:
+                                        "Last name must be at least 2 characters",
+                                },
+                                maxLength: {
+                                    value: 50,
+                                    message:
+                                        "Last name cannot exceed 50 characters",
+                                },
+                                pattern: {
+                                    value: /^[A-Za-z\s'-]+$/,
+                                    message:
+                                        "Last name can only contain letters, spaces, hyphens or apostrophes",
+                                },
+                            })}
                         />
+
                         {errors.emergencySurname && (
                             <p className={styles.error}>
                                 {errors.emergencySurname.message}
@@ -61,19 +99,43 @@ function EmergencyStep({ register, errors }) {
                         <select
                             defaultValue={"parent"}
                             id="relationship"
-                            {...register("relationship", { required: "This field is required" })}
+                            {...register("relationship", {
+                                required: "Please select a relationship",
+                            })}
                         >
                             <option value="">
                                 Select Relationship
                             </option>
-                            <option value="parent">Parent</option>
-                            <option value="guardian">Guardian</option>
-                            <option value="spouse">Spouse</option>
-                            <option value="sibling">Sibling</option>
-                            <option value="relative">Other Relative</option>
-                            <option value="friend">Friend</option>
-                            <option value="other">Other</option>
+
+                            <option value="parent">
+                                Parent
+                            </option>
+
+                            <option value="guardian">
+                                Guardian
+                            </option>
+
+                            <option value="spouse">
+                                Spouse
+                            </option>
+
+                            <option value="sibling">
+                                Sibling
+                            </option>
+
+                            <option value="relative">
+                                Other Relative
+                            </option>
+
+                            <option value="friend">
+                                Friend
+                            </option>
+
+                            <option value="other">
+                                Other
+                            </option>
                         </select>
+
                         {errors.relationship && (
                             <p className={styles.error}>
                                 {errors.relationship.message}
@@ -93,8 +155,17 @@ function EmergencyStep({ register, errors }) {
                             id="emergencyPhone"
                             type="tel"
                             placeholder="+260 97 000 0000"
-                            {...register("emergencyPhone", { required: "This field is required" })}
+                            {...register("emergencyPhone", {
+                                required:
+                                    "Emergency phone number is required",
+                                pattern: {
+                                    value: /^\+?[0-9\s()-]{7,20}$/,
+                                    message:
+                                        "Please enter a valid phone number",
+                                },
+                            })}
                         />
+
                         {errors.emergencyPhone && (
                             <p className={styles.error}>
                                 {errors.emergencyPhone.message}
@@ -112,8 +183,16 @@ function EmergencyStep({ register, errors }) {
                             id="emergencyEmail"
                             type="email"
                             placeholder="contact@email.com"
-                            {...register("emergencyEmail")}
+                            {...register("emergencyEmail", {
+                                pattern: {
+                                    value:
+                                        /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                                    message:
+                                        "Please enter a valid email address",
+                                },
+                            })}
                         />
+
                         {errors.emergencyEmail && (
                             <p className={styles.error}>
                                 {errors.emergencyEmail.message}
@@ -131,10 +210,17 @@ function EmergencyStep({ register, errors }) {
                             id="emergencyOccupation"
                             type="text"
                             placeholder="Occupation / Profession"
-                            {...register("emergencyOccupation")}
+                            {...register("emergencyOccupation", {
+                                maxLength: {
+                                    value: 100,
+                                    message:
+                                        "Occupation cannot exceed 100 characters",
+                                },
+                            })}
                         />
+
                         {errors.emergencyOccupation && (
-                            <p className={styles.errors}>
+                            <p className={styles.error}>
                                 {errors.emergencyOccupation.message}
                             </p>
                         )}
@@ -151,10 +237,24 @@ function EmergencyStep({ register, errors }) {
                             id="emergencyAddress"
                             rows="3"
                             placeholder="Street Address, City, Province, Country"
-                            {...register("emergencyAddress", { required: "This field is required" })}
+                            {...register("emergencyAddress", {
+                                required:
+                                    "Residential address is required",
+                                minLength: {
+                                    value: 5,
+                                    message:
+                                        "Please enter a complete address",
+                                },
+                                maxLength: {
+                                    value: 250,
+                                    message:
+                                        "Address cannot exceed 250 characters",
+                                },
+                            })}
                         />
+
                         {errors.emergencyAddress && (
-                            <p className={styles.errors}>
+                            <p className={styles.error}>
                                 {errors.emergencyAddress.message}
                             </p>
                         )}
@@ -170,14 +270,22 @@ function EmergencyStep({ register, errors }) {
                             id="additionalContact"
                             rows="3"
                             placeholder="Any additional information we should know..."
-                            {...register("additionalContact")}
+                            {...register("additionalContact", {
+                                maxLength: {
+                                    value: 500,
+                                    message:
+                                        "Additional information cannot exceed 500 characters",
+                                },
+                            })}
                         />
+
                         {errors.additionalContact && (
-                            <p className={styles.errors}>
+                            <p className={styles.error}>
                                 {errors.additionalContact.message}
                             </p>
                         )}
                     </div>
+
                 </div>
             </div>
         </div>

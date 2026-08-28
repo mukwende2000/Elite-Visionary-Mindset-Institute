@@ -62,9 +62,13 @@ function PersonalStep({ register, errors }) {
                         type="text"
                         placeholder="Other name(s)"
                         {...register("otherNames", {
+                            minLength: {
+                                value: 2,
+                                message: "Other names cannot be less than 3 characters",
+                            },
                             pattern: {
-                                value: /^[A-Za-z\s]+$/,
-                                message: "Names can only contain letters",
+                                value: /^[A-Za-z\s'-]+$/,
+                                message: "Other names can only contain letters, spaces, hyphens or apostrophes",
                             },
                         })}
                     />
@@ -143,6 +147,14 @@ function PersonalStep({ register, errors }) {
                         defaultValue="zambia"
                         {...register("nationality", {
                             required: "Nationality is required",
+                            maxLength: {
+                                value: 100,
+                                message: "Province cannot exceed 100 characters",
+                            },
+                            pattern: {
+                                value: /^[A-Za-z\s'-]+$/,
+                                message: "Nationality can only contain letters, spaces, hyphens or apostrophes",
+                            },
                         })}
                     >
                         <option value="" disabled>
@@ -266,6 +278,10 @@ function PersonalStep({ register, errors }) {
                         placeholder="Phone number"
                         {...register("phone", {
                             required: "Phone number is required",
+                            pattern: {
+                                value: /^\+?[0-9\s()-]{7,20}$/,
+                                message: "Please enter a valid phone number",
+                            },
                         })}
                     />
                     {errors.phone && (
@@ -289,7 +305,11 @@ function PersonalStep({ register, errors }) {
                         {...register("alternativePhone")}
                     />
                 </div>
-
+                {errors.alternativePhone && (
+                    <p className={styles.errors}>
+                        {errors.alternativePhone.message}
+                    </p>
+                )}
             </div>
         </section>
     );

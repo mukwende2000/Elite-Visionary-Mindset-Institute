@@ -77,8 +77,44 @@
     opacity: 0.9;
 }
 
-.error {
-    color: red;
+.errors {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 6px 0 0;
+    color: #b42318;
+    font-family: "Inter", sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+    font-weight: 500;
+}
+
+.errors::before {
+    content: "!";
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: #b42318;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.formGrid input:has(+ .errors),
+.formGrid select:has(+ .errors),
+.formGrid textarea:has(+ .errors) {
+    border-color: #b42318;
+    background: #fffafa;
+}
+
+.formGrid input:has(+ .errors):focus,
+.formGrid select:has(+ .errors):focus,
+.formGrid textarea:has(+ .errors):focus {
+    border: 2px solid #b42318;
 }
 
 @media (max-width: 768px) {

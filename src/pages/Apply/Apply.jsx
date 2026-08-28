@@ -26,8 +26,9 @@ function Apply() {
         handleSubmit,
         control,
         formState: { errors },
-        trigger
-    } = useForm()
+        trigger,
+
+    } = useForm({ mode: "onChange" })
 
     const onSubmit = async (data) => {
         const { data: application, error } = await supabase

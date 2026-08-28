@@ -1,7 +1,8 @@
 import courses from "../../data/courses";
 import styles from "./AcademicStep.module.css";
 
-function AcademicStep({ register, errors }) {
+function
+    AcademicStep({ register, errors }) {
     return (
         <div className={styles.container}>
 
@@ -146,21 +147,36 @@ function AcademicStep({ register, errors }) {
                     </div>
 
                     {/* Preferred Intake */}
+                    {/* Preferred Intake */}
                     <div className={styles.field}>
                         <label htmlFor="intake">
                             Preferred Intake
                             <span className={styles.required}>*</span>
                         </label>
 
-                        <input
-                            defaultValue={"September 2026"}
+                        <select
                             id="intake"
-                            type="text"
-                            placeholder="e.g. September 2026"
+                            defaultValue=""
                             {...register("intake", {
-                                required: "This field is required",
+                                required: "Please select your preferred intake",
                             })}
-                        />
+                        >
+                            <option value="" disabled>
+                                Select Intake
+                            </option>
+
+                            <option value="january">
+                                January
+                            </option>
+
+                            <option value="april">
+                                April
+                            </option>
+
+                            <option value="september">
+                                September
+                            </option>
+                        </select>
 
                         {errors.intake && (
                             <p className={styles.errors}>
@@ -168,7 +184,6 @@ function AcademicStep({ register, errors }) {
                             </p>
                         )}
                     </div>
-
                 </div>
             </div>
         </div>
