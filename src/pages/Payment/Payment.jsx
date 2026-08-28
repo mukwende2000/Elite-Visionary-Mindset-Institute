@@ -8,6 +8,7 @@ import MobileMoneyPayment from "../../components/payment/MobileMoneyPayment";
 import ManualPayment from "../../components/payment/ManualPayment";
 import PaymentSummary from "../../components/payment/PaymentSummary";
 import { supabase } from "../../lib/supabase";
+import { sendApplicationEmail } from "../../lib/applicationEmail";
 
 function PaymentStep({ applicationFee = 150, tuitionDeposit = 4850, }) {
     const [paymentMethod, setPaymentMethod] = useState("card");
@@ -137,6 +138,18 @@ function PaymentStep({ applicationFee = 150, tuitionDeposit = 4850, }) {
             }
 
             console.log("payment submitted:", payment)
+            try {
+                const emailResult = await sendApplicationEmail({
+                    emailType: "application_submitted",
+                    applicantName: `${application.first_name} ${application.surname}`,
+                    applicantEmail: application.email,
+                    applicationId: application.id,
+                });
+
+                console.log("Application email sent:", emailResult);
+            } catch (error) {
+                console.error("Application email failed:", error);
+            }
 
             navigate("/payment_confirmation", {
                 state: {

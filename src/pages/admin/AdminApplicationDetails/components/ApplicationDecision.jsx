@@ -22,16 +22,6 @@ function ApplicationDecision({
             return;
         }
 
-        if (
-            newStatus === "approved" &&
-            !paymentVerified
-        ) {
-            alert(
-                "Payment must be verified before approving this application."
-            );
-            return;
-        }
-
         setSubmitting(true);
 
         try {
@@ -49,7 +39,7 @@ function ApplicationDecision({
 
             const {
                 data: updatedApplication,
-                error,
+                error: applicationError,
             } = await supabase
                 .from("applications")
                 .update(updateData)
@@ -57,12 +47,47 @@ function ApplicationDecision({
                 .select()
                 .single();
 
-            if (error) {
-                throw error;
+            if (applicationError) {
+                throw applicationError;
+            }
+
+            /*
+             * Send approval email
+             */
+            if (newStatus === "approved") {
+                const {
+                    data: emailResult,
+                    error: emailError,
+                } = await supabase.functions.invoke(
+                    "send-application-email",
+                    {
+                        body: {
+                            emailType: "application_approved",
+                            applicantName:
+                                `${application.first_name} ${application.surname}`,
+                            applicantEmail:
+                                application.email,
+                            applicationId:
+                                application.id,
+                        },
+                    }
+                );
+
+                if (emailError) {
+                    console.error(
+                        "Approval email failed:",
+                        emailError
+                    );
+                } else {
+                    console.log(
+                        "Approval email sent:",
+                        emailResult
+                    );
+                }
             }
 
             setApplication(updatedApplication);
-            setRejectionReason("");
+
         } catch (error) {
             console.error(
                 "Failed to update application:",
