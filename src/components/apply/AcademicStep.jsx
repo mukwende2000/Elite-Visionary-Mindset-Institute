@@ -108,7 +108,7 @@ function AcademicStep({ register, errors }) {
                         >
                             <option value="">Select Programme</option>
                             {courses.map((course) => {
-                                return <option key={course.id} defaultValue={course.id === 3} value={course.id}>{course.title}</option>
+                                return <option key={course.id} defaultValue={course.id === 3} value={course.title}>{course.title}</option>
                             })}
                         </select>
 

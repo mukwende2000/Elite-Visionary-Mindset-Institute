@@ -1,61 +1,102 @@
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { supabase } from "../../../lib/supabase";
 import styles from "./AdminApplicationDetails.module.css";
 
+import ApplicationHeader from "./components/ApplicationHeader";
+import ApplicationPersonalInfo from "./components/ApplicationPersonalInfo";
+import ApplicationAcademicInfo from "./components/ApplicationAcademicInfo";
+import ApplicationEmergencyInfo from "./components/ApplicationEmergencyInfo";
+import ApplicationAdditionalInfo from "./components/ApplicationAdditionalInfo";
+import ApplicationDecision from "./components/ApplicationDecision";
+import ApplicationNotes from "./components/ApplicationNotes";
+
 function AdminApplicationDetails() {
-    const application = {
-        name: "Alexander Hamilton",
-        fullName: "Alexander James Hamilton",
-        applicationId: "APP-2023-8942",
-        submitted: "Oct 24, 2023",
-        dateOfBirth: "January 11, 1985",
-        gender: "Male",
-        nationality: "United States",
-        email: "a.hamilton@treasury.gov",
-        phone: "+1 (212) 555-0189",
-        address: (
-            <>
-                74 Wall Street, Penthouse 4
-                <br />
-                New York, NY 10005
-                <br />
-                United States
-            </>
-        ),
-        programme: "Executive MBA in Strategic Leadership",
-        studyMode: "Online Hybrid",
-        intake: "Fall 2024 Intake",
-        education: "Master of Science in Finance",
-        institution: "King's College (Columbia University)",
-        occupation: "Chief Financial Officer",
-        company: "First Bank of the United States",
-        referral: "Professional Colleague Referral (George Washington)",
-        motivation:
-            "Seeking to solidify strategic frameworks for national-scale financial restructuring. The curriculum's focus on executive vision aligns directly with my current mandate to establish robust institutional foundations for emerging markets. I aim to leverage the cohort's collective experience to pressure-test innovative fiscal policies.",
-    };
+    const { id } = useParams();
+    const navigate = useNavigate();
 
-    const notes = [
-        {
-            author: "A. Burr (Admissions)",
-            date: "Oct 25, 2:15 PM",
-            content:
-                "Transcripts verified. Exceptional quantitative background, though references note an abrasive leadership style.",
-        },
-        {
-            author: "System Auto-Check",
-            date: "Oct 24, 9:00 AM",
-            content: "Application fee received ($150.00 USD).",
-            verified: true,
-        },
-    ];
+    const [application, setApplication] = useState(null);
+    const [loading, setLoading] = useState(true);
 
+    const [payment, setPayment] = useState(null);
 
+    useEffect(() => {
+        const fetchApplication = async () => {
+            setLoading(true);
+
+            const { data, error } = await supabase
+                .from("applications")
+                .select("*")
+                .eq("id", id)
+                .single();
+
+            if (error) {
+                console.error("Failed to load application:", error);
+            } else {
+                setApplication(data);
+
+                const { data: paymentData, error: paymentError } =
+                    await supabase
+                        .from("payments")
+                        .select("*")
+                        .eq("application_id", data.id)
+                        .order("created_at", { ascending: false })
+                        .limit(1)
+                        .maybeSingle();
+
+                if (paymentError) {
+                    console.error(
+                        "Failed to load payment:",
+                        paymentError
+                    );
+                } else {
+                    setPayment(paymentData);
+                }
+            }
+
+            setLoading(false);
+        };
+
+        fetchApplication();
+    }, [id]);
+
+    if (loading) {
+        return (
+            <main className={styles.page}>
+                <div className={styles.container}>
+                    <p>Loading application...</p>
+                </div>
+            </main>
+        );
+    }
+
+    if (!application) {
+        return (
+            <main className={styles.page}>
+                <div className={styles.container}>
+                    <p>Application not found.</p>
+
+                    <button
+                        type="button"
+                        onClick={() => navigate("/admin/applications")}
+                    >
+                        Back to Applications
+                    </button>
+                </div>
+            </main>
+        );
+    }
 
     return (
         <main className={styles.page}>
             <div className={styles.container}>
 
-                {/* Back */}
                 <div className={styles.backRow}>
-                    <button type="button" className={styles.backButton}>
+                    <button
+                        type="button"
+                        className={styles.backButton}
+                        onClick={() => navigate("/admin/applications")}
+                    >
                         <span className="material-symbols-outlined">
                             arrow_back
                         </span>
@@ -63,315 +104,45 @@ function AdminApplicationDetails() {
                     </button>
                 </div>
 
-                {/* Applicant Header */}
-                <section className={styles.profileHeader}>
-                    <div className={styles.accentLine} />
+                <ApplicationHeader application={application} />
 
-                    <div className={styles.profileInfo}>
-                        <div className={styles.avatar}>
-                            <span className="material-symbols-outlined">
-                                person
-                            </span>
-                        </div>
-
-                        <div>
-                            <h1>{application.name}</h1>
-
-                            <div className={styles.meta}>
-                                <span>
-                                    <span className="material-symbols-outlined">
-                                        tag
-                                    </span>
-                                    {application.applicationId}
-                                </span>
-
-                                <span>
-                                    <span className="material-symbols-outlined">
-                                        calendar_today
-                                    </span>
-                                    Submitted: {application.submitted}
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className={styles.statusBadge}>
-                        <span />
-                        Pending Review
-                    </div>
-                </section>
-
-                {/* Main Grid */}
                 <div className={styles.contentGrid}>
 
-                    {/* Left */}
                     <div className={styles.mainColumn}>
+                        <ApplicationPersonalInfo
+                            application={application}
+                        />
 
-                        {/* Personal Information */}
-                        <section className={styles.card}>
-                            <SectionTitle
-                                icon="person"
-                                title="Personal Information"
-                            />
+                        <ApplicationAcademicInfo
+                            application={application}
+                        />
 
-                            <div className={styles.infoGrid}>
-                                <InfoItem
-                                    label="Full Legal Name"
-                                    value={application.fullName}
-                                />
+                        <ApplicationEmergencyInfo
+                            application={application}
+                        />
 
-                                <InfoItem
-                                    label="Date of Birth"
-                                    value={application.dateOfBirth}
-                                />
-
-                                <InfoItem
-                                    label="Gender"
-                                    value={application.gender}
-                                />
-
-                                <InfoItem
-                                    label="Nationality"
-                                    value={application.nationality}
-                                />
-
-                                <div className={styles.fullWidth}>
-                                    <p className={styles.label}>
-                                        Email Address
-                                    </p>
-
-                                    <a
-                                        href={`mailto:${application.email}`}
-                                        className={styles.link}
-                                    >
-                                        {application.email}
-                                    </a>
-                                </div>
-
-                                <div className={styles.fullWidth}>
-                                    <p className={styles.label}>
-                                        Phone Number
-                                    </p>
-                                    <p className={styles.value}>
-                                        {application.phone}
-                                    </p>
-                                </div>
-
-                                <div className={styles.fullWidth}>
-                                    <p className={styles.label}>
-                                        Residential Address
-                                    </p>
-
-                                    <p className={styles.value}>
-                                        {application.address}
-                                    </p>
-                                </div>
-                            </div>
-                        </section>
-
-                        {/* Academic Information */}
-                        <section className={styles.card}>
-                            <SectionTitle
-                                icon="school"
-                                title="Academic & Professional Profile"
-                            />
-
-                            <div className={styles.infoGrid}>
-
-                                <div className={styles.programmeBox}>
-                                    <p className={styles.label}>
-                                        Selected Programme
-                                    </p>
-
-                                    <p className={styles.programmeName}>
-                                        {application.programme}
-                                    </p>
-
-                                    <div className={styles.tags}>
-                                        <span>
-                                            <span className="material-symbols-outlined">
-                                                laptop_mac
-                                            </span>
-                                            {application.studyMode}
-                                        </span>
-
-                                        <span>
-                                            <span className="material-symbols-outlined">
-                                                event
-                                            </span>
-                                            {application.intake}
-                                        </span>
-                                    </div>
-                                </div>
-
-                                <InfoItem
-                                    label="Highest Education Level"
-                                    value={application.education}
-                                    secondary={application.institution}
-                                />
-
-                                <InfoItem
-                                    label="Current Occupation"
-                                    value={application.occupation}
-                                    secondary={application.company}
-                                />
-                            </div>
-                        </section>
-
-                        {/* Additional Information */}
-                        <section className={styles.card}>
-                            <SectionTitle
-                                icon="info"
-                                title="Additional Information"
-                            />
-
-                            <div className={styles.additionalInfo}>
-
-                                <div>
-                                    <p className={styles.label}>
-                                        How did you hear about EVMI?
-                                    </p>
-
-                                    <div className={styles.answer}>
-                                        {application.referral}
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <p className={styles.label}>
-                                        Why are you enrolling in this program?
-                                    </p>
-
-                                    <div className={styles.longAnswer}>
-                                        {application.motivation}
-                                    </div>
-                                </div>
-
-                            </div>
-                        </section>
-
+                        <ApplicationAdditionalInfo
+                            application={application}
+                        />
                     </div>
 
-                    {/* Right */}
                     <aside className={styles.sidebar}>
+                        <ApplicationDecision
+                            application={application}
+                            setApplication={setApplication}
+                            payment={payment}
+                        />
 
-                        {/* Decision */}
-                        <section className={`${styles.card} ${styles.decisionCard}`}>
-                            <SectionTitle
-                                icon="gavel"
-                                title="Application Decision"
-                            />
-
-                            <p className={styles.description}>
-                                Review applicant credentials thoroughly before
-                                making a final determination.
-                            </p>
-
-                            <div className={styles.actions}>
-                                <button
-                                    type="button"
-                                    className={styles.approveButton}
-                                >
-                                    <span className="material-symbols-outlined">
-                                        check_circle
-                                    </span>
-                                    Approve Admission
-                                </button>
-
-                                <button
-                                    type="button"
-                                    className={styles.rejectButton}
-                                >
-                                    <span className="material-symbols-outlined">
-                                        cancel
-                                    </span>
-                                    Reject Application
-                                </button>
-                            </div>
-                        </section>
-
-                        {/* Internal Notes */}
-                        <section className={`${styles.card} ${styles.notesCard}`}>
-                            <SectionTitle
-                                icon="speaker_notes"
-                                title="Internal Notes"
-                            />
-
-                            <div className={styles.noteInput}>
-                                <textarea
-                                    placeholder="Add an administrative note..."
-                                />
-
-                                <div className={styles.noteButtonRow}>
-                                    <button
-                                        type="button"
-                                        className={styles.addNoteButton}
-                                    >
-                                        Add Note
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div className={styles.noteHistory}>
-                                {notes.map((note, index) => (
-                                    <div
-                                        key={`${note.author}-${index}`}
-                                        className={styles.note}
-                                    >
-                                        <div className={styles.noteHeader}>
-                                            <strong>{note.author}</strong>
-                                            <span>{note.date}</span>
-                                        </div>
-
-                                        <p>
-                                            {note.verified && (
-                                                <span
-                                                    className={`material-symbols-outlined ${styles.verified}`}
-                                                >
-                                                    verified
-                                                </span>
-                                            )}
-
-                                            {note.content}
-                                        </p>
-                                    </div>
-                                ))}
-                            </div>
-                        </section>
-
+                        <ApplicationNotes
+                            applicationId={application.id}
+                        />
                     </aside>
+
                 </div>
 
                 <div className={styles.bottomSpace} />
             </div>
         </main>
-    );
-}
-
-function SectionTitle({ icon, title }) {
-    return (
-        <h2 className={styles.sectionTitle}>
-            <span className="material-symbols-outlined">
-                {icon}
-            </span>
-            {title}
-        </h2>
-    );
-}
-
-function InfoItem({ label, value, secondary }) {
-    return (
-        <div>
-            <p className={styles.label}>{label}</p>
-
-            <p className={styles.value}>{value}</p>
-
-            {secondary && (
-                <p className={styles.secondary}>
-                    {secondary}
-                </p>
-            )}
-        </div>
     );
 }
 

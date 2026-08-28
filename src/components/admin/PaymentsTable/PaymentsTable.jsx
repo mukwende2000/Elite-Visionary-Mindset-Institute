@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import styles from "./PaymentsTable.module.css";
 
 function PaymentsTable({
@@ -9,6 +10,7 @@ function PaymentsTable({
     methodFilter,
     setMethodFilter,
 }) {
+    const navigate = useNavigate()
     const filteredPayments = payments.filter((payment) => {
         const searchTerm = search.toLowerCase();
 
@@ -137,7 +139,7 @@ function PaymentsTable({
                                             payment.status
                                                 .toLowerCase()
                                                 .replaceAll(" ", "-")
-                                            ]
+                                        ]
                                             }`}
                                     >
                                         {payment.status}
@@ -145,9 +147,9 @@ function PaymentsTable({
                                 </td>
 
                                 <td className={styles.action}>
-                                    <button type="button">
-                                        <span className="material-symbols-outlined">
-                                            more_vert
+                                    <button onClick={() => navigate(`/admin/payments/${payment.id}`)} type="button">
+                                        <span>
+                                            View
                                         </span>
                                     </button>
                                 </td>

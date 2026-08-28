@@ -14,6 +14,7 @@ import AdminApplicationDetails from "./pages/admin/AdminApplicationDetails/Admin
 import AdminPayments from "./pages/admin/AdminPayments/AdminPayments"
 import AdminLogin from "./pages/admin/AdminLogin/AdminLogin"
 import ProtectedAdminRoute from "./pages/admin/ProtectedAdminRoute"
+import AdminPaymentDetails from "./pages/admin/AdminPaymentDetails/AdminPaymentDetails"
 
 const router = createBrowserRouter([
     {
@@ -72,6 +73,10 @@ const router = createBrowserRouter([
                         path: "payments",
                         element: <AdminPayments />,
                     },
+                    {
+                        path: "payments/:id",
+                        element: <AdminPaymentDetails />
+                    }
                 ],
             }
         ]

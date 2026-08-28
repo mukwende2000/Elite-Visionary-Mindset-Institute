@@ -1,4 +1,4 @@
-.page {
+/* .page {
     width: 100%;
     min-height: 100%;
     background: #f8f9fa;
@@ -12,7 +12,6 @@
     padding: 48px 48px 0;
 }
 
-/* Back */
 
 .backRow {
     margin-bottom: 32px;
@@ -43,8 +42,6 @@
 .backButton:hover span {
     transform: translateX(-4px);
 }
-
-/* Profile Header */
 
 .profileHeader {
     position: relative;
@@ -142,7 +139,7 @@
     background: #775a19;
 }
 
-/* Main Grid */
+
 
 .contentGrid {
     display: grid;
@@ -163,7 +160,6 @@
     top: 24px;
 }
 
-/* Cards */
 
 .card {
     background: #f8f9fa;
@@ -191,7 +187,7 @@
     font-size: 24px;
 }
 
-/* Information */
+
 
 .infoGrid {
     display: grid;
@@ -239,7 +235,6 @@
     text-decoration: underline;
 }
 
-/* Programme */
 
 .programmeBox {
     grid-column: 1 / -1;
@@ -282,7 +277,6 @@
     font-size: 14px;
 }
 
-/* Additional Information */
 
 .additionalInfo {
     display: flex;
@@ -309,7 +303,7 @@
     line-height: 26px;
 }
 
-/* Decision */
+
 
 .decisionCard {
     border-color: #e9c176;
@@ -374,7 +368,7 @@
     font-size: 18px;
 }
 
-/* Notes */
+
 
 .notesCard {
     height: 500px;
@@ -483,13 +477,76 @@
     margin-right: 4px;
 }
 
-/* Bottom */
-
 .bottomSpace {
     height: 80px;
 }
 
-/* Responsive */
+.decisionResult {
+    text-align: center;
+    padding: 1.5rem 0 0.5rem;
+}
+
+.decisionIcon {
+    width: 52px;
+    height: 52px;
+    margin: 0 auto 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #f1f5f9;
+}
+
+.decisionIcon span {
+    font-size: 28px;
+}
+
+.decisionResult h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.1rem;
+}
+
+.decisionResult p {
+    margin: 0 auto 0.75rem;
+    max-width: 300px;
+    line-height: 1.5;
+    color: #64748b;
+}
+
+.decisionDate {
+    display: block;
+    font-size: 0.85rem;
+    color: #94a3b8;
+}
+
+.pendingStatus {
+    color: #b45309;
+    background: #fef3c7;
+}
+
+.approvedStatus {
+    color: #15803d;
+    background: #dcfce7;
+}
+
+.rejectedStatus {
+    color: #b91c1c;
+    background: #fee2e2;
+}
+
+.approvedStatus span {
+    background: #16a34a;
+}
+
+.rejectedStatus span {
+    background: #dc2626;
+}
+
+.pendingStatus span {
+    background: #d97706;
+}
+
+
 
 @media (max-width: 1024px) {
     .container {
@@ -571,5 +628,131 @@
     .sectionTitle {
         font-size: 20px;
         line-height: 28px;
+    }
+} */
+
+
+.page {
+    min-height: 100vh;
+    padding: 32px 24px 80px;
+    background: #f8fafc;
+}
+
+.container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.backRow {
+    margin-bottom: 24px;
+}
+
+.backButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    background: transparent;
+    padding: 8px 0;
+    color: #475569;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.backButton:hover {
+    color: #0f172a;
+}
+
+.backButton span {
+    font-size: 20px;
+}
+
+.contentGrid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 360px;
+    gap: 24px;
+    align-items: start;
+}
+
+.mainColumn {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.bottomSpace {
+    height: 20px;
+}
+
+/* Loading / Empty States */
+
+.container>p {
+    margin: 0 0 16px;
+    color: #64748b;
+    font-size: 0.95rem;
+}
+
+.container>button {
+    border: none;
+    border-radius: 8px;
+    padding: 10px 16px;
+    background: #0f172a;
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.container>button:hover {
+    background: #1e293b;
+}
+
+/* Responsive */
+
+@media (max-width: 1000px) {
+    .contentGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        align-items: start;
+    }
+}
+
+@media (max-width: 700px) {
+    .page {
+        padding: 20px 14px 60px;
+    }
+
+    .contentGrid {
+        gap: 18px;
+    }
+
+    .mainColumn,
+    .sidebar {
+        gap: 18px;
+    }
+
+    .sidebar {
+        display: flex;
+    }
+
+    .backRow {
+        margin-bottom: 18px;
+    }
+
+    .backButton {
+        font-size: 0.88rem;
     }
 }

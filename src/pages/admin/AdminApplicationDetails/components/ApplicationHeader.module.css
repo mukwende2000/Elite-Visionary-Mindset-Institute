@@ -1,0 +1,147 @@
+.header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 24px;
+    padding: 24px 28px;
+    overflow: hidden;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+
+.accentLine {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background: #2563eb;
+}
+
+.profileInfo {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.avatar {
+    width: 54px;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: #eff6ff;
+    color: #2563eb;
+}
+
+.avatar span {
+    font-size: 28px;
+}
+
+.profileInfo h1 {
+    margin: 0 0 8px;
+    color: #0f172a;
+    font-size: 1.35rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
+}
+
+.meta>span {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: #64748b;
+    font-size: 0.82rem;
+}
+
+.meta .material-symbols-outlined {
+    font-size: 17px;
+}
+
+/* Status */
+
+.statusBadge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+    padding: 8px 13px;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 650;
+    white-space: nowrap;
+}
+
+.statusBadge>span {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+}
+
+.pendingStatus {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.pendingStatus>span {
+    background: #f59e0b;
+}
+
+.approvedStatus {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.approvedStatus>span {
+    background: #22c55e;
+}
+
+.rejectedStatus {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.rejectedStatus>span {
+    background: #ef4444;
+}
+
+/* Mobile */
+
+@media (max-width: 700px) {
+    .header {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .profileInfo {
+        width: 100%;
+    }
+
+    .profileInfo h1 {
+        font-size: 1.15rem;
+    }
+
+    .meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+
+    .statusBadge {
+        align-self: flex-start;
+    }
+}

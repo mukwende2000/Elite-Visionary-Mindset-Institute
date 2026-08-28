@@ -1,0 +1,147 @@
+.card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+
+.sectionTitle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 20px;
+    color: #0f172a;
+    font-size: 1.05rem;
+    font-weight: 650;
+}
+
+.sectionTitle span {
+    font-size: 21px;
+    color: #475569;
+}
+
+.noteInput {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.noteInput textarea {
+    width: 100%;
+    min-height: 105px;
+    box-sizing: border-box;
+    resize: vertical;
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    outline: none;
+    background: #ffffff;
+    color: #1e293b;
+    font: inherit;
+    font-size: 0.88rem;
+    line-height: 1.5;
+}
+
+.noteInput textarea::placeholder {
+    color: #94a3b8;
+}
+
+.noteInput textarea:focus {
+    border-color: #94a3b8;
+    box-shadow: 0 0 0 3px rgba(148, 163, 184, 0.15);
+}
+
+.noteButtonRow {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.addNoteButton {
+    border: 1px solid #cbd5e1;
+    border-radius: 7px;
+    padding: 8px 14px;
+    background: #ffffff;
+    color: #334155;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.addNoteButton:hover {
+    background: #f8fafc;
+    border-color: #94a3b8;
+}
+
+.addNoteButton:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.noteHistory {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 24px;
+}
+
+.note {
+    padding: 16px 0;
+    border-top: 1px solid #e2e8f0;
+}
+
+.note:first-child {
+    border-top: none;
+    padding-top: 0;
+}
+
+.note:last-child {
+    padding-bottom: 0;
+}
+
+.noteHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 7px;
+}
+
+.noteHeader strong {
+    color: #334155;
+    font-size: 0.84rem;
+}
+
+.noteHeader span {
+    color: #94a3b8;
+    font-size: 0.76rem;
+    white-space: nowrap;
+}
+
+.note p {
+    display: flex;
+    gap: 6px;
+    margin: 0;
+    color: #64748b;
+    font-size: 0.86rem;
+    line-height: 1.55;
+}
+
+.verified {
+    flex-shrink: 0;
+    color: #16a34a;
+    font-size: 17px;
+}
+
+@media (max-width: 700px) {
+    .card {
+        padding: 18px;
+    }
+
+    .noteHeader {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 3px;
+    }
+}

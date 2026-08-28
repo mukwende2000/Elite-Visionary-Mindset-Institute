@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./Payment.module.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import testApplication from "../../lib/testApplication";
@@ -14,11 +14,8 @@ function PaymentStep({ applicationFee = 150, tuitionDeposit = 4850, }) {
     const [paymentProof, setPaymentProof] = useState(null);
     const location = useLocation()
     const navigate = useNavigate()
-
-    console.log("PAYMENT LOCATION:", location);
-    console.log("PAYMENT LOCATION STATE:", location.state);
-    console.log("PAYMENT APPLICATION:", location.state?.application);
-
+    const [existingPayment, setExistingPayment] = useState(null);
+    const [checkingPayment, setCheckingPayment] = useState(true);
     const [paymentReference, setPaymentReference] = useState("");
     const [submitting, setSubmitting] = useState(false);
 
@@ -47,6 +44,40 @@ function PaymentStep({ applicationFee = 150, tuitionDeposit = 4850, }) {
         }
     };
 
+    const checkExistingPayment = async () => {
+        const { data, error } = await supabase
+            .from("payments")
+            .select("*")
+            .eq("application_id", application.id)
+            .in("status", ["pending_verification", "verified"])
+            .maybeSingle();
+
+        if (error) {
+            throw error;
+        }
+
+        return data;
+    };
+
+    useEffect(() => {
+        const loadExistingPayment = async () => {
+            try {
+                const payment = await checkExistingPayment();
+
+                setExistingPayment(payment);
+            } catch (error) {
+                console.error(
+                    "Failed to check existing payment:",
+                    error
+                );
+            } finally {
+                setCheckingPayment(false);
+            }
+        };
+
+        loadExistingPayment();
+    }, [application.id]);
+
     const handleManualPayment = async () => {
         if (!paymentReference.trim()) {
             alert("Please enter your payment reference.");
@@ -61,6 +92,11 @@ function PaymentStep({ applicationFee = 150, tuitionDeposit = 4850, }) {
         setSubmitting(true);
 
         try {
+            const existingPayment = await checkExistingPayment()
+            if (existingPayment) {
+                alert("This application already has a payment being processed")
+                return;
+            }
             // Create a unique file for this application
             const fileExt = paymentProof.name.split(".").pop();
             const fileName = `${crypto.randomUUID()}.${fileExt}`
@@ -112,8 +148,7 @@ function PaymentStep({ applicationFee = 150, tuitionDeposit = 4850, }) {
             });
 
         } catch (error) {
-            console.error("Manual payment submission failed:", error);
-            alert("We could not submit your payment. Please try again")
+            alert("Payment for this application is being processed")
         } finally {
             setSubmitting(false);
         }
@@ -128,6 +163,67 @@ function PaymentStep({ applicationFee = 150, tuitionDeposit = 4850, }) {
 
         // Payment integration will go here later.
     };
+    if (checkingPayment) {
+        return (
+            <section className={styles.page}>
+                <div className={styles.container}>
+                    <p>Checking payment status...</p>
+                </div>
+            </section>
+        );
+    }
+
+    if (existingPayment) {
+        return (
+            <section className={styles.page}>
+                <div className={styles.container}>
+                    <div className={styles.paymentStatus}>
+                        <span className="material-symbols-outlined">
+                            check_circle
+                        </span>
+
+                        <h1>Payment Already Submitted</h1>
+
+                        <p>
+                            We have received a payment for this
+                            application and it is currently being
+                            processed.
+                        </p>
+
+                        <div className={styles.paymentDetails}>
+                            <div>
+                                <span>Payment Reference</span>
+                                <strong>
+                                    {existingPayment.payment_reference}
+                                </strong>
+                            </div>
+
+                            <div>
+                                <span>Amount</span>
+                                <strong>
+                                    ${Number(existingPayment.amount).toFixed(2)}
+                                </strong>
+                            </div>
+
+                            <div>
+                                <span>Status</span>
+                                <strong>
+                                    {existingPayment.status}
+                                </strong>
+                            </div>
+                        </div>
+
+                        <button
+                            type="button"
+                            onClick={() => navigate("/")}
+                        >
+                            Return Home
+                        </button>
+                    </div>
+                </div>
+            </section>
+        );
+    }
 
     return (
         <section className={styles.page}>

@@ -1,0 +1,541 @@
+.card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+
+.sectionTitle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 16px;
+    color: #0f172a;
+    font-size: 1.05rem;
+    font-weight: 650;
+}
+
+.sectionTitle span {
+    font-size: 21px;
+    color: #475569;
+}
+
+.description {
+    margin: 0 0 20px;
+    color: #64748b;
+    font-size: 0.9rem;
+    line-height: 1.55;
+}
+
+.actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.approveButton,
+.rejectButton {
+    width: 100%;
+    min-height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.approveButton {
+    border: 1px solid #16a34a;
+    background: #16a34a;
+    color: #ffffff;
+}
+
+.approveButton:hover {
+    background: #15803d;
+}
+
+.rejectButton {
+    border: 1px solid #dc2626;
+    background: #ffffff;
+    color: #dc2626;
+}
+
+.rejectButton:hover {
+    background: #fef2f2;
+}
+
+.approveButton:disabled,
+.rejectButton:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.rejectionBox {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 18px;
+    padding-top: 18px;
+    border-top: 1px solid #e2e8f0;
+}
+
+.rejectionBox label {
+    color: #334155;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.rejectionBox textarea {
+    width: 100%;
+    min-height: 100px;
+    box-sizing: border-box;
+    resize: vertical;
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    outline: none;
+    color: #1e293b;
+    background: #ffffff;
+    font: inherit;
+    font-size: 0.88rem;
+    line-height: 1.5;
+}
+
+.rejectionBox textarea:focus {
+    border-color: #94a3b8;
+    box-shadow: 0 0 0 3px rgba(148, 163, 184, 0.15);
+}
+
+.decisionResult {
+    text-align: center;
+    padding: 8px 0 2px;
+}
+
+.decisionIcon {
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 14px;
+    border-radius: 50%;
+    background: #f1f5f9;
+}
+
+.decisionIcon span {
+    font-size: 28px;
+}
+
+.decisionResult h3 {
+    margin: 0 0 8px;
+    color: #0f172a;
+    font-size: 1.05rem;
+}
+
+.decisionResult p {
+    margin: 0;
+    color: #64748b;
+    font-size: 0.88rem;
+    line-height: 1.5;
+}
+
+.rejectionReason {
+    margin-top: 18px;
+    padding: 14px;
+    text-align: left;
+    border: 1px solid #fecaca;
+    border-radius: 8px;
+    background: #fef2f2;
+}
+
+.rejectionReason strong {
+    display: block;
+    margin-bottom: 6px;
+    color: #991b1b;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+.rejectionReason p {
+    color: #7f1d1d;
+}
+
+.pendingContent {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.description {
+    margin: 0;
+    color: #64748b;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* ============================================
+   PAYMENT STATUS
+============================================ */
+
+.paymentVerified,
+.paymentPending,
+.paymentRejected,
+.paymentMissing {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px;
+    border: 1px solid;
+    border-radius: 12px;
+}
+
+.paymentVerified {
+    background: #f0fdf4;
+    border-color: #bbf7d0;
+}
+
+.paymentPending {
+    background: #fffbeb;
+    border-color: #fde68a;
+}
+
+.paymentRejected {
+    background: #fef2f2;
+    border-color: #fecaca;
+}
+
+.paymentMissing {
+    background: #f8fafc;
+    border-color: #e2e8f0;
+}
+
+.paymentIcon {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.paymentVerified .paymentIcon {
+    color: #16a34a;
+}
+
+.paymentPending .paymentIcon {
+    color: #d97706;
+}
+
+.paymentRejected .paymentIcon {
+    color: #dc2626;
+}
+
+.paymentMissing .paymentIcon {
+    color: #64748b;
+}
+
+.paymentInfo {
+    flex: 1;
+    min-width: 0;
+}
+
+.paymentInfo strong {
+    display: block;
+    margin-bottom: 3px;
+    color: #1e293b;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.paymentInfo p {
+    margin: 0;
+    color: #64748b;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.paymentStatusLabel {
+    flex-shrink: 0;
+    padding: 5px 9px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.8);
+    color: #475569;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+/* ============================================
+   APPROVAL SECTION
+============================================ */
+
+.approvalSection,
+.rejectionSection {
+    padding: 20px;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    background: #ffffff;
+}
+
+.actionHeader {
+    margin-bottom: 16px;
+}
+
+.actionHeader h3 {
+    margin: 0 0 5px;
+    color: #1e293b;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.actionHeader p {
+    margin: 0;
+    color: #64748b;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.approveButton {
+    width: 100%;
+    min-height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: 0;
+    border-radius: 10px;
+    background: #16a34a;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.approveButton:hover:not(:disabled) {
+    background: #15803d;
+}
+
+.approveButton:disabled {
+    background: #cbd5e1;
+    color: #64748b;
+    cursor: not-allowed;
+}
+
+.disabledHint {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    margin: 10px 0 0;
+    color: #94a3b8;
+    font-size: 12px;
+}
+
+/* ============================================
+   REJECTION
+============================================ */
+
+.rejectionSection {
+    background: #fafafa;
+}
+
+.rejectionBox {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.rejectionBox label {
+    color: #334155;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.rejectionBox textarea {
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 100px;
+    padding: 12px;
+    resize: vertical;
+    border: 1px solid #cbd5e1;
+    border-radius: 9px;
+    outline: none;
+    color: #1e293b;
+    background: #ffffff;
+    font: inherit;
+    font-size: 13px;
+    line-height: 1.5;
+    transition: border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.rejectionBox textarea:focus {
+    border-color: #94a3b8;
+    box-shadow: 0 0 0 3px rgba(148, 163, 184, 0.15);
+}
+
+.rejectButton {
+    min-height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    padding: 0 16px;
+    border: 1px solid #fecaca;
+    border-radius: 9px;
+    background: #fff;
+    color: #dc2626;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.rejectButton:hover:not(:disabled) {
+    background: #fef2f2;
+}
+
+.rejectButton:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* ============================================
+   DECISION RESULT
+============================================ */
+
+.decisionResult {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px 12px;
+    text-align: center;
+}
+
+.decisionIcon,
+.approvedIcon,
+.rejectedIcon {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 14px;
+    border-radius: 50%;
+}
+
+.approvedIcon {
+    background: #dcfce7;
+    color: #16a34a;
+}
+
+.rejectedIcon {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+.decisionIcon span {
+    font-size: 30px;
+}
+
+.approvedIcon span,
+.rejectedIcon span {
+    font-size: 30px;
+}
+
+.decisionResult h3 {
+    margin: 0 0 8px;
+    color: #1e293b;
+    font-size: 18px;
+}
+
+.decisionResult>p {
+    max-width: 400px;
+    margin: 0;
+    color: #64748b;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.decisionDate {
+    margin-top: 12px !important;
+    color: #94a3b8 !important;
+    font-size: 12px !important;
+}
+
+/* ============================================
+   REJECTION REASON
+============================================ */
+
+.rejectionStatement {
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 18px !important;
+    padding: 14px;
+    border: 1px solid #fecaca;
+    border-radius: 10px;
+    background: #fef2f2;
+    text-align: left;
+    color: #991b1b !important;
+}
+
+.rejectionStatement>span {
+    margin-top: 1px;
+    color: #dc2626;
+}
+
+.rejectionStatement div {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.rejectionStatement div>span {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #b91c1c;
+}
+
+.rejectionStatement strong {
+    color: #7f1d1d;
+    font-size: 13px;
+    line-height: 1.5;
+    font-weight: 500;
+}
+
+/* ============================================
+   RESPONSIVE
+============================================ */
+
+@media (max-width: 600px) {
+
+    .paymentVerified,
+    .paymentPending,
+    .paymentRejected,
+    .paymentMissing {
+        align-items: flex-start;
+    }
+
+    .paymentStatusLabel {
+        display: none;
+    }
+
+    .approvalSection,
+    .rejectionSection {
+        padding: 16px;
+    }
+}

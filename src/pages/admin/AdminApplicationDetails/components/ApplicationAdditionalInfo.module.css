@@ -1,0 +1,63 @@
+.card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+
+.sectionTitle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 24px;
+    color: #0f172a;
+    font-size: 1.05rem;
+    font-weight: 650;
+}
+
+.sectionTitle span {
+    font-size: 21px;
+    color: #475569;
+}
+
+.additionalInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.label {
+    margin: 0 0 8px;
+    color: #64748b;
+    font-size: 0.76rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+.longAnswer {
+    padding: 14px 16px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    background: #f8fafc;
+    color: #334155;
+    font-size: 0.93rem;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 700px) {
+    .card {
+        padding: 18px;
+    }
+
+    .additionalInfo {
+        gap: 18px;
+    }
+
+    .longAnswer {
+        padding: 12px 14px;
+    }
+}

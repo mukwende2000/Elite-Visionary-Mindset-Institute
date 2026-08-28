@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import styles from "./ApplicationsTable.module.css";
 
 function ApplicationsTable({
@@ -9,22 +10,24 @@ function ApplicationsTable({
     intakeFilter,
     setIntakeFilter,
 }) {
+    console.log(applications)
+    const navigate = useNavigate()
     const filteredApplications = applications.filter((application) => {
         const matchesSearch =
-            application.name
+            application?.name
                 .toLowerCase()
                 .includes(search.toLowerCase()) ||
-            application.email
+            application?.email
                 .toLowerCase()
                 .includes(search.toLowerCase());
 
         const matchesStatus =
             statusFilter === "all" ||
-            application.status.toLowerCase() === statusFilter;
+            application?.status.toLowerCase() === statusFilter;
 
         const matchesIntake =
             intakeFilter === "all" ||
-            application.intake === intakeFilter;
+            application?.intake === intakeFilter;
 
         return matchesSearch && matchesStatus && matchesIntake;
     });
@@ -55,7 +58,7 @@ function ApplicationsTable({
                         }
                     >
                         <option value="all">All Statuses</option>
-                        <option value="pending">Pending</option>
+                        <option value="submitted">Pending</option>
                         <option value="approved">Approved</option>
                         <option value="rejected">Rejected</option>
                     </select>
@@ -67,10 +70,16 @@ function ApplicationsTable({
                         }
                     >
                         <option value="all">All Intakes</option>
-                        <option value="Fall 2024">Fall 2024</option>
-                        <option value="Spring 2025">
-                            Spring 2025
-                        </option>
+
+                        {[...new Set(
+                            applications
+                                .map((application) => application.intake)
+                                .filter(Boolean)
+                        )].map((intake) => (
+                            <option key={intake} value={intake}>
+                                {intake}
+                            </option>
+                        ))}
                     </select>
                 </div>
             </div>
@@ -91,7 +100,7 @@ function ApplicationsTable({
 
                     <tbody>
                         {filteredApplications.map((application) => (
-                            <tr key={application.email}>
+                            <tr key={application.id}>
                                 <td className={styles.applicantName}>
                                     {application.name}
                                 </td>
@@ -112,7 +121,7 @@ function ApplicationsTable({
                                     <span
                                         className={`${styles.status} ${styles[
                                             application.status.toLowerCase()
-                                            ]
+                                        ]
                                             }`}
                                     >
                                         {application.status}
@@ -123,6 +132,7 @@ function ApplicationsTable({
                                     <button
                                         type="button"
                                         className={styles.viewButton}
+                                        onClick={() => navigate(`/admin/applications/${application.id}`)}
                                     >
                                         View
                                     </button>
