@@ -5,13 +5,42 @@ import styles from "./Courses.module.css";
 import enroll from '../../assets/images/enroll.jpeg'
 import { Link } from "react-router-dom";
 import CourseModal from "../../components/courses/CourseModal";
+import { supabase } from "../../lib/supabase";
 
 function Courses() {
+    const [courses, setCourses] = useState([]);
     const [selectedCourse, setSelectedCourse] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState("");
 
     const openModal = (course) => {
         setSelectedCourse(course);
     };
+
+    useEffect(() => {
+        const fetchCourses = async () => {
+            setLoading(true);
+            setError("");
+
+            const { data, error } = await supabase
+                .from("courses")
+                .select("*")
+                .eq("is_active", true)
+                .order("id", { ascending: true });
+
+            if (error) {
+                console.error("Failed to load courses:", error);
+                setError("Unable to load courses. Please try again.");
+                setCourses([]);
+            } else {
+                setCourses(data);
+            }
+
+            setLoading(false);
+        };
+
+        fetchCourses();
+    }, []);
 
     const closeModal = () => {
         setSelectedCourse(null);
@@ -85,13 +114,27 @@ function Courses() {
             <section id="programmes" className={styles.courseSection}>
                 <div className={styles.container}>
                     <div className={styles.courseGrid}>
-                        {courses.map((course) => (
-                            <CourseCard
-                                key={course.id}
-                                course={course}
-                                onViewDetails={openModal}
-                            />
-                        ))}
+                        {loading && (
+                            <p>Loading programmes...</p>
+                        )}
+
+                        {!loading && error && (
+                            <p>{error}</p>
+                        )}
+
+                        {!loading && !error && courses.length === 0 && (
+                            <p>No programmes are currently available.</p>
+                        )}
+
+                        {!loading && !error &&
+                            courses.map((course) => (
+                                <CourseCard
+                                    key={course.id}
+                                    course={course}
+                                    onViewDetails={openModal}
+                                />
+                            ))
+                        }
                     </div>
                 </div>
             </section>

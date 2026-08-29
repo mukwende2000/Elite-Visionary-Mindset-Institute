@@ -1,11 +1,14 @@
+import { useNavigate } from "react-router-dom";
 import styles from "./CourseCard.module.css";
 
-function CourseCard({ course, onViewDetails }) {
+function CourseCard({ course }) {
+    const navigate = useNavigate();
+
     return (
         <article className={styles.courseCard}>
             <div className={styles.cardImage}>
                 <img
-                    src={course.image}
+                    src={course.image_url}
                     alt={course.title}
                 />
 
@@ -33,6 +36,7 @@ function CourseCard({ course, onViewDetails }) {
                         <span className="material-symbols-outlined">
                             schedule
                         </span>
+
                         {course.duration}
                     </div>
 
@@ -40,14 +44,17 @@ function CourseCard({ course, onViewDetails }) {
                         <span className="material-symbols-outlined">
                             menu_book
                         </span>
-                        {course.mode}
+
+                        {course.study_mode}
                     </div>
                 </div>
 
                 <div className={styles.actions}>
                     <button
                         type="button"
-                        onClick={() => onViewDetails(course)}
+                        onClick={() =>
+                            navigate(`/courses/${course.id}`)
+                        }
                         className={styles.detailsButton}
                     >
                         View Details
@@ -66,3 +73,4 @@ function CourseCard({ course, onViewDetails }) {
 }
 
 export default CourseCard;
+

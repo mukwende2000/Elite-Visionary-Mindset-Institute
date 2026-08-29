@@ -15,6 +15,7 @@ import AdminPayments from "./pages/admin/AdminPayments/AdminPayments"
 import AdminLogin from "./pages/admin/AdminLogin/AdminLogin"
 import ProtectedAdminRoute from "./pages/admin/ProtectedAdminRoute"
 import AdminPaymentDetails from "./pages/admin/AdminPaymentDetails/AdminPaymentDetails"
+import CourseDetails from "./pages/CourseDetails/CourseDetails"
 
 const router = createBrowserRouter([
     {
@@ -27,6 +28,11 @@ const router = createBrowserRouter([
             {
                 path: "courses",
                 element: <Courses />,
+            },
+            {
+                path: "/courses/:courseId",
+                element: <CourseDetails />
+
             },
             {
                 path: "apply",
