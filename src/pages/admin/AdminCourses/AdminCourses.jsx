@@ -14,8 +14,8 @@ function AdminCourses() {
     const [error, setError] = useState("");
 
     const [search, setSearch] = useState("");
-    const [status, setStatus] = useState("all");
-    const [category, setCategory] = useState("all");
+    const [status, setStatus] = useState("");
+    const [category, setCategory] = useState("");
 
     const [page, setPage] = useState(1);
 

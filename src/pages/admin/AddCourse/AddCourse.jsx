@@ -272,31 +272,12 @@ function AddCourse() {
             {/* Header */}
             <div className={styles.header}>
                 <div>
-                    <div className={styles.breadcrumb}>
-                        <Link to="/admin/courses">
-                            Courses
-                        </Link>
-
-                        <span className="material-symbols-outlined">
-                            chevron_right
-                        </span>
-
-                        <span>Add Course</span>
-                    </div>
-
                     <h1>Add Course</h1>
 
                     <p>
-                        Create a new academic programme for EVMI.
+                        Create a new academic programme.
                     </p>
                 </div>
-
-                <Link
-                    to="/admin/courses"
-                    className={styles.cancelTop}
-                >
-                    Cancel
-                </Link>
             </div>
 
             <form onSubmit={handleSubmit(onSubmit)}>
