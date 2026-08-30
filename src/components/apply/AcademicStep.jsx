@@ -1,11 +1,31 @@
-import courses from "../../data/courses";
+import { useEffect, useState } from "react";
+import { supabase } from "../../lib/supabase";
 import styles from "./AcademicStep.module.css";
 
-function
-    AcademicStep({ register, errors }) {
+function AcademicStep({ register, errors }) {
+    const [courses, setCourses] = useState([]);
+
+    useEffect(() => {
+        const fetchCourses = async () => {
+            const { data, error } = await supabase
+                .from("courses")
+                .select("id, title")
+                .eq("is_active", true)
+                .order("title");
+
+            if (error) {
+                console.error("Failed to load courses:", error);
+                return;
+            }
+
+            setCourses(data);
+        };
+
+        fetchCourses();
+    }, []);
+
     return (
         <div className={styles.container}>
-
             <div className={styles.form}>
                 <div className={styles.grid}>
 
@@ -17,34 +37,20 @@ function
                         </label>
 
                         <select
-                            defaultValue={"degree"}
+                            defaultValue="degree"
                             id="highestQualification"
                             {...register("highestQualification", {
                                 required: "This field is required",
                             })}
                         >
                             <option value="">Select Education Level</option>
-                            <option value="secondary">
-                                Secondary School
-                            </option>
-                            <option value="certificate">
-                                Certificate
-                            </option>
-                            <option value="diploma">
-                                Diploma
-                            </option>
-                            <option value="degree">
-                                Bachelor's Degree
-                            </option>
-                            <option value="masters">
-                                Master's Degree
-                            </option>
-                            <option value="doctorate">
-                                Doctorate
-                            </option>
-                            <option value="other">
-                                Other
-                            </option>
+                            <option value="secondary">Secondary School</option>
+                            <option value="certificate">Certificate</option>
+                            <option value="diploma">Diploma</option>
+                            <option value="degree">Bachelor's Degree</option>
+                            <option value="masters">Master's Degree</option>
+                            <option value="doctorate">Doctorate</option>
+                            <option value="other">Other</option>
                         </select>
 
                         {errors.highestQualification && (
@@ -62,7 +68,7 @@ function
                         </label>
 
                         <input
-                            defaultValue={"Designer"}
+                            defaultValue="Designer"
                             id="currentOccupation"
                             type="text"
                             placeholder="e.g. Software Developer"
@@ -86,7 +92,7 @@ function
                         </label>
 
                         <input
-                            defaultValue={"ZCAS"}
+                            defaultValue="ZCAS"
                             id="institution"
                             type="text"
                             placeholder="Name of institution"
@@ -108,9 +114,12 @@ function
                             })}
                         >
                             <option value="">Select Programme</option>
-                            {courses.map((course) => {
-                                return <option key={course.id} defaultValue={course.id === 3} value={course.title}>{course.title}</option>
-                            })}
+
+                            {courses.map((course) => (
+                                <option key={course.id} value={course.title}>
+                                    {course.title}
+                                </option>
+                            ))}
                         </select>
 
                         {errors.programme && (
@@ -134,7 +143,7 @@ function
                             })}
                         >
                             <option value="">Select Study Mode</option>
-                            <option value="online" defaultValue>Online</option>
+                            <option value="online">Online</option>
                             <option value="physical">Physical</option>
                             <option value="hybrid">Hybrid</option>
                         </select>
@@ -146,7 +155,6 @@ function
                         )}
                     </div>
 
-                    {/* Preferred Intake */}
                     {/* Preferred Intake */}
                     <div className={styles.field}>
                         <label htmlFor="intake">
@@ -165,17 +173,9 @@ function
                                 Select Intake
                             </option>
 
-                            <option value="january">
-                                January
-                            </option>
-
-                            <option value="april">
-                                April
-                            </option>
-
-                            <option value="september">
-                                September
-                            </option>
+                            <option value="january">January</option>
+                            <option value="april">April</option>
+                            <option value="september">September</option>
                         </select>
 
                         {errors.intake && (
@@ -184,6 +184,7 @@ function
                             </p>
                         )}
                     </div>
+
                 </div>
             </div>
         </div>

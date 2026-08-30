@@ -16,6 +16,9 @@ import AdminLogin from "./pages/admin/AdminLogin/AdminLogin"
 import ProtectedAdminRoute from "./pages/admin/ProtectedAdminRoute"
 import AdminPaymentDetails from "./pages/admin/AdminPaymentDetails/AdminPaymentDetails"
 import CourseDetails from "./pages/CourseDetails/CourseDetails"
+import AdminCourses from "./pages/admin/AdminCourses/AdminCourses"
+import AdminCourseDetails from "./pages/admin/AdminCourseDetails/AdminCourseDetails"
+import AddCourse from "./pages/admin/AddCourse/AddCourse"
 
 const router = createBrowserRouter([
     {
@@ -82,6 +85,18 @@ const router = createBrowserRouter([
                     {
                         path: "payments/:id",
                         element: <AdminPaymentDetails />
+                    },
+                    {
+                        path: "courses",
+                        element: <AdminCourses />
+                    },
+                    {
+                        path: "courses/:id",
+                        element: <AdminCourseDetails />
+                    },
+                    {
+                        path: "add-course",
+                        element: <AddCourse />
                     }
                 ],
             }

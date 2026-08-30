@@ -1,0 +1,181 @@
+.row {
+    border-bottom: 1px solid #c5c6ce;
+
+    transition: background-color 0.2s ease;
+}
+
+.row:last-child {
+    border-bottom: none;
+}
+
+.row:hover {
+    background: #f3f4f5;
+}
+
+.cell {
+    padding: 1rem 1.5rem;
+
+    color: #191c1d;
+
+    font-family: "Inter", sans-serif;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+
+    vertical-align: middle;
+
+    white-space: nowrap;
+}
+
+/* Course */
+
+.course {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    min-width: 18rem;
+}
+
+.image {
+    width: 3rem;
+    height: 3rem;
+
+    flex-shrink: 0;
+
+    object-fit: cover;
+
+    border: 1px solid #c5c6ce;
+    border-radius: 0.5rem;
+
+    background: #f3f4f5;
+}
+
+.courseInfo {
+    min-width: 0;
+}
+
+.title {
+    max-width: 24rem;
+
+    margin-bottom: 0.25rem;
+
+    overflow: hidden;
+
+    color: #041632;
+
+    font-family: "Inter", sans-serif;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 700;
+
+    text-overflow: ellipsis;
+}
+
+.shortTitle {
+    color: #75777e;
+
+    font-size: 0.75rem;
+    line-height: 1rem;
+}
+
+/* Status */
+
+.status {
+    display: inline-flex;
+    align-items: center;
+
+    padding: 0.25rem 0.625rem;
+
+    border-radius: 9999px;
+
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-weight: 600;
+}
+
+.active {
+    background: #d7e2ff;
+    color: #374765;
+}
+
+.inactive {
+    background: #e1e3e4;
+    color: #44474d;
+}
+
+/* Actions */
+
+.actionsCell {
+    text-align: right;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.5rem;
+}
+
+.viewButton {
+    padding: 0.375rem 0.75rem;
+
+    border: 1px solid #041632;
+    border-radius: 0.25rem;
+
+    background: transparent;
+    color: #041632;
+
+    font-family: "Inter", sans-serif;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.viewButton:hover {
+    background: #041632;
+    color: #ffffff;
+}
+
+.moreButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 2.25rem;
+    height: 2.25rem;
+
+    padding: 0;
+
+    border: none;
+    border-radius: 0.375rem;
+
+    background: transparent;
+    color: #44474d;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.moreButton:hover {
+    background: #e1e3e4;
+    color: #041632;
+}
+
+.moreButton:focus-visible,
+.viewButton:focus-visible {
+    outline: 2px solid #041632;
+    outline-offset: 2px;
+}
+
+.moreButton .material-symbols-outlined {
+    font-size: 1.25rem;
+}

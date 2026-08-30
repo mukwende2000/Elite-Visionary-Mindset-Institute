@@ -1,0 +1,100 @@
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.card {
+    padding: 24px;
+
+    background: #ffffff;
+
+    border: 1px solid #c5c6ce;
+    border-radius: 12px;
+}
+
+.card h2 {
+    margin: 0 0 20px;
+
+    color: #041632;
+
+    font-family: "Manrope", sans-serif;
+    font-size: 18px;
+    line-height: 26px;
+    font-weight: 600;
+}
+
+.statusRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+
+    padding: 14px 0;
+
+    border-bottom: 1px solid #e1e3e4;
+}
+
+.statusRow:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+}
+
+.statusRow:first-of-type {
+    padding-top: 0;
+}
+
+.statusRow span {
+    color: #75777e;
+    font-size: 13px;
+}
+
+.statusRow strong {
+    color: #191c1d;
+    font-size: 13px;
+}
+
+.statusRow .active {
+    color: #374765;
+}
+
+.statusRow .inactive {
+    color: #75777e;
+}
+
+.card button {
+    width: 100%;
+
+    min-height: 44px;
+
+    margin-top: 10px;
+    padding: 0 14px;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+
+    border: 1px solid #c5c6ce;
+    border-radius: 8px;
+
+    background: #ffffff;
+    color: #041632;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.card button:first-of-type {
+    margin-top: 0;
+}
+
+.card button:hover {
+    background: #f3f4f5;
+}
+
+.card button .material-symbols-outlined {
+    font-size: 19px;
+}

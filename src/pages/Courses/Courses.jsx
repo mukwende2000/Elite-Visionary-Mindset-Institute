@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import courses from "../../data/courses";
 import CourseCard from "../../components/courses/CourseCard";
 import styles from "./Courses.module.css";
 import enroll from '../../assets/images/enroll.jpeg'
@@ -138,10 +137,6 @@ function Courses() {
                     </div>
                 </div>
             </section>
-
-            {selectedCourse && (
-                <CourseModal selectedCourse={selectedCourse} closeModal={closeModal} />
-            )}
         </div>
     );
 }

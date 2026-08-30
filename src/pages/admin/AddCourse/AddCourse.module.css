@@ -1,0 +1,478 @@
+.page {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 48px 24px 64px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    color: #191c1d;
+}
+
+/* Header */
+
+.header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    margin-bottom: 16px;
+
+    color: #75777e;
+    font-size: 13px;
+}
+
+.breadcrumb a {
+    color: #44474d;
+    text-decoration: none;
+}
+
+.breadcrumb a:hover {
+    color: #041632;
+}
+
+.breadcrumb .material-symbols-outlined {
+    font-size: 16px;
+}
+
+.header h1 {
+    margin: 0 0 8px;
+
+    color: #041632;
+    font-family: "Manrope", sans-serif;
+    font-size: 32px;
+    line-height: 40px;
+    font-weight: 600;
+}
+
+.header p {
+    margin: 0;
+
+    color: #44474d;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.cancelTop {
+    color: #44474d;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.cancelTop:hover {
+    color: #041632;
+}
+
+/* Cards */
+
+.card {
+    background: #ffffff;
+
+    border: 1px solid #c5c6ce;
+    border-radius: 12px;
+
+    overflow: hidden;
+}
+
+.cardHeader {
+    padding: 24px;
+
+    border-bottom: 1px solid #c5c6ce;
+    background: #f8f9fa;
+}
+
+.cardHeader h2 {
+    margin: 0 0 4px;
+
+    color: #041632;
+    font-family: "Manrope", sans-serif;
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: 600;
+}
+
+.cardHeader p {
+    margin: 0;
+
+    color: #44474d;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+/* Form */
+
+.formGrid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+
+    padding: 24px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.full {
+    grid-column: 1 / -1;
+}
+
+.field label {
+    color: #041632;
+
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 600;
+}
+
+.field input,
+.field select,
+.field textarea {
+    width: 100%;
+
+    border: 1px solid #c5c6ce;
+    border-radius: 8px;
+
+    background: #f8f9fa;
+    color: #191c1d;
+
+    font-family: "Inter", sans-serif;
+    font-size: 15px;
+
+    outline: none;
+
+    transition:
+        border-color 160ms ease,
+        box-shadow 160ms ease;
+}
+
+.field input,
+.field select {
+    height: 48px;
+    padding: 0 14px;
+}
+
+.field textarea {
+    min-height: 120px;
+    padding: 14px;
+
+    resize: vertical;
+    line-height: 24px;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+    border-color: #041632;
+    box-shadow: 0 0 0 1px #041632;
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+    color: #75777e;
+}
+
+.helpText {
+    color: #75777e;
+    font-size: 12px;
+    line-height: 16px;
+}
+
+/* Requirements */
+
+.requirements {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    padding: 24px;
+}
+
+.requirementRow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.requirementNumber {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 32px;
+    height: 32px;
+
+    flex: 0 0 32px;
+
+    border-radius: 50%;
+
+    background: #d7e2ff;
+    color: #374765;
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.requirementRow input {
+    flex: 1;
+
+    height: 48px;
+    padding: 0 14px;
+
+    border: 1px solid #c5c6ce;
+    border-radius: 8px;
+
+    background: #f8f9fa;
+    color: #191c1d;
+
+    font-family: "Inter", sans-serif;
+    font-size: 15px;
+
+    outline: none;
+}
+
+.requirementRow input:focus {
+    border-color: #041632;
+    box-shadow: 0 0 0 1px #041632;
+}
+
+.removeButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 40px;
+    height: 40px;
+
+    flex: 0 0 40px;
+
+    border: 0;
+    border-radius: 8px;
+
+    background: transparent;
+    color: #75777e;
+
+    cursor: pointer;
+}
+
+.removeButton:hover:not(:disabled) {
+    background: #ffdad6;
+    color: #ba1a1a;
+}
+
+.removeButton:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+.removeButton .material-symbols-outlined {
+    font-size: 20px;
+}
+
+.addRequirement {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    align-self: flex-start;
+
+    margin-top: 4px;
+    padding: 8px 12px;
+
+    border: 1px solid #775a19;
+    border-radius: 6px;
+
+    background: transparent;
+    color: #775a19;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.addRequirement:hover {
+    background: #ffdea5;
+}
+
+.addRequirement .material-symbols-outlined {
+    font-size: 18px;
+}
+
+/* Settings */
+
+.settings {
+    display: flex;
+    flex-direction: column;
+
+    padding: 24px;
+}
+
+.checkboxRow {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+
+    padding: 16px 0;
+
+    cursor: pointer;
+}
+
+.checkboxRow+.checkboxRow {
+    border-top: 1px solid #e1e3e4;
+}
+
+.checkboxRow input {
+    width: 18px;
+    height: 18px;
+
+    margin-top: 2px;
+
+    accent-color: #041632;
+
+    cursor: pointer;
+}
+
+.checkboxRow span {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.checkboxRow strong {
+    color: #041632;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.checkboxRow small {
+    color: #75777e;
+    font-size: 13px;
+    line-height: 18px;
+}
+
+/* Actions */
+
+.actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+
+    padding-top: 8px;
+}
+
+.cancelButton,
+.saveButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    min-height: 48px;
+    padding: 0 24px;
+
+    border-radius: 8px;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.cancelButton {
+    border: 1px solid #c5c6ce;
+
+    background: #ffffff;
+    color: #44474d;
+}
+
+.cancelButton:hover {
+    background: #f3f4f5;
+}
+
+.saveButton {
+    border: 0;
+
+    background: #041632;
+    color: #ffffff;
+
+    transition: background 160ms ease;
+}
+
+.saveButton:hover {
+    background: #1b2b48;
+}
+
+.saveButton .material-symbols-outlined {
+    font-size: 19px;
+}
+
+/* Responsive */
+
+@media (max-width: 800px) {
+    .page {
+        padding: 32px 16px 48px;
+    }
+
+    .header {
+        flex-direction: column;
+    }
+
+    .formGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .full {
+        grid-column: auto;
+    }
+
+    .actions {
+        flex-direction: column-reverse;
+        align-items: stretch;
+    }
+
+    .cancelButton,
+    .saveButton {
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .header h1 {
+        font-size: 28px;
+        line-height: 36px;
+    }
+
+    .cardHeader,
+    .formGrid,
+    .requirements,
+    .settings {
+        padding: 20px 16px;
+    }
+
+    .requirementRow {
+        align-items: flex-start;
+    }
+
+    .requirementNumber {
+        margin-top: 8px;
+    }
+
+    .removeButton {
+        margin-top: 4px;
+    }
+}

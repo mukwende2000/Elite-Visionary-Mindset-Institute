@@ -50,3 +50,66 @@ img {
   display: block;
   max-width: 100%;
 }
+
+.course-delete-popup {
+  border-radius: 14px !important;
+  padding: 32px !important;
+}
+
+.course-delete-title {
+  color: #041632 !important;
+  font-family: "Manrope", sans-serif !important;
+}
+
+.course-delete-content {
+  color: #44474d !important;
+  font-family: "Inter", sans-serif !important;
+}
+
+.course-delete-actions {
+  gap: 12px !important;
+}
+
+/* Cancel */
+
+.course-delete-cancel {
+  min-width: 100px !important;
+  min-height: 44px !important;
+
+  border: 1px solid #c5c6ce !important;
+  border-radius: 8px !important;
+
+  background: #ffffff !important;
+  color: #041632 !important;
+
+  font-family: "Inter", sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+}
+
+.course-delete-cancel:hover {
+  background: #f3f4f5 !important;
+  border-color: #041632 !important;
+}
+
+/* Delete */
+
+.course-delete-confirm {
+  min-width: 130px !important;
+  min-height: 44px !important;
+
+  border: 1px solid #ba1a1a !important;
+  border-radius: 8px !important;
+
+  background: #ba1a1a !important;
+  color: #ffffff !important;
+
+  font-family: "Inter", sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+}
+
+.course-delete-confirm:hover {
+  background: #a51414 !important;
+  border-color: #a51414 !important;
+}

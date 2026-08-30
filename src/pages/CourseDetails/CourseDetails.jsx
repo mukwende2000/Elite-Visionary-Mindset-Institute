@@ -1,15 +1,58 @@
+import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import courses from "../../data/courses";
+import { supabase } from "../../lib/supabase";
 import styles from "./CourseDetails.module.css";
 
 function CourseDetails() {
     const { courseId } = useParams();
 
-    const course = courses.find(
-        (course) => course.id === Number(courseId)
-    );
+    const [course, setCourse] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState("");
 
-    if (!course) {
+    useEffect(() => {
+        const fetchCourse = async () => {
+            setLoading(true);
+            setError("");
+
+            const { data, error } = await supabase
+                .from("courses")
+                .select("*")
+                .eq("id", courseId)
+                .eq("is_active", true)
+                .single();
+
+            if (error) {
+                console.error("Failed to load course:", error);
+                setError("Unable to load this programme.");
+                setCourse(null);
+            } else {
+                setCourse(data);
+            }
+
+            setLoading(false);
+        };
+
+        fetchCourse();
+    }, [courseId]);
+
+    if (loading) {
+        return (
+            <main className={styles.notFound}>
+                <span className="material-symbols-outlined">
+                    school
+                </span>
+
+                <h1>Loading Programme...</h1>
+
+                <p>
+                    Please wait while we load the programme details.
+                </p>
+            </main>
+        );
+    }
+
+    if (error || !course) {
         return (
             <main className={styles.notFound}>
                 <span className="material-symbols-outlined">
@@ -74,7 +117,7 @@ function CourseDetails() {
 
                     <div className={styles.heroImage}>
                         <img
-                            src={course.image}
+                            src={course.image_url}
                             alt={course.title}
                         />
                     </div>
@@ -163,7 +206,7 @@ function CourseDetails() {
                                     <div>
                                         <span>Study Mode</span>
                                         <strong>
-                                            {course.mode}
+                                            {course.study_mode}
                                         </strong>
                                     </div>
                                 </div>

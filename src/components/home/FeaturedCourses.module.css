@@ -4,19 +4,26 @@
 }
 
 .container {
+    width: 100%;
     max-width: 1280px;
     margin: 0 auto;
 }
+
+/* --------------------------------
+   Section Header
+-------------------------------- */
 
 .heading {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
+    gap: 2rem;
     margin-bottom: 3rem;
 }
 
 .heading h2 {
     margin: 0;
+
     color: #041632;
     font-family: "Manrope", sans-serif;
     font-size: 2rem;
@@ -24,39 +31,50 @@
     font-weight: 600;
 }
 
-.heading a,
-.cardContent a,
-.mobileLink a {
+.heading a {
     color: #775a19;
     font-weight: 600;
     text-decoration: none;
+    white-space: nowrap;
 }
 
-.heading a:hover,
-.cardContent a:hover,
-.mobileLink a:hover {
+.heading a:hover {
     text-decoration: underline;
 }
 
+/* --------------------------------
+   Course Grid
+-------------------------------- */
+
 .grid {
     display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-auto-rows: 300px;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    grid-auto-rows: 360px;
     gap: 1.5rem;
 }
 
+/* --------------------------------
+   Base Card
+-------------------------------- */
+
 .card {
+    min-width: 0;
+
     border: 1px solid #c5c6ce;
     border-radius: 0.5rem;
     overflow: hidden;
+
+    background: #ffffff;
     box-shadow: 0 1px 3px rgb(0 0 0 / 8%);
 }
 
-/* Large 8-column card */
+/* --------------------------------
+   Featured Card
+-------------------------------- */
 
 .featuredCard {
-    grid-column: span 8;
     position: relative;
+    grid-column: span 8;
 }
 
 .featuredCard img {
@@ -74,21 +92,23 @@
 .featuredContent {
     position: absolute;
     inset: 0;
-    padding: 3rem;
 
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
 
-    color: white;
+    padding: 3rem;
+
+    color: #ffffff;
 }
 
 .featuredContent h3 {
-    margin: 0 0 0.25rem;
+    margin: 0 0 0.5rem;
 
     font-family: "Manrope", sans-serif;
     font-size: 2rem;
     line-height: 2.5rem;
+    font-weight: 600;
 }
 
 .featuredContent p {
@@ -100,6 +120,8 @@
     opacity: 0.9;
 }
 
+/* Featured Badge */
+
 .badge,
 .outlineBadge {
     width: fit-content;
@@ -110,6 +132,7 @@
 
     font-size: 0.75rem;
     font-weight: 700;
+    line-height: 1.25;
     text-transform: uppercase;
     letter-spacing: 0.05em;
 }
@@ -119,22 +142,63 @@
     color: #041632;
 }
 
-/* Smaller cards */
+/* Featured CTA */
+
+.featuredButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    width: fit-content;
+    margin-top: 1.25rem;
+    padding: 0.75rem 1.25rem;
+
+    border: 1px solid rgb(255 255 255 / 70%);
+    border-radius: 0.25rem;
+
+    color: #ffffff;
+    background: rgb(4 22 50 / 55%);
+
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-decoration: none;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.featuredButton:hover {
+    border-color: #775a19;
+    background: #775a19;
+    color: #ffffff;
+    transform: translateY(-1px);
+}
+
+.featuredButton .material-symbols-outlined {
+    font-size: 1.1rem;
+}
+
+/* --------------------------------
+   Small Cards
+-------------------------------- */
 
 .smallCard {
     grid-column: span 4;
 
     display: flex;
     flex-direction: column;
-
-    background: #ffffff;
 }
 
 .cardImage {
-    height: 50%;
+    flex: 0 0 42%;
+    min-height: 0;
 }
 
 .cardImage img {
+    display: block;
+
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -142,20 +206,23 @@
 
 .cardContent {
     flex: 1;
-    padding: 1.5rem;
+    min-height: 0;
 
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
+    padding: 1.25rem 1.5rem;
 }
 
 .cardContent h3 {
-    margin: 0 0 0.25rem;
+    margin: 0 0 0.5rem;
 
     color: #041632;
     font-family: "Manrope", sans-serif;
     font-size: 1.5rem;
     line-height: 2rem;
+    font-weight: 600;
 }
 
 .cardContent p {
@@ -166,8 +233,8 @@
     line-height: 1.5rem;
 
     display: -webkit-box;
-    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
     overflow: hidden;
 }
 
@@ -176,29 +243,39 @@
     align-items: center;
     gap: 0.25rem;
 
+    width: fit-content;
     margin-top: 0.75rem;
+
+    color: #775a19;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.cardContent a:hover {
+    text-decoration: underline;
 }
 
 .cardContent .material-symbols-outlined {
     font-size: 1rem;
 }
 
-/* Wide card */
+/* --------------------------------
+   Wide Card
+-------------------------------- */
 
 .wideCard {
     grid-column: span 8;
-
-    padding: 3rem;
 
     display: flex;
     align-items: center;
     gap: 3rem;
 
-    background: #ffffff;
+    padding: 3rem;
 }
 
 .wideContent {
     flex: 1;
+    min-width: 0;
 }
 
 .wideContent h3 {
@@ -208,6 +285,7 @@
     font-family: "Manrope", sans-serif;
     font-size: 1.5rem;
     line-height: 2rem;
+    font-weight: 600;
 }
 
 .wideContent p {
@@ -224,6 +302,7 @@
 
 .wideContent a {
     display: inline-flex;
+    align-items: center;
 
     padding: 0.75rem 1.5rem;
 
@@ -235,34 +314,62 @@
     font-size: 0.875rem;
     font-weight: 700;
     text-decoration: none;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
 }
 
 .wideContent a:hover {
     background: #edeeef;
 }
 
+/* Wide Card Image */
+
 .wideImage {
-    width: 33.333%;
+    flex: 0 0 33.333%;
     aspect-ratio: 1;
-    border-radius: 0.25rem;
     overflow: hidden;
+    border-radius: 0.25rem;
 }
 
 .wideImage img {
+    display: block;
+
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
+/* --------------------------------
+   Mobile "View All"
+-------------------------------- */
+
 .mobileLink {
     display: none;
 }
 
-/* Responsive */
+.mobileLink a {
+    color: #775a19;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.mobileLink a:hover {
+    text-decoration: underline;
+}
+
+/* --------------------------------
+   Responsive
+-------------------------------- */
 
 @media (max-width: 768px) {
     .section {
         padding: 4rem 1rem;
+    }
+
+    .heading {
+        margin-bottom: 2rem;
     }
 
     .heading a {
@@ -272,36 +379,63 @@
     .grid {
         grid-template-columns: 1fr;
         grid-auto-rows: auto;
+        gap: 1.25rem;
     }
 
     .featuredCard,
     .smallCard,
     .wideCard {
-        grid-column: span 1;
+        grid-column: 1;
     }
+
+    /* Featured */
 
     .featuredCard {
         min-height: 350px;
     }
 
+    .featuredContent {
+        padding: 2rem;
+    }
+
+    .featuredContent h3 {
+        font-size: 1.75rem;
+        line-height: 2.25rem;
+    }
+
+    /* Small cards */
+
     .smallCard {
         min-height: 400px;
     }
 
+    .cardImage {
+        flex-basis: 45%;
+    }
+
+    /* Wide card */
+
     .wideCard {
-        padding: 1.5rem;
         flex-direction: column;
         align-items: stretch;
+        gap: 1.5rem;
+
+        padding: 1.5rem;
     }
 
     .wideImage {
         width: 100%;
+        flex-basis: auto;
         order: -1;
     }
 
+    /* Mobile link */
+
     .mobileLink {
         display: block;
-        margin-top: 3rem;
+
+        margin-top: 2.5rem;
+
         text-align: center;
     }
 }

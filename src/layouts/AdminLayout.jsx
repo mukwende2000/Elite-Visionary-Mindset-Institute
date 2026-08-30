@@ -64,6 +64,18 @@ function AdminLayout() {
 
                         <span>Payments</span>
                     </NavLink>
+                    <NavLink
+                        to="/admin/courses"
+                        className={({ isActive }) =>
+                            `${styles.navItem} ${isActive ? styles.active : ""}`
+                        }
+                    >
+                        <span className="material-symbols-outlined">
+                            school
+                        </span>
+
+                        <span>courses</span>
+                    </NavLink>
                 </nav>
 
                 <div className={styles.logoutContainer}>
