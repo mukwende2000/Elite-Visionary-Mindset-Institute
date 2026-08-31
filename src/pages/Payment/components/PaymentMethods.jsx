@@ -1,21 +1,27 @@
+import { useState } from "react";
 import styles from "./PaymentMethods.module.css";
 
 function PaymentMethods({ paymentMethod, setPaymentMethod }) {
+    const [message, setMessage] = useState("");
+
     const methods = [
         {
             value: "card",
             icon: "credit_card",
             label: "Bank Card",
+            available: false,
         },
         {
             value: "mobile",
             icon: "smartphone",
             label: "Mobile Money",
+            available: false,
         },
         {
             value: "manual",
             icon: "receipt_long",
             label: "Manual Payment",
+            available: true,
         },
     ];
 
@@ -27,6 +33,9 @@ function PaymentMethods({ paymentMethod, setPaymentMethod }) {
                     className={`${styles.method} ${paymentMethod === method.value
                         ? styles.selected
                         : ""
+                        } ${!method.available
+                            ? styles.unavailable
+                            : ""
                         }`}
                 >
                     <input
@@ -34,8 +43,8 @@ function PaymentMethods({ paymentMethod, setPaymentMethod }) {
                         name="paymentMethod"
                         value={method.value}
                         checked={paymentMethod === method.value}
-                        onChange={(e) =>
-                            setPaymentMethod(e.target.value)
+                        onChange={() =>
+                            handleMethodChange(method)
                         }
                     />
 
@@ -44,10 +53,26 @@ function PaymentMethods({ paymentMethod, setPaymentMethod }) {
                             {method.icon}
                         </span>
 
-                        <span>{method.label}</span>
+                        <div className={styles.methodInfo}>
+                            <span>{method.label}</span>
+
+                            {!method.available && (
+                                <small>Currently unavailable</small>
+                            )}
+                        </div>
                     </div>
                 </label>
             ))}
+
+            {message && (
+                <div className={styles.unavailableMessage}>
+                    <span className="material-symbols-outlined">
+                        info
+                    </span>
+
+                    <span>{message}</span>
+                </div>
+            )}
         </div>
     );
 }

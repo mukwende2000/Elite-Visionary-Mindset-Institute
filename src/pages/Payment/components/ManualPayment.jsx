@@ -42,6 +42,15 @@ function ManualPayment({
                     <span>Branch</span>
                     <strong>Lusaka</strong>
                 </div>
+                <div className={styles.detailRow}>
+                    <span>MTN Mobile Money</span>
+                    <strong>0977207678</strong>
+                </div>
+
+                <div className={styles.detailRow}>
+                    <span>Airtel Money</span>
+                    <strong>0988747447</strong>
+                </div>
             </div>
 
             <div className={styles.uploadArea}>

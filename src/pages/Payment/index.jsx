@@ -9,9 +9,10 @@ import ManualPayment from "./components/ManualPayment";
 import PaymentSummary from "./components/PaymentSummary";
 import { supabase } from "../../lib/supabase";
 import { sendApplicationEmail } from "../../lib/applicationEmail";
+import Swal from "sweetalert2";
 
 function PaymentStep({ applicationFee = 150, tuitionDeposit = 4850, }) {
-    const [paymentMethod, setPaymentMethod] = useState("card");
+    const [paymentMethod, setPaymentMethod] = useState("manual");
     const [paymentProof, setPaymentProof] = useState(null);
     const location = useLocation()
     const navigate = useNavigate()
@@ -81,55 +82,70 @@ function PaymentStep({ applicationFee = 150, tuitionDeposit = 4850, }) {
 
     const handleManualPayment = async () => {
         if (!paymentReference.trim()) {
-            alert("Please enter your payment reference.");
+            await Swal.fire({
+                icon: "warning",
+                title: "Payment Reference Required",
+                text: "Please enter your payment reference before submitting your payment.",
+                confirmButtonText: "Okay",
+            });
             return;
         }
 
         if (!paymentProof) {
-            alert("Please upload your proof of payment.");
+            await Swal.fire({
+                icon: "warning",
+                title: "Proof of Payment Required",
+                text: "Please upload your proof of payment before submitting your payment.",
+                confirmButtonText: "Okay",
+            });
             return;
         }
 
         setSubmitting(true);
 
         try {
-            const existingPayment = await checkExistingPayment()
+            const existingPayment = await checkExistingPayment();
+
             if (existingPayment) {
-                alert("This application already has a payment being processed")
+                await Swal.fire({
+                    icon: "info",
+                    title: "Payment Already Submitted",
+                    text: "This application already has a payment being processed.",
+                    confirmButtonText: "Okay",
+                });
+
                 return;
             }
-            // Create a unique file for this application
-            const fileExt = paymentProof.name.split(".").pop();
-            const fileName = `${crypto.randomUUID()}.${fileExt}`
-            const filePath = `${application.id}/${fileName}`
 
-            // 1. upload proof of payment to Storage
+            const fileExt = paymentProof.name.split(".").pop();
+            const fileName = `${crypto.randomUUID()}.${fileExt}`;
+            const filePath = `${application.id}/${fileName}`;
+
             const { error: uploadError } = await supabase.storage
                 .from("payment-proofs")
-                .upload(filePath, paymentProof)
+                .upload(filePath, paymentProof);
 
             if (uploadError) {
-                throw uploadError
+                throw uploadError;
             }
 
-            // 2. Create payment record
-            const { data: payment, error: paymentError } = await supabase
-                .from("payments")
-                .insert([
-                    {
-                        application_id: application.id,
-                        payment_method: "manual",
-                        payment_reference: paymentReference.trim(),
-                        amount: total,
-                        proof_file_path: filePath,
-                        status: "pending_verification"
-                    }
-                ])
-                .select()
-                .single()
+            const { data: payment, error: paymentError } =
+                await supabase
+                    .from("payments")
+                    .insert([
+                        {
+                            application_id: application.id,
+                            payment_method: "manual",
+                            payment_reference: paymentReference.trim(),
+                            amount: total,
+                            proof_file_path: filePath,
+                            status: "pending_verification",
+                        },
+                    ])
+                    .select()
+                    .single();
 
             if (paymentError) {
-                //If database insert fails, remove the upload file
                 await supabase.storage
                     .from("payment-proofs")
                     .remove([filePath]);
@@ -137,18 +153,31 @@ function PaymentStep({ applicationFee = 150, tuitionDeposit = 4850, }) {
                 throw paymentError;
             }
 
-            console.log("payment submitted:", payment)
+            await Swal.fire({
+                icon: "success",
+                title: "Payment Submitted",
+                text: "Your payment has been submitted successfully and is awaiting verification. An Email has also been sent to you, check.",
+                confirmButtonText: "Continue",
+            });
+
             try {
                 const emailResult = await sendApplicationEmail({
                     emailType: "application_submitted",
-                    applicantName: `${application.first_name} ${application.surname}`,
+                    applicantName:
+                        `${application.first_name} ${application.surname}`,
                     applicantEmail: application.email,
                     applicationId: application.id,
                 });
 
-                console.log("Application email sent:", emailResult);
+                console.log(
+                    "Application email sent:",
+                    emailResult
+                );
             } catch (error) {
-                console.error("Application email failed:", error);
+                console.error(
+                    "Application email failed:",
+                    error
+                );
             }
 
             navigate("/payment_confirmation", {
@@ -156,12 +185,23 @@ function PaymentStep({ applicationFee = 150, tuitionDeposit = 4850, }) {
                     application,
                     payment,
                     paymentStatus: "pending_verification",
-                    paymentReference: paymentReference.trim(),
+                    paymentReference:
+                        paymentReference.trim(),
                 },
             });
 
         } catch (error) {
-            alert("Payment for this application is being processed")
+            console.error(
+                "Payment submission failed:",
+                error
+            );
+
+            await Swal.fire({
+                icon: "error",
+                title: "Payment Submission Failed",
+                text: "We could not submit your payment. Please try again.",
+                confirmButtonText: "Okay",
+            });
         } finally {
             setSubmitting(false);
         }

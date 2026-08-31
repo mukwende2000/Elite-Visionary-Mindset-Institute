@@ -52,6 +52,42 @@
     font-weight: 500;
 }
 
+.unavailable {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+.unavailable:hover {
+    opacity: 0.7;
+}
+
+.methodInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.methodInfo small {
+    font-size: 0.75rem;
+    color: #777;
+}
+
+.unavailableMessage {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+    padding: 12px 14px;
+    border-radius: 8px;
+    background: #f5f5f5;
+    color: #555;
+    font-size: 0.9rem;
+}
+
+.unavailableMessage .material-symbols-outlined {
+    font-size: 20px;
+}
+
 @media (max-width: 768px) {
     .paymentMethods {
         grid-template-columns: 1fr;
@@ -67,4 +103,40 @@
     .methodIcon {
         font-size: 28px;
     }
+}
+
+.unavailable {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+.unavailable:hover {
+    opacity: 0.7;
+}
+
+.methodInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.methodInfo small {
+    font-size: 0.75rem;
+    color: #777;
+}
+
+.unavailableMessage {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+    padding: 12px 14px;
+    border-radius: 8px;
+    background: #f5f5f5;
+    color: #555;
+    font-size: 0.9rem;
+}
+
+.unavailableMessage .material-symbols-outlined {
+    font-size: 20px;
 }

@@ -19,7 +19,7 @@ const steps = [
 ];
 
 function Apply() {
-    const [currentStep, setCurrentStep] = useState(4);
+    const [currentStep, setCurrentStep] = useState(1);
     const navigate = useNavigate()
     const {
         register,
