@@ -1,6 +1,7 @@
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import styles from "./AdminLayout.module.css";
 import { supabase } from "../lib/supabase";
+import AdminSidebar from "../components/AdminSidebar";
 
 function AdminLayout() {
     const navigate = useNavigate()
@@ -19,75 +20,7 @@ function AdminLayout() {
         <div className={styles.layout}>
 
             {/* Sidebar */}
-            <aside className={styles.sidebar}>
-                <div className={styles.logo}>
-                    EVMI Admin
-                </div>
-
-                <nav className={styles.nav}>
-                    <NavLink
-                        to="/admin"
-                        end
-                        className={({ isActive }) =>
-                            `${styles.navItem} ${isActive ? styles.active : ""}`
-                        }
-                    >
-                        <span className="material-symbols-outlined">
-                            dashboard
-                        </span>
-
-                        <span>Dashboard</span>
-                    </NavLink>
-
-                    <NavLink
-                        to="/admin/applications"
-                        className={({ isActive }) =>
-                            `${styles.navItem} ${isActive ? styles.active : ""}`
-                        }
-                    >
-                        <span className="material-symbols-outlined">
-                            folder_open
-                        </span>
-
-                        <span>Applications</span>
-                    </NavLink>
-
-                    <NavLink
-                        to="/admin/payments"
-                        className={({ isActive }) =>
-                            `${styles.navItem} ${isActive ? styles.active : ""}`
-                        }
-                    >
-                        <span className="material-symbols-outlined">
-                            payments
-                        </span>
-
-                        <span>Payments</span>
-                    </NavLink>
-                    <NavLink
-                        to="/admin/courses"
-                        className={({ isActive }) =>
-                            `${styles.navItem} ${isActive ? styles.active : ""}`
-                        }
-                    >
-                        <span className="material-symbols-outlined">
-                            school
-                        </span>
-
-                        <span>courses</span>
-                    </NavLink>
-                </nav>
-
-                <div className={styles.logoutContainer}>
-                    <button className={styles.logoutButton} onClick={handleLogout}>
-                        <span className="material-symbols-outlined">
-                            logout
-                        </span>
-
-                        <span>Log Out</span>
-                    </button>
-                </div>
-            </aside>
+            <AdminSidebar handleLogout={handleLogout} />
 
             {/* Main */}
             <div className={styles.main}>
