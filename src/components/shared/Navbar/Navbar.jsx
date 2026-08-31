@@ -15,17 +15,46 @@ function Navbar() {
                         alt="Elite Visionary Mindset Institute"
                         className={styles.logo}
                     />
-                    <span className={styles.name}>
-                        Elite Visionary Mindset Institute
-                    </span>
-                </Link>
 
-                <nav className={styles.desktopNav}>
-                    <NavLink to="/">Home</NavLink>
-                    <NavLink to="/courses">Courses</NavLink>
-                    <NavLink to="/apply">Apply</NavLink>
-                    <NavLink to="/about">About Us</NavLink>
-                </nav>
+                </Link>
+                <ul className={styles.desktopNav}>
+
+                    <NavLink
+                        to="/"
+                        className={({ isActive }) =>
+                            isActive ? styles.navLinkActive : styles.navLink
+                        }
+                    >
+                        Home
+                    </NavLink>
+
+                    <NavLink
+                        to="/courses"
+                        className={({ isActive }) =>
+                            isActive ? styles.navLinkActive : styles.navLink
+                        }
+                    >
+                        Courses
+                    </NavLink>
+
+                    <NavLink
+                        to="/apply"
+                        className={({ isActive }) =>
+                            isActive ? styles.navLinkActive : styles.navLink
+                        }
+                    >
+                        Apply
+                    </NavLink>
+
+                    <NavLink
+                        to="/about"
+                        className={({ isActive }) =>
+                            isActive ? styles.navLinkActive : styles.navLink
+                        }
+                    >
+                        About
+                    </NavLink>
+                </ul>
 
                 <Link to="/apply" className={styles.applyButton}>
                     Apply Now

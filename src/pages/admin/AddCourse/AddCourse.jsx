@@ -25,7 +25,6 @@ function AddCourse() {
             short_title: "",
             category: "",
             description: "",
-            overview: "",
             image_url: "",
             duration: "",
             mode: "",
@@ -171,7 +170,6 @@ function AddCourse() {
                 short_title: formData.short_title.trim(),
                 category: formData.category,
                 description: formData.description.trim(),
-                overview: formData.overview.trim(),
 
                 image_url: imageUrl,
 
@@ -421,32 +419,6 @@ function AddCourse() {
                                         errors.description
                                             .message
                                     }
-                                </span>
-                            )}
-                        </div>
-
-                        <div className={`${styles.field} ${styles.full}`}>
-                            <label htmlFor="overview">
-                                Course Overview
-                            </label>
-
-                            <textarea
-                                id="overview"
-                                rows="4"
-                                placeholder="Give a concise overview of what this programme covers..."
-                                {...register("overview", {
-                                    required: "Course overview is required.",
-                                    minLength: {
-                                        value: 20,
-                                        message:
-                                            "Course overview must be at least 20 characters.",
-                                    },
-                                })}
-                            />
-
-                            {errors.overview && (
-                                <span className={styles.error}>
-                                    {errors.overview.message}
                                 </span>
                             )}
                         </div>

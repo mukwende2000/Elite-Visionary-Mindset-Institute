@@ -1,11 +1,11 @@
 .section {
-    padding: 5rem 1.5rem;
-    background: #ffffff;
+    padding: var(--space-xl) var(--gutter);
+    background: var(--color-surface);
 }
 
 .container {
     width: 100%;
-    max-width: 1280px;
+    max-width: var(--container-width);
     margin: 0 auto;
 }
 
@@ -17,22 +17,22 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    gap: 2rem;
-    margin-bottom: 3rem;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
 }
 
 .heading h2 {
     margin: 0;
 
-    color: #041632;
-    font-family: "Manrope", sans-serif;
+    color: var(--color-primary);
+    font-family: var(--font-heading);
     font-size: 2rem;
     line-height: 2.5rem;
     font-weight: 600;
 }
 
 .heading a {
-    color: #775a19;
+    color: var(--color-secondary);
     font-weight: 600;
     text-decoration: none;
     white-space: nowrap;
@@ -50,7 +50,7 @@
     display: grid;
     grid-template-columns: repeat(12, minmax(0, 1fr));
     grid-auto-rows: 360px;
-    gap: 1.5rem;
+    gap: var(--space-md);
 }
 
 /* --------------------------------
@@ -60,11 +60,11 @@
 .card {
     min-width: 0;
 
-    border: 1px solid #c5c6ce;
-    border-radius: 0.5rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
     overflow: hidden;
 
-    background: #ffffff;
+    background: var(--color-surface);
     box-shadow: 0 1px 3px rgb(0 0 0 / 8%);
 }
 
@@ -86,7 +86,7 @@
 .overlay {
     position: absolute;
     inset: 0;
-    background: rgb(4 22 50 / 70%);
+    background: rgb(0 2 3 / 70%);
 }
 
 .featuredContent {
@@ -97,15 +97,15 @@
     flex-direction: column;
     justify-content: flex-end;
 
-    padding: 3rem;
+    padding: var(--space-lg);
 
-    color: #ffffff;
+    color: var(--color-text-on-primary);
 }
 
 .featuredContent h3 {
-    margin: 0 0 0.5rem;
+    margin: 0 0 var(--space-xs);
 
-    font-family: "Manrope", sans-serif;
+    font-family: var(--font-heading);
     font-size: 2rem;
     line-height: 2.5rem;
     font-weight: 600;
@@ -120,15 +120,17 @@
     opacity: 0.9;
 }
 
-/* Featured Badge */
+/* --------------------------------
+   Featured Badge
+-------------------------------- */
 
 .badge,
 .outlineBadge {
     width: fit-content;
-    margin-bottom: 0.75rem;
-    padding: 0.25rem 0.75rem;
+    margin-bottom: var(--space-sm);
+    padding: var(--space-xs) var(--space-sm);
 
-    border-radius: 0.25rem;
+    border-radius: var(--radius-sm);
 
     font-size: 0.75rem;
     font-weight: 700;
@@ -138,25 +140,27 @@
 }
 
 .badge {
-    background: #775a19;
-    color: #041632;
+    background: var(--color-secondary);
+    color: var(--color-primary);
 }
 
-/* Featured CTA */
+/* --------------------------------
+   Featured CTA
+-------------------------------- */
 
 .featuredButton {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: var(--space-xs);
 
     width: fit-content;
-    margin-top: 1.25rem;
-    padding: 0.75rem 1.25rem;
+    margin-top: var(--space-sm);
+    padding: var(--space-sm) var(--space-md);
 
     border: 1px solid rgb(255 255 255 / 70%);
-    border-radius: 0.25rem;
+    border-radius: var(--radius-sm);
 
-    color: #ffffff;
+    color: var(--color-text-on-primary);
     background: rgb(4 22 50 / 55%);
 
     font-size: 0.875rem;
@@ -170,9 +174,9 @@
 }
 
 .featuredButton:hover {
-    border-color: #775a19;
-    background: #775a19;
-    color: #ffffff;
+    border-color: var(--color-secondary);
+    background: var(--color-secondary);
+    color: var(--color-text-on-primary);
     transform: translateY(-1px);
 }
 
@@ -212,14 +216,14 @@
     flex-direction: column;
     justify-content: space-between;
 
-    padding: 1.25rem 1.5rem;
+    padding: var(--space-sm) var(--space-md);
 }
 
 .cardContent h3 {
-    margin: 0 0 0.5rem;
+    margin: 0 0 var(--space-xs);
 
-    color: #041632;
-    font-family: "Manrope", sans-serif;
+    color: var(--color-primary);
+    font-family: var(--font-heading);
     font-size: 1.5rem;
     line-height: 2rem;
     font-weight: 600;
@@ -228,7 +232,7 @@
 .cardContent p {
     margin: 0;
 
-    color: #44474d;
+    color: var(--color-text-muted);
     font-size: 1rem;
     line-height: 1.5rem;
 
@@ -241,12 +245,12 @@
 .cardContent a {
     display: inline-flex;
     align-items: center;
-    gap: 0.25rem;
+    gap: var(--space-xs);
 
     width: fit-content;
-    margin-top: 0.75rem;
+    margin-top: var(--space-sm);
 
-    color: #775a19;
+    color: var(--color-secondary);
     font-weight: 600;
     text-decoration: none;
 }
@@ -268,9 +272,9 @@
 
     display: flex;
     align-items: center;
-    gap: 3rem;
+    gap: var(--space-lg);
 
-    padding: 3rem;
+    padding: var(--space-lg);
 }
 
 .wideContent {
@@ -279,37 +283,37 @@
 }
 
 .wideContent h3 {
-    margin: 0 0 0.75rem;
+    margin: 0 0 var(--space-sm);
 
-    color: #041632;
-    font-family: "Manrope", sans-serif;
+    color: var(--color-primary);
+    font-family: var(--font-heading);
     font-size: 1.5rem;
     line-height: 2rem;
     font-weight: 600;
 }
 
 .wideContent p {
-    margin: 0 0 1.5rem;
+    margin: 0 0 var(--space-md);
 
-    color: #44474d;
+    color: var(--color-text-muted);
     line-height: 1.5rem;
 }
 
 .outlineBadge {
-    border: 1px solid #775a19;
-    color: #775a19;
+    border: 1px solid var(--color-secondary);
+    color: var(--color-secondary);
 }
 
 .wideContent a {
     display: inline-flex;
     align-items: center;
 
-    padding: 0.75rem 1.5rem;
+    padding: var(--space-sm) var(--space-md);
 
-    border: 2px solid #041632;
-    border-radius: 0.25rem;
+    border: 2px solid var(--color-primary);
+    border-radius: var(--radius-sm);
 
-    color: #041632;
+    color: var(--color-primary);
 
     font-size: 0.875rem;
     font-weight: 700;
@@ -321,16 +325,18 @@
 }
 
 .wideContent a:hover {
-    background: #edeeef;
+    background: var(--color-surface-high);
 }
 
-/* Wide Card Image */
+/* --------------------------------
+   Wide Card Image
+-------------------------------- */
 
 .wideImage {
     flex: 0 0 33.333%;
     aspect-ratio: 1;
     overflow: hidden;
-    border-radius: 0.25rem;
+    border-radius: var(--radius-sm);
 }
 
 .wideImage img {
@@ -350,7 +356,7 @@
 }
 
 .mobileLink a {
-    color: #775a19;
+    color: var(--color-secondary);
     font-weight: 600;
     text-decoration: none;
 }
@@ -365,11 +371,11 @@
 
 @media (max-width: 768px) {
     .section {
-        padding: 4rem 1rem;
+        padding: var(--space-lg) var(--gutter);
     }
 
     .heading {
-        margin-bottom: 2rem;
+        margin-bottom: var(--space-md);
     }
 
     .heading a {
@@ -379,7 +385,7 @@
     .grid {
         grid-template-columns: 1fr;
         grid-auto-rows: auto;
-        gap: 1.25rem;
+        gap: var(--space-sm);
     }
 
     .featuredCard,
@@ -395,7 +401,7 @@
     }
 
     .featuredContent {
-        padding: 2rem;
+        padding: var(--space-md);
     }
 
     .featuredContent h3 {
@@ -418,9 +424,9 @@
     .wideCard {
         flex-direction: column;
         align-items: stretch;
-        gap: 1.5rem;
+        gap: var(--space-md);
 
-        padding: 1.5rem;
+        padding: var(--space-md);
     }
 
     .wideImage {
@@ -434,7 +440,7 @@
     .mobileLink {
         display: block;
 
-        margin-top: 2.5rem;
+        margin-top: var(--space-lg);
 
         text-align: center;
     }

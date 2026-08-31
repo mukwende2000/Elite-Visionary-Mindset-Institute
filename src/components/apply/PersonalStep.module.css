@@ -14,109 +14,6 @@
     grid-column: 1 / -1;
 }
 
-.formGrid label {
-    display: block;
-    margin-bottom: 6px;
-    color: #191c1d;
-    font-family: "Inter", sans-serif;
-    font-size: 14px;
-    line-height: 20px;
-    font-weight: 500;
-}
-
-.formGrid input,
-.formGrid select,
-.formGrid textarea {
-    width: 100%;
-    box-sizing: border-box;
-    border: 1px solid #75777e;
-    border-radius: 4px;
-    background: #ffffff;
-    color: #191c1d;
-    font-family: "Inter", sans-serif;
-    font-size: 16px;
-    padding: 12px;
-    outline: none;
-}
-
-.formGrid input,
-.formGrid select {
-    height: 48px;
-}
-
-.formGrid textarea {
-    resize: vertical;
-}
-
-.formGrid input:focus,
-.formGrid select:focus,
-.formGrid textarea:focus {
-    border: 2px solid #041632;
-}
-
-.actions {
-    display: flex;
-    justify-content: flex-end;
-    padding-top: 24px;
-    border-top: 1px solid #e1e3e4;
-}
-
-.nextButton {
-    border: 2px solid #041632;
-    border-radius: 4px;
-    padding: 12px 32px;
-    background: #041632;
-    color: #ffffff;
-    font-family: "Inter", sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-}
-
-.nextButton:hover {
-    opacity: 0.9;
-}
-
-.errors {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    margin: 6px 0 0;
-    color: #b42318;
-    font-family: "Inter", sans-serif;
-    font-size: 13px;
-    line-height: 18px;
-    font-weight: 500;
-}
-
-.errors::before {
-    content: "!";
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 16px;
-    height: 16px;
-    flex-shrink: 0;
-    border-radius: 50%;
-    background: #b42318;
-    color: #ffffff;
-    font-size: 11px;
-    font-weight: 700;
-}
-
-.formGrid input:has(+ .errors),
-.formGrid select:has(+ .errors),
-.formGrid textarea:has(+ .errors) {
-    border-color: #b42318;
-    background: #fffafa;
-}
-
-.formGrid input:has(+ .errors):focus,
-.formGrid select:has(+ .errors):focus,
-.formGrid textarea:has(+ .errors):focus {
-    border: 2px solid #b42318;
-}
-
 @media (max-width: 768px) {
     .formGrid {
         grid-template-columns: 1fr;
@@ -124,9 +21,5 @@
 
     .fullWidth {
         grid-column: auto;
-    }
-
-    .nextButton {
-        width: 100%;
     }
 }

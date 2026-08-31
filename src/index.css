@@ -12,8 +12,8 @@ html {
 body {
   margin: 0;
   font-family: "Inter", sans-serif;
-  background: #f8f9fa;
-  color: #191c1d;
+  background: var(--color-background);
+  color: var(--color-primary);
 }
 
 h1,
@@ -23,7 +23,7 @@ h4,
 h5,
 h6 {
   margin: 0;
-  font-family: "Manrope", sans-serif;
+  font-family: var(--font-heading), sans-serif;
 }
 
 p {
@@ -51,6 +51,9 @@ img {
   max-width: 100%;
 }
 
+
+
+/* Sweet Alert styling */
 .course-delete-popup {
   border-radius: 14px !important;
   padding: 32px !important;

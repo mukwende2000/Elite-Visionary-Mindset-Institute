@@ -130,7 +130,6 @@ function Courses() {
                                 <CourseCard
                                     key={course.id}
                                     course={course}
-                                    onViewDetails={openModal}
                                 />
                             ))
                         }

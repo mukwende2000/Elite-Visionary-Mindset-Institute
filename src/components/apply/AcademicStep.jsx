@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../../lib/supabase";
+import FormField from "../../pages/Apply/component/FormFields";
 import styles from "./AcademicStep.module.css";
 
 function AcademicStep({ register, errors }) {
@@ -25,168 +26,96 @@ function AcademicStep({ register, errors }) {
     }, []);
 
     return (
-        <div className={styles.container}>
-            <div className={styles.form}>
-                <div className={styles.grid}>
+        <div className={styles.grid}>
 
-                    {/* Highest Level of Education */}
-                    <div className={`${styles.field} ${styles.fullWidth}`}>
-                        <label htmlFor="highestQualification">
-                            Highest Level of Education
-                            <span className={styles.required}>*</span>
-                        </label>
+            <FormField
+                label="Highest Level of Education"
+                required
+                error={errors.highestQualification?.message}
+                formElement="select"
+                fieldProps={register("highestQualification", {
+                    required: "This field is required",
+                })}
+            >
+                <option value="">Select Education Level</option>
+                <option value="secondary">Secondary School</option>
+                <option value="certificate">Certificate</option>
+                <option value="diploma">Diploma</option>
+                <option value="degree">Bachelor's Degree</option>
+                <option value="masters">Master's Degree</option>
+                <option value="doctorate">Doctorate</option>
+                <option value="other">Other</option>
+            </FormField>
 
-                        <select
-                            defaultValue="degree"
-                            id="highestQualification"
-                            {...register("highestQualification", {
-                                required: "This field is required",
-                            })}
-                        >
-                            <option value="">Select Education Level</option>
-                            <option value="secondary">Secondary School</option>
-                            <option value="certificate">Certificate</option>
-                            <option value="diploma">Diploma</option>
-                            <option value="degree">Bachelor's Degree</option>
-                            <option value="masters">Master's Degree</option>
-                            <option value="doctorate">Doctorate</option>
-                            <option value="other">Other</option>
-                        </select>
+            <FormField
+                label="Current Occupation"
+                required
+                error={errors.currentOccupation?.message}
+                formElement="input"
+                type="text"
+                placeholder="e.g. Software Developer"
+                fieldProps={register("currentOccupation", {
+                    required: "This field is required",
+                })}
+            />
 
-                        {errors.highestQualification && (
-                            <p className={styles.errors}>
-                                {errors.highestQualification.message}
-                            </p>
-                        )}
-                    </div>
+            <FormField
+                label="Name of School/College/University"
+                formElement="input"
+                type="text"
+                placeholder="Name of institution"
+                fieldProps={register("institution")}
+            />
 
-                    {/* Current Occupation */}
-                    <div className={styles.field}>
-                        <label htmlFor="currentOccupation">
-                            Current Occupation
-                            <span className={styles.required}>*</span>
-                        </label>
+            <FormField
+                label="Choose a Programme"
+                required
+                error={errors.programme?.message}
+                formElement="select"
+                className={styles.fullWidth}
+                fieldProps={register("programme", {
+                    required: "This field is required",
+                })}
+            >
+                <option value="">Select Programme</option>
 
-                        <input
-                            defaultValue="Designer"
-                            id="currentOccupation"
-                            type="text"
-                            placeholder="e.g. Software Developer"
-                            {...register("currentOccupation", {
-                                required: "This field is required",
-                            })}
-                        />
+                {courses.map((course) => (
+                    <option key={course.id} value={course.title}>
+                        {course.title}
+                    </option>
+                ))}
+            </FormField>
 
-                        {errors.currentOccupation && (
-                            <p className={styles.errors}>
-                                {errors.currentOccupation.message}
-                            </p>
-                        )}
-                    </div>
+            <FormField
+                label="Preferred Study Mode"
+                required
+                error={errors.studyMode?.message}
+                formElement="select"
+                fieldProps={register("studyMode", {
+                    required: "This field is required",
+                })}
+            >
+                <option value="">Select Study Mode</option>
+                <option value="online">Online</option>
+                <option value="physical">Physical</option>
+                <option value="hybrid">Hybrid</option>
+            </FormField>
 
-                    {/* Institution */}
-                    <div className={styles.field}>
-                        <label htmlFor="institution">
-                            Name of School/College/University
-                            <span>(if applicable)</span>
-                        </label>
+            <FormField
+                label="Preferred Intake"
+                required
+                error={errors.intake?.message}
+                formElement="select"
+                fieldProps={register("intake", {
+                    required: "Please select your preferred intake",
+                })}
+            >
+                <option value="">Select Intake</option>
+                <option value="january">January</option>
+                <option value="april">April</option>
+                <option value="september">September</option>
+            </FormField>
 
-                        <input
-                            defaultValue="ZCAS"
-                            id="institution"
-                            type="text"
-                            placeholder="Name of institution"
-                            {...register("institution")}
-                        />
-                    </div>
-
-                    {/* Programme */}
-                    <div className={`${styles.field} ${styles.fullWidth}`}>
-                        <label htmlFor="programme">
-                            Choose a Programme
-                            <span className={styles.required}>*</span>
-                        </label>
-
-                        <select
-                            id="programme"
-                            {...register("programme", {
-                                required: "This field is required",
-                            })}
-                        >
-                            <option value="">Select Programme</option>
-
-                            {courses.map((course) => (
-                                <option key={course.id} value={course.title}>
-                                    {course.title}
-                                </option>
-                            ))}
-                        </select>
-
-                        {errors.programme && (
-                            <p className={styles.errors}>
-                                {errors.programme.message}
-                            </p>
-                        )}
-                    </div>
-
-                    {/* Preferred Study Mode */}
-                    <div className={styles.field}>
-                        <label htmlFor="studyMode">
-                            Preferred Study Mode
-                            <span className={styles.required}>*</span>
-                        </label>
-
-                        <select
-                            id="studyMode"
-                            {...register("studyMode", {
-                                required: "This field is required",
-                            })}
-                        >
-                            <option value="">Select Study Mode</option>
-                            <option value="online">Online</option>
-                            <option value="physical">Physical</option>
-                            <option value="hybrid">Hybrid</option>
-                        </select>
-
-                        {errors.studyMode && (
-                            <p className={styles.errors}>
-                                {errors.studyMode.message}
-                            </p>
-                        )}
-                    </div>
-
-                    {/* Preferred Intake */}
-                    <div className={styles.field}>
-                        <label htmlFor="intake">
-                            Preferred Intake
-                            <span className={styles.required}>*</span>
-                        </label>
-
-                        <select
-                            id="intake"
-                            defaultValue=""
-                            {...register("intake", {
-                                required: "Please select your preferred intake",
-                            })}
-                        >
-                            <option value="" disabled>
-                                Select Intake
-                            </option>
-
-                            <option value="january">January</option>
-                            <option value="april">April</option>
-                            <option value="september">September</option>
-                        </select>
-
-                        {errors.intake && (
-                            <p className={styles.errors}>
-                                {errors.intake.message}
-                            </p>
-                        )}
-                    </div>
-
-                </div>
-            </div>
         </div>
     );
 }
