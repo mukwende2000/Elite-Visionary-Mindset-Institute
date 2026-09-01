@@ -122,7 +122,7 @@ function PersonalStep({ register, errors }) {
                         },
                     })}
                 >
-                    <option value="" disabled>
+                    <option value="">
                         Select Country
                     </option>
 

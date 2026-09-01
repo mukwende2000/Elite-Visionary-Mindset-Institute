@@ -19,6 +19,9 @@ import CourseDetails from "./pages/CourseDetails"
 import AdminCourses from "./pages/admin/AdminCourses"
 import AdminCourseDetails from "./pages/admin/AdminCourseDetails/AdminCourseDetails"
 import AddCourse from "./pages/admin/AddCourse/AddCourse"
+import AdminProfile from './pages/admin/AdminProfile'
+import AdminProfiles from './pages/admin/AdminProfiles'
+import CreateAdmin from "./pages/admin/CreateAdmin"
 
 const router = createBrowserRouter([
     {
@@ -97,6 +100,18 @@ const router = createBrowserRouter([
                     {
                         path: "add-course",
                         element: <AddCourse />
+                    },
+                    {
+                        path: "profile",
+                        element: <AdminProfile />
+                    },
+                    {
+                        path: "profiles",
+                        element: <AdminProfiles />
+                    },
+                    {
+                        path: "create_user",
+                        element: <CreateAdmin />
                     }
                 ],
             }

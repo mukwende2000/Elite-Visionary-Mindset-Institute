@@ -28,40 +28,53 @@ function PaymentMethods({ paymentMethod, setPaymentMethod }) {
     return (
         <div className={styles.paymentMethods}>
             {methods.map((method) => (
-                <label
+                <div
                     key={method.value}
-                    className={`${styles.method} ${paymentMethod === method.value
-                        ? styles.selected
-                        : ""
-                        } ${!method.available
-                            ? styles.unavailable
+                    className={styles.methodWrapper}
+                    title={
+                        !method.available
+                            ? `${method.label} is currently unavailable, use Manual Payment`
                             : ""
-                        }`}
+                    }
                 >
-                    <input
-                        type="radio"
-                        name="paymentMethod"
-                        value={method.value}
-                        checked={paymentMethod === method.value}
-                        onChange={() =>
-                            handleMethodChange(method)
-                        }
-                    />
+                    <label
+                        className={`${styles.method} ${paymentMethod === method.value
+                            ? styles.selected
+                            : ""
+                            } ${!method.available
+                                ? styles.unavailable
+                                : ""
+                            } `}
+                    >
+                        <input
+                            type="radio"
+                            name="paymentMethod"
+                            value={method.value}
+                            checked={
+                                paymentMethod === method.value
+                            }
+                            onChange={() =>
+                                handleMethodChange(method)
+                            }
+                        />
 
-                    <div className={styles.methodContent}>
-                        <span className={styles.methodIcon}>
-                            {method.icon}
-                        </span>
+                        <div className={styles.methodContent}>
+                            <span className={styles.methodIcon}>
+                                {method.icon}
+                            </span>
 
-                        <div className={styles.methodInfo}>
-                            <span>{method.label}</span>
+                            <div className={styles.methodInfo}>
+                                <span>{method.label}</span>
 
-                            {!method.available && (
-                                <small>Currently unavailable</small>
-                            )}
+                                {!method.available && (
+                                    <small>
+                                        Currently unavailable
+                                    </small>
+                                )}
+                            </div>
                         </div>
-                    </div>
-                </label>
+                    </label>
+                </div>
             ))}
 
             {message && (

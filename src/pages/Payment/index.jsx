@@ -156,7 +156,7 @@ function PaymentStep({ applicationFee = 150, tuitionDeposit = 4850, }) {
             await Swal.fire({
                 icon: "success",
                 title: "Payment Submitted",
-                text: "Your payment has been submitted successfully and is awaiting verification. An Email has also been sent to you, check.",
+                text: "Your payment has been submitted successfully and is awaiting verification. An Email will also been sent to you after you click Continue.",
                 confirmButtonText: "Continue",
             });
 

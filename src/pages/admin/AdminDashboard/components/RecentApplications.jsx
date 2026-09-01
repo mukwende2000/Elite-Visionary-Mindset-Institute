@@ -23,27 +23,38 @@ function RecentApplications({ applications }) {
                     </thead>
 
                     <tbody>
-                        {applications.map((application) => (
-                            <tr key={application.id}>
-                                <td className={styles.primaryText}>
-                                    {application.first_name}{" "}
-                                    {application.surname}
-                                </td>
-
-                                <td>{application.programme}</td>
-
-                                <td>{application.intake}</td>
-
-                                <td>
-                                    <span
-                                        className={`${styles.status} ${styles[application.status]
-                                            }`}
-                                    >
-                                        {application.status}
-                                    </span>
+                        {applications.length === 0 ? (
+                            <tr>
+                                <td
+                                    colSpan="4"
+                                    className={styles.emptyState}
+                                >
+                                    <p>No applications found.</p>
                                 </td>
                             </tr>
-                        ))}
+                        ) : (
+                            applications.map((application) => (
+                                <tr key={application.id}>
+                                    <td className={styles.primaryText}>
+                                        {application.first_name}{" "}
+                                        {application.surname}
+                                    </td>
+
+                                    <td>{application.programme}</td>
+
+                                    <td>{application.intake}</td>
+
+                                    <td>
+                                        <span
+                                            className={`${styles.status} ${styles[application.status]
+                                                }`}
+                                        >
+                                            {application.status}
+                                        </span>
+                                    </td>
+                                </tr>
+                            ))
+                        )}
                     </tbody>
                 </table>
             </div>

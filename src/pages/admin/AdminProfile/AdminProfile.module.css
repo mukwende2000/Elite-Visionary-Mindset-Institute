@@ -1,0 +1,553 @@
+.page {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: var(--space-lg) var(--gutter);
+}
+
+.pageHeader {
+    margin-bottom: var(--space-lg);
+}
+
+.pageHeader h1 {
+    margin: 0 0 var(--space-xs);
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+.pageHeader p {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.profileGrid {
+    display: grid;
+    grid-template-columns: 280px minmax(0, 1fr);
+    gap: var(--space-lg);
+    align-items: start;
+}
+
+.overviewColumn {
+    min-width: 0;
+}
+
+.overviewCard,
+.card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+}
+
+.overviewCard {
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.avatarWrapper {
+    position: relative;
+    margin-bottom: var(--space-md);
+}
+
+.avatar,
+.avatarImage {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+}
+
+.avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: var(--color-primary);
+    color: white;
+
+    font-family: var(--font-heading);
+    font-size: 2.25rem;
+    font-weight: 700;
+
+    border: 4px solid var(--color-surface);
+    box-shadow: 0 2px 8px rgb(0 0 0 / 0.12);
+}
+
+.avatarImage {
+    display: block;
+    object-fit: cover;
+    border: 4px solid var(--color-surface);
+    box-shadow: 0 2px 8px rgb(0 0 0 / 0.12);
+}
+
+.photoButton {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid var(--color-border);
+    border-radius: 50%;
+
+    background: var(--color-surface);
+    color: var(--color-text-muted);
+
+    cursor: pointer;
+
+    box-shadow: 0 2px 6px rgb(0 0 0 / 0.12);
+}
+
+.photoButton:hover {
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+.photoButton span {
+    font-size: 19px;
+}
+
+.overviewInfo h2 {
+    margin: 0;
+
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.jobTitle {
+    margin: var(--space-xs) 0 0;
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.email {
+    margin: var(--space-xs) 0 0;
+    color: var(--color-text-muted);
+    font-size: 0.85rem;
+    word-break: break-word;
+}
+
+.adminBadge {
+    margin-top: var(--space-md);
+
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    padding: 7px 12px;
+
+    border-radius: 999px;
+
+    background: var(--color-primary);
+    color: white;
+
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.adminBadge span:first-child {
+    font-size: 16px;
+}
+
+.detailsColumn {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+    min-width: 0;
+}
+
+.card {
+    padding: var(--space-lg);
+}
+
+.cardHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+
+    padding-bottom: var(--space-md);
+    margin-bottom: var(--space-md);
+
+    border-bottom: 1px solid var(--color-border);
+}
+
+.cardHeader h2 {
+    margin: 0;
+
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 700;
+}
+
+.cardHeader h2 span {
+    color: var(--color-primary);
+    font-size: 20px;
+}
+
+.editButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+
+    border: 0;
+    background: transparent;
+
+    color: var(--color-primary);
+
+    font-size: 0.85rem;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.editButton:hover {
+    opacity: 0.75;
+}
+
+.editButton span {
+    font-size: 18px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.field label {
+    color: var(--color-text);
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.field input {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 12px 14px;
+
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+
+    background: var(--color-surface);
+    color: var(--color-text);
+
+    font: inherit;
+
+    outline: none;
+}
+
+.field input:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px rgb(4 22 50 / 0.08);
+}
+
+.field input:disabled {
+    background: var(--color-background);
+    color: var(--color-text-muted);
+    cursor: not-allowed;
+}
+
+.emailInput {
+    position: relative;
+}
+
+.emailInput>span {
+    position: absolute;
+    left: 13px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    color: var(--color-text-muted);
+    font-size: 19px;
+}
+
+.emailInput input {
+    padding-left: 42px;
+}
+
+.fieldHint {
+    margin: 0;
+
+    color: var(--color-text-muted);
+    font-size: 0.78rem;
+    line-height: 1.5;
+}
+
+.formActions {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--space-sm);
+
+    padding-top: var(--space-sm);
+}
+
+.cancelButton,
+.saveButton,
+.passwordButton {
+    min-height: 42px;
+
+    padding: 0 16px;
+
+    border-radius: var(--radius-sm);
+
+    font-size: 0.85rem;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.cancelButton {
+    border: 1px solid var(--color-border);
+    background: transparent;
+    color: var(--color-text);
+}
+
+.cancelButton:hover {
+    background: var(--color-background);
+}
+
+.saveButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+
+    border: 0;
+    background: var(--color-secondary);
+    color: white;
+}
+
+.saveButton:hover {
+    opacity: 0.9;
+}
+
+.saveButton span {
+    font-size: 18px;
+}
+
+.securityRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-lg);
+}
+
+.securityRow h3 {
+    margin: 0 0 var(--space-xs);
+
+    color: var(--color-text);
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.securityRow p {
+    max-width: 520px;
+    margin: 0;
+
+    color: var(--color-text-muted);
+    font-size: 0.82rem;
+    line-height: 1.6;
+}
+
+.passwordButton {
+    flex-shrink: 0;
+
+    border: 2px solid var(--color-primary);
+    background: transparent;
+    color: var(--color-primary);
+}
+
+.passwordButton:hover {
+    background: var(--color-primary);
+    color: white;
+}
+
+.loading {
+    padding: var(--space-lg);
+
+    color: var(--color-text-muted);
+    text-align: center;
+}
+
+.emptyState {
+    min-height: 300px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+}
+
+.emptyState>span {
+    color: var(--color-text-muted);
+    font-size: 48px;
+}
+
+.emptyState h2 {
+    margin: var(--space-sm) 0 var(--space-xs);
+
+    color: var(--color-text);
+}
+
+.emptyState p {
+    margin: 0;
+    color: var(--color-text-muted);
+}
+
+.passwordSection {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.passwordIntro {
+    margin-bottom: var(--space-xs);
+}
+
+.passwordIntro h3 {
+    margin: 0 0 var(--space-xs);
+    color: var(--color-text);
+    font-size: 0.95rem;
+    font-weight: 700;
+}
+
+.passwordIntro p {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: 0.82rem;
+    line-height: 1.6;
+}
+
+.passwordInput {
+    position: relative;
+    width: 100%;
+}
+
+.passwordInput input {
+    padding-right: 48px !important;
+}
+
+.passwordInput button {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 32px;
+    height: 32px;
+
+    transform: translateY(-50%);
+
+    border: 0;
+    background: transparent;
+    color: var(--color-text-muted);
+
+    cursor: pointer;
+}
+
+.passwordInput button:hover {
+    color: var(--color-primary);
+}
+
+.passwordInput button span {
+    font-size: 19px;
+}
+
+.passwordActions {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--space-sm);
+
+    padding-top: var(--space-sm);
+}
+
+.passwordActions button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+@media (max-width: 600px) {
+    .passwordActions {
+        flex-direction: column-reverse;
+    }
+
+    .passwordActions button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 850px) {
+    .profileGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .overviewCard {
+        max-width: none;
+    }
+
+    .securityRow {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 600px) {
+    .page {
+        padding: var(--space-md);
+    }
+
+    .pageHeader h1 {
+        font-size: 1.6rem;
+    }
+
+    .card,
+    .overviewCard {
+        padding: var(--space-md);
+    }
+
+    .cardHeader {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .formActions {
+        flex-direction: column-reverse;
+    }
+
+    .cancelButton,
+    .saveButton,
+    .passwordButton {
+        width: 100%;
+    }
+}
