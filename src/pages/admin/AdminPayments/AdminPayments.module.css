@@ -31,6 +31,15 @@
     color: #44474d;
 }
 
+.tableCard {
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid #c5c6ce;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(27, 43, 72, 0.08);
+}
+
 .recordButton {
     display: flex;
     align-items: center;

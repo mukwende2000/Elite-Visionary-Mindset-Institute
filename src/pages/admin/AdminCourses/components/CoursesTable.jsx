@@ -1,5 +1,5 @@
 import styles from "./CoursesTable.module.css";
-import CourseRow from "./CourseRow"
+import CourseRow from "./CourseRow";
 
 function CoursesTable({
     courses,

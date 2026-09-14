@@ -11,7 +11,45 @@ function AdminPaymentDetails() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
     const [processing, setProcessing] = useState(false);
+    const [proofUrl, setProofUrl] = useState(null);
+    const [proofLoading, setProofLoading] = useState(false);
 
+    const getProofUrl = async (filePath) => {
+        console.log("PATH FROM DATABASE:", filePath);
+
+        const folder = filePath.substring(0, filePath.lastIndexOf("/"));
+        const fileName = filePath.substring(filePath.lastIndexOf("/") + 1);
+
+        console.log("FOLDER:", folder);
+        console.log("FILE:", fileName);
+
+        const { data: files, error: listError } = await supabase.storage
+            .from("payment-proofs")
+            .list(folder);
+
+        console.log("FILES SUPABASE SEES:", files);
+        console.log("LIST ERROR:", listError);
+
+        setProofLoading(true);
+
+        try {
+            const { data, error } = await supabase.storage
+                .from("payment-proofs")
+                .createSignedUrl(filePath, 60 * 10);
+
+            console.log("SIGNED URL:", data);
+            console.log("SIGNED URL ERROR:", error);
+
+            if (error) throw error;
+
+            setProofUrl(data?.signedUrl || null);
+        } catch (error) {
+            console.error("FAILED TO LOAD PAYMENT PROOF:", error);
+            setProofUrl(null);
+        } finally {
+            setProofLoading(false);
+        }
+    };
     useEffect(() => {
         const loadPayment = async () => {
             setLoading(true);
@@ -49,6 +87,9 @@ function AdminPaymentDetails() {
                 setError("Could not load payment details.");
             } else {
                 setPayment(data);
+                if (data?.proof_file_path) {
+                    await getProofUrl(data.proof_file_path);
+                }
             }
 
             setLoading(false);
@@ -353,36 +394,7 @@ function AdminPaymentDetails() {
                                 title="Payment Proof"
                             />
 
-                            {payment.proof_file_path ? (
-                                <div className={styles.proofBox}>
-                                    <span className="material-symbols-outlined">
-                                        attach_file
-                                    </span>
-
-                                    <div>
-                                        <strong>
-                                            Payment proof uploaded
-                                        </strong>
-
-                                        <p>
-                                            Review the submitted document
-                                            before verifying the payment.
-                                        </p>
-                                    </div>
-
-                                    <button
-                                        type="button"
-                                        className={styles.secondaryButton}
-                                        onClick={() =>
-                                            alert(
-                                                "Proof preview will be connected to Supabase Storage."
-                                            )
-                                        }
-                                    >
-                                        View Proof
-                                    </button>
-                                </div>
-                            ) : (
+                            {!payment.proof_file_path ? (
                                 <div className={styles.emptyProof}>
                                     <span className="material-symbols-outlined">
                                         description
@@ -390,6 +402,67 @@ function AdminPaymentDetails() {
 
                                     <p>
                                         No payment proof was uploaded.
+                                    </p>
+                                </div>
+                            ) : proofLoading ? (
+                                <div className={styles.proofBox}>
+                                    <span className="material-symbols-outlined">
+                                        progress_activity
+                                    </span>
+
+                                    <div>
+                                        <strong>
+                                            Loading payment proof...
+                                        </strong>
+
+                                        <p>
+                                            Preparing the uploaded document for review.
+                                        </p>
+                                    </div>
+                                </div>
+                            ) : proofUrl ? (
+                                <div className={styles.proofPreview}>
+                                    <div className={styles.proofHeader}>
+                                        <div>
+                                            <strong>
+                                                Payment proof
+                                            </strong>
+
+                                            <p>
+                                                Submitted payment evidence.
+                                            </p>
+                                        </div>
+
+                                        <a
+                                            href={proofUrl}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className={styles.secondaryButton}
+                                        >
+                                            <span className="material-symbols-outlined">
+                                                open_in_new
+                                            </span>
+
+                                            Open Full Size
+                                        </a>
+                                    </div>
+
+                                    <div className={styles.imageWrapper}>
+                                        <img
+                                            src={proofUrl}
+                                            alt="Payment proof"
+                                            className={styles.proofImage}
+                                        />
+                                    </div>
+                                </div>
+                            ) : (
+                                <div className={styles.emptyProof}>
+                                    <span className="material-symbols-outlined">
+                                        broken_image
+                                    </span>
+
+                                    <p>
+                                        Payment proof was uploaded, but could not be loaded.
                                     </p>
                                 </div>
                             )}

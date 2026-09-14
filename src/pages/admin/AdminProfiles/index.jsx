@@ -1,10 +1,12 @@
 import { useMemo, useState } from "react";
 import styles from "./AdminProfiles.module.css";
+import { useNavigate } from "react-router-dom";
 
 function AdminProfiles() {
     const [search, setSearch] = useState("");
     const [roleFilter, setRoleFilter] = useState("all");
     const [statusFilter, setStatusFilter] = useState("all");
+    const navigate = useNavigate()
 
     // Replace this with your Supabase data later.
     const users = [
@@ -121,6 +123,7 @@ function AdminProfiles() {
                 <button
                     type="button"
                     className={styles.createButton}
+                    onClick={() => navigate(`/admin/create_user`)}
                 >
                     <span className="material-symbols-outlined">
                         add
