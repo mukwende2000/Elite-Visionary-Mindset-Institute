@@ -27,15 +27,6 @@ function Footer() {
                         <Link to="/about">About Us</Link>
                     </nav>
                 </div>
-
-                <div>
-                    <h3>Contact</h3>
-
-                    <div className={styles.contact}>
-                        <p>Email address</p>
-                        <p>Phone number</p>
-                    </div>
-                </div>
             </div>
 
             <div className={styles.bottom}>
