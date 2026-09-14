@@ -5,62 +5,25 @@ import { useNavigate } from "react-router-dom";
 function AdminProfiles() {
     const [search, setSearch] = useState("");
     const [roleFilter, setRoleFilter] = useState("all");
-    const [statusFilter, setStatusFilter] = useState("all");
-    const navigate = useNavigate()
+    const [statusFilter, setStatusFilter] = useState("all"); const navigate = useNavigate();
 
-    // Replace this with your Supabase data later.
-    const users = [
-        {
-            id: 1,
-            name: "Mukwende Libimba",
-            email: "mukwende2000@gmail.com",
-            job_title: "Chief Administrator",
-            access_level: "Super Admin",
-            status: "active",
-            last_active: "Now",
-            initials: "ML",
-        },
-        {
-            id: 2,
-            name: "David Chen",
-            email: "d.chen@evmi.edu",
-            job_title: "Admissions Officer",
-            access_level: "Standard",
-            status: "active",
-            last_active: "1 day ago",
-            initials: "DC",
-        },
-        {
-            id: 3,
-            name: "Marcus Reid",
-            email: "m.reid@evmi.edu",
-            job_title: "Finance Auditor",
-            access_level: "Read-Only",
-            status: "deactivated",
-            last_active: "2 weeks ago",
-            initials: "MR",
-        },
-        {
-            id: 4,
-            name: "Sarah Jenkins",
-            email: "s.jenkins@evmi.edu",
-            job_title: "Admissions Officer",
-            access_level: "Standard",
-            status: "inactive",
-            last_active: "5 days ago",
-            initials: "SJ",
-        },
-    ];
+    const users = [];
 
     const filteredUsers = useMemo(() => {
-        return users.filter((user) => {
-            const searchValue = search.toLowerCase().trim();
+        const searchValue = search.toLowerCase().trim();
 
+        return users.filter((user) => {
             const matchesSearch =
                 !searchValue ||
-                user.name.toLowerCase().includes(searchValue) ||
-                user.email.toLowerCase().includes(searchValue) ||
-                user.job_title.toLowerCase().includes(searchValue);
+                user.name
+                    ?.toLowerCase()
+                    .includes(searchValue) ||
+                user.email
+                    ?.toLowerCase()
+                    .includes(searchValue) ||
+                user.job_title
+                    ?.toLowerCase()
+                    .includes(searchValue);
 
             const matchesRole =
                 roleFilter === "all" ||
@@ -108,8 +71,6 @@ function AdminProfiles() {
 
     return (
         <div className={styles.page}>
-
-            {/* Page Header */}
             <div className={styles.pageHeader}>
                 <div>
                     <h1>User Management</h1>
@@ -123,7 +84,9 @@ function AdminProfiles() {
                 <button
                     type="button"
                     className={styles.createButton}
-                    onClick={() => navigate(`/admin/create_user`)}
+                    onClick={() =>
+                        navigate("/admin/create_user")
+                    }
                 >
                     <span className="material-symbols-outlined">
                         add
@@ -133,9 +96,7 @@ function AdminProfiles() {
                 </button>
             </div>
 
-            {/* Statistics */}
             <div className={styles.statsGrid}>
-
                 <div className={styles.statCard}>
                     <div className={styles.statIcon}>
                         <span className="material-symbols-outlined">
@@ -184,18 +145,15 @@ function AdminProfiles() {
 
                     <div>
                         <span>Deactivated</span>
-                        <strong>{deactivatedUsers}</strong>
+                        <strong>
+                            {deactivatedUsers}
+                        </strong>
                     </div>
                 </div>
-
             </div>
 
-            {/* Users Card */}
             <section className={styles.usersCard}>
-
-                {/* Toolbar */}
                 <div className={styles.toolbar}>
-
                     <div className={styles.searchBox}>
                         <span className="material-symbols-outlined">
                             search
@@ -205,20 +163,24 @@ function AdminProfiles() {
                             type="text"
                             placeholder="Search profiles..."
                             value={search}
-                            onChange={(e) =>
-                                setSearch(e.target.value)
+                            onChange={(event) =>
+                                setSearch(event.target.value)
                             }
                         />
                     </div>
 
                     <div className={styles.filters}>
-
-                        {/* Role */}
-                        <div className={styles.selectWrapper}>
+                        <div
+                            className={
+                                styles.selectWrapper
+                            }
+                        >
                             <select
                                 value={roleFilter}
-                                onChange={(e) =>
-                                    setRoleFilter(e.target.value)
+                                onChange={(event) =>
+                                    setRoleFilter(
+                                        event.target.value
+                                    )
                                 }
                             >
                                 <option value="all">
@@ -247,12 +209,17 @@ function AdminProfiles() {
                             </span>
                         </div>
 
-                        {/* Status */}
-                        <div className={styles.selectWrapper}>
+                        <div
+                            className={
+                                styles.selectWrapper
+                            }
+                        >
                             <select
                                 value={statusFilter}
-                                onChange={(e) =>
-                                    setStatusFilter(e.target.value)
+                                onChange={(event) =>
+                                    setStatusFilter(
+                                        event.target.value
+                                    )
                                 }
                             >
                                 <option value="all">
@@ -276,20 +243,16 @@ function AdminProfiles() {
                                 expand_more
                             </span>
                         </div>
-
                     </div>
                 </div>
 
-                {/* Results */}
                 <div className={styles.resultsInfo}>
                     Showing {filteredUsers.length} of{" "}
                     {users.length} users
                 </div>
 
-                {/* Table */}
                 <div className={styles.tableWrapper}>
                     <table className={styles.table}>
-
                         <thead>
                             <tr>
                                 <th>User</th>
@@ -305,12 +268,17 @@ function AdminProfiles() {
                             {filteredUsers.length > 0 ? (
                                 filteredUsers.map((user) => (
                                     <tr key={user.id}>
-
-                                        {/* User */}
                                         <td>
-                                            <div className={styles.userCell}>
-
-                                                <div className={styles.avatar}>
+                                            <div
+                                                className={
+                                                    styles.userCell
+                                                }
+                                            >
+                                                <div
+                                                    className={
+                                                        styles.avatar
+                                                    }
+                                                >
                                                     {user.initials}
                                                 </div>
 
@@ -323,11 +291,9 @@ function AdminProfiles() {
                                                         {user.email}
                                                     </span>
                                                 </div>
-
                                             </div>
                                         </td>
 
-                                        {/* Role */}
                                         <td>
                                             <span
                                                 className={
@@ -338,7 +304,6 @@ function AdminProfiles() {
                                             </span>
                                         </td>
 
-                                        {/* Access */}
                                         <td>
                                             <span
                                                 className={
@@ -349,7 +314,6 @@ function AdminProfiles() {
                                             </span>
                                         </td>
 
-                                        {/* Last Active */}
                                         <td>
                                             <span
                                                 className={
@@ -360,7 +324,6 @@ function AdminProfiles() {
                                             </span>
                                         </td>
 
-                                        {/* Status */}
                                         <td>
                                             <span
                                                 className={`${styles.statusBadge} ${styles[user.status]}`}
@@ -377,43 +340,12 @@ function AdminProfiles() {
                                             </span>
                                         </td>
 
-                                        {/* Actions */}
                                         <td>
                                             <div
                                                 className={
                                                     styles.actions
                                                 }
                                             >
-
-                                                {user.status ===
-                                                    "deactivated" ? (
-                                                    <button
-                                                        type="button"
-                                                        title="Restore"
-                                                    >
-                                                        <span className="material-symbols-outlined">
-                                                            restore
-                                                        </span>
-                                                    </button>
-                                                ) : (
-                                                    <button
-                                                        type="button"
-                                                        title={
-                                                            user.status ===
-                                                                "active"
-                                                                ? "Deactivate"
-                                                                : "Activate"
-                                                        }
-                                                    >
-                                                        <span className="material-symbols-outlined">
-                                                            {user.status ===
-                                                                "active"
-                                                                ? "block"
-                                                                : "check_circle"}
-                                                        </span>
-                                                    </button>
-                                                )}
-
                                                 <button
                                                     type="button"
                                                     title="Edit User"
@@ -431,10 +363,8 @@ function AdminProfiles() {
                                                         more_vert
                                                     </span>
                                                 </button>
-
                                             </div>
                                         </td>
-
                                     </tr>
                                 ))
                             ) : (
@@ -450,24 +380,22 @@ function AdminProfiles() {
                                         </span>
 
                                         <strong>
-                                            No users found
+                                            No users to display
                                         </strong>
 
                                         <p>
-                                            Try changing your search
-                                            or filter options.
+                                            There are currently no
+                                            administrator profiles
+                                            available.
                                         </p>
                                     </td>
                                 </tr>
                             )}
                         </tbody>
-
                     </table>
                 </div>
 
-                {/* Pagination */}
                 <div className={styles.pagination}>
-
                     <span>
                         Showing {filteredUsers.length} of{" "}
                         {users.length} entries
@@ -483,20 +411,22 @@ function AdminProfiles() {
 
                         <button
                             type="button"
-                            className={styles.currentPage}
+                            className={
+                                styles.currentPage
+                            }
                         >
                             1
                         </button>
 
-                        <button type="button">
+                        <button
+                            type="button"
+                            disabled
+                        >
                             Next
                         </button>
                     </div>
-
                 </div>
-
             </section>
-
         </div>
     );
 }

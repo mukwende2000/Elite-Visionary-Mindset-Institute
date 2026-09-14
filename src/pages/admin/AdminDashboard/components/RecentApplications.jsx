@@ -1,12 +1,14 @@
+import { useNavigate } from "react-router-dom";
 import styles from "./RecentApplications.module.css";
 
 function RecentApplications({ applications }) {
+    const navigate = useNavigate()
     return (
         <div className={styles.tableCard}>
             <div className={styles.tableHeader}>
                 <h2>Recent Applications</h2>
 
-                <button type="button">
+                <button onClick={() => navigate('applications')} type="button">
                     View All
                 </button>
             </div>

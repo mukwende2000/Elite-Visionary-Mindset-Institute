@@ -9,7 +9,6 @@ function ApplicationDecision({
 }) {
     const [rejectionReason, setRejectionReason] = useState("");
     const [submitting, setSubmitting] = useState(false);
-
     const paymentStatus = payment?.status || "none";
     const paymentVerified = paymentStatus === "paid";
 
@@ -28,14 +27,11 @@ function ApplicationDecision({
             const updateData = {
                 status: newStatus,
                 updated_at: new Date().toISOString(),
+                rejection_reason:
+                    newStatus === "rejected"
+                        ? rejectionReason.trim()
+                        : null,
             };
-
-            if (newStatus === "rejected") {
-                updateData.rejection_reason =
-                    rejectionReason.trim();
-            } else {
-                updateData.rejection_reason = null;
-            }
 
             const {
                 data: updatedApplication,
@@ -51,9 +47,6 @@ function ApplicationDecision({
                 throw applicationError;
             }
 
-            /*
-             * Send approval email
-             */
             if (newStatus === "approved") {
                 const {
                     data: emailResult,
@@ -87,7 +80,6 @@ function ApplicationDecision({
             }
 
             setApplication(updatedApplication);
-
         } catch (error) {
             console.error(
                 "Failed to update application:",
@@ -102,6 +94,8 @@ function ApplicationDecision({
         }
     };
 
+    const showDecisionActions = paymentVerified;
+
     return (
         <section
             className={`${styles.card} ${styles.decisionCard}`}
@@ -111,130 +105,137 @@ function ApplicationDecision({
                 title="Application Decision"
             />
 
-            {/* =================================
-                PENDING APPLICATION
-            ================================== */}
             {application.status === "submitted" && (
                 <div className={styles.pendingContent}>
-
-                    <p className={styles.description}>
-                        Review the application and payment before
-                        making an admission decision.
-                    </p>
-
-                    {/* =================================
-                        PAYMENT STATUS
-                    ================================== */}
-                    <PaymentStatus paymentStatus={paymentStatus} />
-
-                    {/* =================================
-                        APPROVAL ACTION
-                    ================================== */}
-                    <div className={styles.approvalSection}>
-                        <div className={styles.actionHeader}>
-                            <div>
-                                <h3>Admission Decision</h3>
-
-                                <p>
-                                    {paymentVerified
-                                        ? "Payment has been verified. This application is ready for approval."
-                                        : "Verify the applicant's payment before approving admission."}
-                                </p>
-                            </div>
-                        </div>
-
-                        <button
-                            type="button"
-                            className={styles.approveButton}
-                            onClick={() =>
-                                updateStatus("approved")
-                            }
-                            disabled={
-                                submitting ||
-                                !paymentVerified
-                            }
-                        >
-                            <span className="material-symbols-outlined">
-                                check_circle
-                            </span>
-
-                            {submitting
-                                ? "Processing..."
-                                : paymentVerified
-                                    ? "Approve Admission"
-                                    : "Approve Admission"}
-                        </button>
-
-                        {!paymentVerified && (
-                            <p className={styles.disabledHint}>
-                                <span className="material-symbols-outlined">
-                                    lock
-                                </span>
-
-                                Approval is locked until payment
-                                verification is complete.
-                            </p>
-                        )}
-                    </div>
-
-                    {/* =================================
-                        REJECTION
-                    ================================== */}
-                    <div className={styles.rejectionSection}>
-                        <div className={styles.actionHeader}>
-                            <div>
-                                <h3>Reject Application</h3>
-
-                                <p>
-                                    If the application does not meet
-                                    the admission requirements, provide
-                                    a reason before rejecting it.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div className={styles.rejectionBox}>
-                            <label htmlFor="rejectionReason">
-                                Reason for Rejection
-                            </label>
-
-                            <textarea
-                                id="rejectionReason"
-                                value={rejectionReason}
-                                onChange={(event) =>
-                                    setRejectionReason(
-                                        event.target.value
-                                    )
+                    {!showDecisionActions ? (
+                        <PaymentActionMessage
+                            paymentStatus={paymentStatus}
+                        />
+                    ) : (
+                        <>
+                            <div
+                                className={
+                                    styles.approvalSection
                                 }
-                                placeholder="Explain why this application is being rejected..."
-                                rows={4}
-                                disabled={submitting}
-                            />
-
-                            <button
-                                type="button"
-                                className={styles.rejectButton}
-                                onClick={() =>
-                                    updateStatus("rejected")
-                                }
-                                disabled={submitting}
                             >
-                                <span className="material-symbols-outlined">
-                                    cancel
-                                </span>
+                                <div
+                                    className={
+                                        styles.actionHeader
+                                    }
+                                >
+                                    <div>
+                                        <h3>
+                                            Admission Decision
+                                        </h3>
 
-                                {submitting
-                                    ? "Processing..."
-                                    : "Reject Application"}
-                            </button>
-                        </div>
-                    </div>
+                                        <p>
+                                            Payment has been
+                                            verified. Admission
+                                            actions are now
+                                            available.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <button
+                                    type="button"
+                                    className={
+                                        styles.approveButton
+                                    }
+                                    onClick={() =>
+                                        updateStatus(
+                                            "approved"
+                                        )
+                                    }
+                                    disabled={submitting}
+                                >
+                                    <span className="material-symbols-outlined">
+                                        check_circle
+                                    </span>
+
+                                    {submitting
+                                        ? "Processing..."
+                                        : "Approve Admission"}
+                                </button>
+                            </div>
+
+                            <div
+                                className={
+                                    styles.rejectionSection
+                                }
+                            >
+                                <div
+                                    className={
+                                        styles.actionHeader
+                                    }
+                                >
+                                    <div>
+                                        <h3>
+                                            Reject Application
+                                        </h3>
+
+                                        <p>
+                                            Provide a reason
+                                            before rejecting
+                                            this application.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div
+                                    className={
+                                        styles.rejectionBox
+                                    }
+                                >
+                                    <label htmlFor="rejectionReason">
+                                        Reason for Rejection
+                                    </label>
+
+                                    <textarea
+                                        id="rejectionReason"
+                                        value={
+                                            rejectionReason
+                                        }
+                                        onChange={(event) =>
+                                            setRejectionReason(
+                                                event.target
+                                                    .value
+                                            )
+                                        }
+                                        placeholder="Explain why this application is being rejected..."
+                                        rows={4}
+                                        disabled={submitting}
+                                    />
+
+                                    <button
+                                        type="button"
+                                        className={
+                                            styles.rejectButton
+                                        }
+                                        onClick={() =>
+                                            updateStatus(
+                                                "rejected"
+                                            )
+                                        }
+                                        disabled={
+                                            submitting
+                                        }
+                                    >
+                                        <span className="material-symbols-outlined">
+                                            cancel
+                                        </span>
+
+                                        {submitting
+                                            ? "Processing..."
+                                            : "Reject Application"}
+                                    </button>
+                                </div>
+                            </div>
+                        </>
+                    )}
                 </div>
             )}
 
-            {/* =================================
-                APPROVED
-            ================================== */}
             {application.status === "approved" && (
                 <DecisionResult
                     type="approved"
@@ -244,9 +245,6 @@ function ApplicationDecision({
                 />
             )}
 
-            {/* =================================
-                REJECTED
-            ================================== */}
             {application.status === "rejected" && (
                 <DecisionResult
                     type="rejected"
@@ -260,27 +258,28 @@ function ApplicationDecision({
     );
 }
 
-/*
- * ============================================
- * PAYMENT STATUS
- * ============================================
- */
-
-function PaymentStatus({ paymentStatus }) {
-    const statusConfig = {
-        paid: {
-            icon: "verified",
-            title: "Payment Verified",
+function PaymentActionMessage({ paymentStatus }) {
+    const config = {
+        none: {
+            icon: "payments",
+            title: "Awaiting Payment",
             message:
-                "The applicant's payment has been verified.",
-            className: styles.paymentVerified,
+                "Actions will be available after payment is made.",
+            className: styles.paymentMissing,
+        },
+        pending: {
+            icon: "schedule",
+            title: "Awaiting Payment Verification",
+            message:
+                "The payment is being processed and admission actions will be available once payment verification is complete.",
+            className: styles.paymentPending,
         },
 
         pending_verification: {
             icon: "schedule",
-            title: "Payment Awaiting Verification",
+            title: "Awaiting Payment Verification",
             message:
-                "The payment has been submitted and is waiting for verification.",
+                "The payment has been submitted and admission actions will be available once it has been verified.",
             className: styles.paymentPending,
         },
 
@@ -288,7 +287,7 @@ function PaymentStatus({ paymentStatus }) {
             icon: "error",
             title: "Payment Rejected",
             message:
-                "The submitted payment was rejected. A valid payment must be verified before admission can be approved.",
+                "This Application's payment has been rejected.",
             className: styles.paymentRejected,
         },
 
@@ -296,52 +295,37 @@ function PaymentStatus({ paymentStatus }) {
             icon: "error",
             title: "Payment Failed",
             message:
-                "The payment could not be completed. A successful payment must be verified before admission can be approved.",
+                "A successful payment is required before admission actions are available.",
             className: styles.paymentRejected,
-        },
-
-        none: {
-            icon: "payments",
-            title: "No Payment Recorded",
-            message:
-                "No payment has been recorded for this application.",
-            className: styles.paymentMissing,
         },
     };
 
-    const config =
-        statusConfig[paymentStatus] ||
-        statusConfig.none;
+    const fallback = {
+        icon: "payments",
+        title: "Payment Required",
+        message:
+            "Admission actions will be available once a valid payment has been verified.",
+        className: styles.paymentMissing,
+    };
+
+    const configToUse =
+        config[paymentStatus] || fallback;
 
     return (
-        <div className={config.className}>
+        <div className={configToUse.className}>
             <div className={styles.paymentIcon}>
                 <span className="material-symbols-outlined">
-                    {config.icon}
+                    {configToUse.icon}
                 </span>
             </div>
 
             <div className={styles.paymentInfo}>
-                <strong>{config.title}</strong>
-                <p>{config.message}</p>
+                <strong>{configToUse.title}</strong>
+                <p>{configToUse.message}</p>
             </div>
         </div>
     );
 }
-
-function formatPaymentStatus(status) {
-    return status
-        .replaceAll("_", " ")
-        .replace(/\b\w/g, (letter) =>
-            letter.toUpperCase()
-        );
-}
-
-/*
- * ============================================
- * DECISION RESULT
- * ============================================
- */
 
 function DecisionResult({
     type,
@@ -351,7 +335,6 @@ function DecisionResult({
     reason,
 }) {
     const isApproved = type === "approved";
-
     return (
         <div className={styles.decisionResult}>
             <div
@@ -380,13 +363,20 @@ function DecisionResult({
             )}
 
             {!isApproved && reason && (
-                <div className={styles.rejectionStatement}>
+                <div
+                    className={
+                        styles.rejectionStatement
+                    }
+                >
                     <span className="material-symbols-outlined">
                         info
                     </span>
 
                     <div>
-                        <span>Reason for rejection</span>
+                        <span>
+                            Reason for rejection
+                        </span>
+
                         <strong>{reason}</strong>
                     </div>
                 </div>
@@ -394,12 +384,6 @@ function DecisionResult({
         </div>
     );
 }
-
-/*
- * ============================================
- * SECTION TITLE
- * ============================================
- */
 
 function SectionTitle({ icon, title }) {
     return (
@@ -411,6 +395,6 @@ function SectionTitle({ icon, title }) {
             {title}
         </h2>
     );
-}
 
+}
 export default ApplicationDecision;

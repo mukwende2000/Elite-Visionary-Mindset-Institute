@@ -1,3 +1,13 @@
+.emptyState {
+    height: 100px;
+    padding: 40px 20px !important;
+    text-align: center !important;
+    vertical-align: middle !important;
+    color: #6b7280 !important;
+    font-size: 15px;
+    font-weight: 500;
+}
+
 .tableCard {
     background: #ffffff;
 }

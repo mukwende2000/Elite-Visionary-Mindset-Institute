@@ -1,12 +1,14 @@
+import { useNavigate } from "react-router-dom";
 import styles from "./RecentPayments.module.css";
 
 function RecentPayments({ payments }) {
+    const navigate = useNavigate()
     return (
         <div className={styles.tableCard}>
             <div className={styles.tableHeader}>
                 <h2>Recent Payments</h2>
 
-                <button type="button">
+                <button onClick={() => navigate('payments')} type="button">
                     View All
                 </button>
             </div>

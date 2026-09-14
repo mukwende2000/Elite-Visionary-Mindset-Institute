@@ -126,7 +126,7 @@ export default function About() {
 
                 <div className={styles.teamGrid}>
                     {team.map((member) => {
-                        return <TeamMember setSelectedMember={setSelectedMember} member={member} />
+                        return <TeamMember key={member.id} setSelectedMember={setSelectedMember} member={member} />
                     })}
                 </div>
             </section>
